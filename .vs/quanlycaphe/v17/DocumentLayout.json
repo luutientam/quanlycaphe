@@ -1,9 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "T:\\IT\\dotnet\\quanlycaphe\\",
+  "WorkspaceRootPath": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|t:\\it\\dotnet\\quanlycaphe\\quanlycaphe\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|c:\\users\\admin\\source\\repos\\quanlycaphe\\quanlycaphe\\nhacungcap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|solutionrelative:quanlycaphe\\nhacungcap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|c:\\users\\admin\\source\\repos\\quanlycaphe\\quanlycaphe\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|solutionrelative:quanlycaphe\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -14,15 +18,35 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "NhaCungCap.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\NhaCungCap.cs",
+              "RelativeDocumentMoniker": "quanlycaphe\\NhaCungCap.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\NhaCungCap.cs [Design]",
+              "RelativeToolTip": "quanlycaphe\\NhaCungCap.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T14:01:29.336Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "T:\\IT\\dotnet\\quanlycaphe\\quanlycaphe\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\Form1.cs",
               "RelativeDocumentMoniker": "quanlycaphe\\Form1.cs",
-              "ToolTip": "T:\\IT\\dotnet\\quanlycaphe\\quanlycaphe\\Form1.cs [Design]",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\Form1.cs [Design]",
               "RelativeToolTip": "quanlycaphe\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-20T14:49:08.824Z",

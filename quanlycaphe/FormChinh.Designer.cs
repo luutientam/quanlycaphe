@@ -72,6 +72,7 @@
             // 
             // MenuNguoiDung
             // 
+            this.MenuNguoiDung.BackColor = System.Drawing.Color.Beige;
             this.MenuNguoiDung.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ngườiDùngToolStripMenuItem,
             this.phânQuyềnToolStripMenuItem});

@@ -268,7 +268,7 @@ namespace quanlycaphe
             {
                 con.Open();
             }
-            string sql = "select * from KhuyenMai where MaKhuyenMai like '%"+maKM+"%' and TenKhuyenMai like N'%"+tenKM+"%' and PhanTramGiam like '%"+phanTramGiam+ "%' and '" + ngayApDungsql + "' BETWEEN NgayBatDau AND NgayKetThuc";
+            string sql = "select * from KhuyenMai where MaKhuyenMai like '%"+maKM+"%' and TenKhuyenMai like N'%"+tenKM+"%' and PhanTramGiam like '%"+phanTramGiam+ "%' or '" + ngayApDungsql + "' BETWEEN NgayBatDau AND NgayKetThuc";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable tb = new DataTable();

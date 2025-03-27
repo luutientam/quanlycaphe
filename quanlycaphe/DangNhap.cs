@@ -54,28 +54,38 @@ namespace quanlycaphe
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(con.State == ConnectionState.Closed)
+            try
             {
-                con.Open();
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+                string query = "SELECT * FROM NguoiDung WHERE TenDangNhap = '" + txtTaiKhoan.Text + "' AND MatKhau = '" + textBoxMatKhau.Text + "'";
+                SqlDataAdapter sda = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                if (dt.Rows.Count == 1)
+                {
+                    User.UserId = dt.Rows[0]["MaNguoiDung"].ToString();
+                    User.Username = dt.Rows[0]["TenDangNhap"].ToString();
+                    User.Role = dt.Rows[0]["MaVaiTro"].ToString();
+
+                }
+                else
+                {
+                    FormChinh f = new FormChinh();
+                    f.Show();
+                    this.Hide();
+                    //MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu", "Thông báo", MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                }
             }
-            string query = "SELECT * FROM NguoiDung WHERE TenDangNhap = '" + txtTaiKhoan.Text + "' AND MatKhau = '" + textBoxMatKhau.Text + "'";
-            SqlDataAdapter sda = new SqlDataAdapter(query, con);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
-            if (dt.Rows.Count == 1)
-            {
-                User.UserId = dt.Rows[0]["MaNguoiDung"].ToString();
-                User.Username = dt.Rows[0]["TenDangNhap"].ToString();
-                User.Role = dt.Rows[0]["MaVaiTro"].ToString();
-                
-            }
-            else
+            catch (Exception ex)
             {
                 FormChinh f = new FormChinh();
                 f.Show();
                 this.Hide();
-                //MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu", "Thông báo", MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
+            
         }
     }
 }

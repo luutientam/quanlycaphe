@@ -15,6 +15,19 @@ namespace quanlycaphe
         public FormChinh()
         {
             InitializeComponent();
+            if(User.MaNguoiDung != null)
+            {
+                label1.Text = "Xin chào: " + User.TenNguoiDung;
+                label2.Text = "Quyền: " + User.MaVaiTro;
+                label3.Text = "Mã: " + User.MaNguoiDung;
+            }
+            else
+            {
+                label1.Text = "Xin chào: " + User.TenNhanVien;
+                label2.Text = "Quyền: Nhân viên";
+                label3.Text = "Mã: " + User.MaNhanVien;
+            }
+            //label3.Text = "Ngày: " + DateTime.Now.ToString("dd/MM/yyyy");
 
         }
         public void loadform(object Form)

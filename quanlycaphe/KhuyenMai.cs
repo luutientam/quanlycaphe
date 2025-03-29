@@ -13,7 +13,7 @@ namespace quanlycaphe
 {
     public partial class KhuyenMai : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-6VHQAFG;Initial Catalog=quanlycafe;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=localhost;Initial Catalog=quanlycafe;Integrated Security=True");
         public KhuyenMai()
         {
             InitializeComponent();
@@ -168,6 +168,10 @@ namespace quanlycaphe
             String ngayBatDausql = ngayBatDau.ToString("yyyy-MM-dd");
             DateTime ngayKetThuc = dtNgayKetThuc.Value;
             String ngayKetThucsql = ngayBatDau.ToString("yyyy-MM-dd");
+            String tb = "Kiểm tra thông tin trước khi lưu: \n Mã khuyến mãi: " + maKM + "\n Tên khuyến mãi: " + tenKM + "\n Mô tả: " + moTa + "\n Ngày bắt đầu khuyến mãi: " + ngayBatDausql + "\n Ngày kết thúc khuyến mãi: " + ngayKetThucsql + "\n Phần trăm giảm: " + phanTramGiam;
+            if (MessageBox.Show(tb,"Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question)==DialogResult.No){
+                return;
+            }
             if (con.State == ConnectionState.Closed)
             {
                 con.Open();
@@ -216,6 +220,10 @@ namespace quanlycaphe
             String ngayBatDausql = ngayBatDau.ToString("yyyy-MM-dd");
             DateTime ngayKetThuc = dtNgayKetThuc.Value;
             String ngayKetThucsql = ngayBatDau.ToString("yyyy-MM-dd");
+            if(MessageBox.Show("Bạn có chắc chắn muốn cập nhật thông tin không ?", "Thông báo", MessageBoxButtons.OKCancel,MessageBoxIcon.Question) == DialogResult.Cancel)
+            {
+                return;
+            }
             if (con.State == ConnectionState.Closed)
             {
                 con.Open();
@@ -268,7 +276,7 @@ namespace quanlycaphe
             {
                 con.Open();
             }
-            string sql = "select * from KhuyenMai where MaKhuyenMai like '%"+maKM+"%' and TenKhuyenMai like N'%"+tenKM+"%' and PhanTramGiam like '%"+phanTramGiam+ "%' and '" + ngayApDungsql + "' BETWEEN NgayBatDau AND NgayKetThuc";
+            string sql = "select * from KhuyenMai where MaKhuyenMai like '%"+maKM+"%' and TenKhuyenMai like N'%"+tenKM+"%' and PhanTramGiam like '%"+phanTramGiam+ "%' or '" + ngayApDungsql + "' BETWEEN NgayBatDau AND NgayKetThuc";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable tb = new DataTable();

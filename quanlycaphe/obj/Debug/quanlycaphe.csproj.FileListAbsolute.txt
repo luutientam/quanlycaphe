@@ -26,7 +26,6 @@ C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.csproj
 C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.BaoCao.resources
 C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.DangNhap.resources
 C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.DanhMucSanPham.resources
-C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.DonHang.resources
 C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.Form1.resources
 C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.FormChinh.resources
 C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.KhachHang.resources

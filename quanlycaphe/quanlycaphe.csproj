@@ -203,6 +203,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="icon\" />
+    <Folder Include="imageSP\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

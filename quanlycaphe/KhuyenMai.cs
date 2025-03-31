@@ -286,6 +286,21 @@ namespace quanlycaphe
             dgvKhuyenMai.DataSource = tb;
             dgvKhuyenMai.Refresh();
 
+             
+        }
+
+        private void txtMaKM_TK_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTenKM_TK_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvKhuyenMai_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

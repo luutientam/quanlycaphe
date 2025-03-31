@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace quanlycaphe
+namespace quanlycaphe.quanlidonhang
 {
-    public partial class DonHang : Form
+    public partial class ThemHoaDon : Form
     {
-        public DonHang()
+        public ThemHoaDon()
         {
             InitializeComponent();
         }

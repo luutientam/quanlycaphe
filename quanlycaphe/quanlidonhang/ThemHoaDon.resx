@@ -123,13 +123,27 @@
   <metadata name="Column2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="Column5.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="Column4.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="Column3.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="Column4.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="themSanPham.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        5AAAAOQBXaJ52AAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAIfSURBVFhH1ZdL
+        TsMwEIbDDtY87gCIx4KHWCA1CeJ1BxDXQCCooDEgEFvgAiBghQRiwUWg3KKxC4tCmEnGqppO7NC0QvzS
+        t2jnlbgee+r8Sy2XwxE/kJOuUOteoNaWDuQEfkfm3sgV9XmvIk+h4LsXyCiDauxTqc9RWHH5IhzzhLpj
+        ihlxhXwpBXKa0nSgKOrzhdqDZF/p5L8AYtUO5qKs+bRwHg1A8G0qWRFuSuWon9JbBE/rCXnNJCmIus+1
+        EuC4zyfoBvBzmITtBI5FfnMbX8aN6VbkMxOUyeZFPYazZQHnxyOVa1Xc50yACfX5HcPZTPhHapbKNgWG
+        s7SjDS3OZgJW+oTKNgWGatrRhhZnM6PeqWwiPMd5RzNanM1GqVwbovKOgzuTc7Khxdls4GVG5ePeX+Oc
+        NLjTcbPllQTfDUt3+EdylcrDhQMfOCdNLx7ADeQKlYcWPJZTnJMNLc5mAw89Ku84iyIc5pxsaHE2G76o
+        DVL5RPDlW9rJhhZns1Clsk0l0w7rnIkWZ7NwTGWbwjGKcTQSfnxHNYCzmWCPYhSswhMXkMXWVT3auvzd
+        ZeQF4QOVaxddx432oK7RcA/CcSrHCwbQXSawK0Dvb1MZg/56JEPhAAlBN+1JOgReKP9QqoUrATMcJCiy
+        Jxrxsud9c05Lh+Fop39MWm68osLexUkGkptOzFf0KVXUDIX1Rnh3JC2L13jy57RlwPg/cpwfG451GnFi
+        2UsAAAAASUVORK5CYII=
+</value>
+  </data>
 </root>

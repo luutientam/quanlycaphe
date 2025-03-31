@@ -246,7 +246,7 @@
             this.dgvKhuyenMai.Cursor = System.Windows.Forms.Cursors.Default;
             this.dgvKhuyenMai.EnableHeadersVisualStyles = false;
             this.dgvKhuyenMai.GridColor = System.Drawing.Color.LightGray;
-            this.dgvKhuyenMai.Location = new System.Drawing.Point(4, 175);
+            this.dgvKhuyenMai.Location = new System.Drawing.Point(14, 175);
             this.dgvKhuyenMai.Margin = new System.Windows.Forms.Padding(5);
             this.dgvKhuyenMai.Name = "dgvKhuyenMai";
             this.dgvKhuyenMai.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -416,7 +416,7 @@
             this.groupBox2.Controls.Add(this.txtMaKM);
             this.groupBox2.Controls.Add(this.txtTenKM);
             this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(4, 511);
+            this.groupBox2.Location = new System.Drawing.Point(14, 511);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(5);
@@ -501,7 +501,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(4, 14);
+            this.groupBox1.Location = new System.Drawing.Point(14, 14);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(5);

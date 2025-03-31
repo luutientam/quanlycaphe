@@ -8,13 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace quanlycaphe
+namespace quanlycaphe.quanlidonhang
 {
-    public partial class DonHang : Form
+    public partial class ChiTietHoaDon : Form
     {
-        public DonHang()
+        public ChiTietHoaDon()
         {
             InitializeComponent();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

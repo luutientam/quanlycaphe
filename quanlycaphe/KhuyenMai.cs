@@ -280,6 +280,121 @@ namespace quanlycaphe
             dgvKhuyenMai.DataSource = tb;
             dgvKhuyenMai.Refresh();
 
+             
+        }
+
+        private void txtMaKM_TK_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTenKM_TK_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvKhuyenMai_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPhanTramGiam_TK_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMoTa_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMaKM_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTenKM_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPhanTramGiam_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtNgayKetThuc_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtNgayBatDau_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtNgayApDung_TK_ValueChanged(object sender, EventArgs e)
+        {
 
         }
 

@@ -65,11 +65,17 @@
     <Compile Include="DanhMucSanPham.Designer.cs">
       <DependentUpon>DanhMucSanPham.cs</DependentUpon>
     </Compile>
-    <Compile Include="DonHang.cs">
+    <Compile Include="quanlidonhang\ChiTietHoaDon.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DonHang.Designer.cs">
-      <DependentUpon>DonHang.cs</DependentUpon>
+    <Compile Include="quanlidonhang\ChiTietHoaDon.Designer.cs">
+      <DependentUpon>ChiTietHoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="quanlidonhang\Dasboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="quanlidonhang\Dasboard.Designer.cs">
+      <DependentUpon>Dasboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -114,6 +120,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="quanlidonhang\SanPham.cs" />
+    <Compile Include="quanlidonhang\ThanhToanHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="quanlidonhang\ThanhToanHoaDon.Designer.cs">
+      <DependentUpon>ThanhToanHoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="quanlidonhang\ThemHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="quanlidonhang\ThemHoaDon.Designer.cs">
+      <DependentUpon>ThemHoaDon.cs</DependentUpon>
+    </Compile>
     <Compile Include="QuanLyBan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,9 +155,6 @@
     <EmbeddedResource Include="DanhMucSanPham.resx">
       <DependentUpon>DanhMucSanPham.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DonHang.resx">
-      <DependentUpon>DonHang.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -156,11 +172,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NhaCungCap.resx">
       <DependentUpon>NhaCungCap.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="quanlidonhang\Dasboard.resx">
+      <DependentUpon>Dasboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuanLyBan.resx">
       <DependentUpon>QuanLyBan.cs</DependentUpon>

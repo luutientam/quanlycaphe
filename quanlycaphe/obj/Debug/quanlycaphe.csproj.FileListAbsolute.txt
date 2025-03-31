@@ -40,3 +40,4 @@ C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.csproj
 C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.csproj.CoreCompileInputs.cache
 C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.exe
 C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.pdb
+C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.quanlidonhang.Dasboard.resources

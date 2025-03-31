@@ -14,11 +14,17 @@ namespace quanlycaphe
 {
     public partial class NhaCungCap : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-DB33O4G\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=localhost;Initial Catalog=quanlycafe;Integrated Security=True");
         public NhaCungCap()
         {
             InitializeComponent();
             loadNhaCungCap();
+            disableTextBox();
+            buttonLuu.Enabled = false;
+            buttonSua.Enabled = false;
+            buttonXoa.Enabled = false;
+            buttonHuyThaoTac.Enabled = false;
+
         }
         public void loadNhaCungCap()
         {
@@ -36,6 +42,30 @@ namespace quanlycaphe
             dataGridView1.DataSource = dt;
             dataGridView1.Refresh();
 
+        }
+        public void clear()
+        {
+            txtMaNCC.Text = "";
+            txtTenNCC.Text = "";
+            txtSdt.Text = "";
+            txtEmail.Text = "";
+            txtDiaChi.Text = "";
+        }
+        public void enableTextBox()
+        {
+            txtMaNCC.Enabled = true;
+            txtTenNCC.Enabled = true;
+            txtSdt.Enabled = true;
+            txtEmail.Enabled = true;
+            txtDiaChi.Enabled = true;
+        }
+        public void disableTextBox()
+        {
+            txtMaNCC.Enabled = false;
+            txtTenNCC.Enabled = false;
+            txtSdt.Enabled = false;
+            txtEmail.Enabled = false;
+            txtDiaChi.Enabled = false;
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -138,11 +168,7 @@ namespace quanlycaphe
                 loadNhaCungCap();
             }
         }
-
-        private void buttonThoat_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        
 
         private void buttonTimKiem_Click(object sender, EventArgs e)
         {
@@ -172,6 +198,12 @@ namespace quanlycaphe
             txtSdt.Text = dataGridView1.Rows[i].Cells[2].Value.ToString();
             txtEmail.Text = dataGridView1.Rows[i].Cells[3].Value.ToString();
             txtDiaChi.Text = dataGridView1.Rows[i].Cells[4].Value.ToString();
+            enableTextBox();
+            buttonSua.Enabled = true;
+            buttonXoa.Enabled = true;
+            buttonHuyThaoTac.Enabled = true;
+            buttonLuu.Enabled = false;
+            txtMaNCC.Enabled = false;
         }
         public bool checkTrungMaNCC(String maNCC)
         {
@@ -284,6 +316,36 @@ namespace quanlycaphe
         }
 
         private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonThem_Click(object sender, EventArgs e)
+        {
+            buttonLuu.Enabled = true;
+            buttonSua.Enabled = false;
+            buttonXoa.Enabled = false;
+            buttonHuyThaoTac.Enabled = true;
+            enableTextBox();
+            clear();
+        }
+
+        private void buttonHuyThaoTac_Click(object sender, EventArgs e)
+        {
+            clear();
+            disableTextBox();
+            buttonLuu.Enabled = false;
+            buttonSua.Enabled = false;
+            buttonXoa.Enabled = false;
+            buttonHuyThaoTac.Enabled = false;
+        }
+
+        private void txtDiaChi_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
         }

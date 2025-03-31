@@ -13,11 +13,17 @@ namespace quanlycaphe
 {
     public partial class KhachHang : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-DB33O4G\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=localhost;Initial Catalog=quanlycafe;Integrated Security=True");
         public KhachHang()
-        {
+        {  
             InitializeComponent();
             loadKhachHang();
+            disableTextBox();
+            buttonLuu.Enabled = false;
+            buttonCapNhat.Enabled = false;
+            buttonXoa.Enabled = false;
+            buttonHuyThaoTac.Enabled = false;
+           
         }
         public void loadKhachHang()
         {
@@ -35,6 +41,30 @@ namespace quanlycaphe
             dataGridView1.DataSource = dt;
             dataGridView1.Refresh();
 
+        }
+        public void clear()
+        {
+            txtMaKH.Text = "";
+            txtTenKH.Text = "";
+            txtSdt.Text = "";
+            txtEmail.Text = "";
+            txtDiaChi.Text = "";
+        }
+        public void enableTextBox()
+        {
+            txtMaKH.Enabled = true;
+            txtTenKH.Enabled = true;
+            txtSdt.Enabled = true;
+            txtEmail.Enabled = true;
+            txtDiaChi.Enabled = true;
+        }
+        public void disableTextBox()
+        {
+            txtMaKH.Enabled = false;
+            txtTenKH.Enabled = false;
+            txtSdt.Enabled = false;
+            txtEmail.Enabled = false;
+            txtDiaChi.Enabled = false;
         }
 
         private void label8_Click(object sender, EventArgs e)
@@ -133,10 +163,7 @@ namespace quanlycaphe
             }
         }
 
-        private void buttonThoat_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        
 
         private void buttonTimKiem_Click(object sender, EventArgs e)
         {
@@ -158,15 +185,6 @@ namespace quanlycaphe
             dataGridView1.Refresh();
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int i = (int)e.RowIndex;
-            txtMaKH.Text = dataGridView1.Rows[i].Cells[0].Value.ToString();
-            txtTenKH.Text = dataGridView1.Rows[i].Cells[1].Value.ToString();
-            txtSdt.Text = dataGridView1.Rows[i].Cells[2].Value.ToString();
-            txtEmail.Text = dataGridView1.Rows[i].Cells[3].Value.ToString();
-            txtDiaChi.Text = dataGridView1.Rows[i].Cells[4].Value.ToString();
-        }
         public bool checkTrungMaKH(String maKH)
         {
             if (con.State == ConnectionState.Closed)
@@ -185,6 +203,47 @@ namespace quanlycaphe
                 return false;
             }
             con.Close();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonThem_Click(object sender, EventArgs e)
+        {
+            buttonLuu.Enabled = true;
+            buttonCapNhat.Enabled = false;
+            buttonXoa.Enabled = false;
+            buttonHuyThaoTac.Enabled = true;
+            enableTextBox();
+            clear();
+        }
+
+        private void buttonHuyThaoTac_Click(object sender, EventArgs e)
+        {
+            clear();
+            disableTextBox();
+            buttonLuu.Enabled = false;
+            buttonCapNhat.Enabled = false;
+            buttonXoa.Enabled = false;
+            buttonHuyThaoTac.Enabled = false;
+        }
+
+        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            int i = (int)e.RowIndex;
+            txtMaKH.Text = dataGridView1.Rows[i].Cells[0].Value.ToString();
+            txtTenKH.Text = dataGridView1.Rows[i].Cells[1].Value.ToString();
+            txtSdt.Text = dataGridView1.Rows[i].Cells[2].Value.ToString();
+            txtEmail.Text = dataGridView1.Rows[i].Cells[3].Value.ToString();
+            txtDiaChi.Text = dataGridView1.Rows[i].Cells[4].Value.ToString();
+            enableTextBox();
+            buttonCapNhat.Enabled = true;
+            buttonXoa.Enabled = true;
+            buttonHuyThaoTac.Enabled = true;
+            buttonLuu.Enabled = false;
+            txtMaKH.Enabled = false;
         }
     }
 }

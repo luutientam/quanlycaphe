@@ -1,0 +1,268 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|c:\\users\\admin\\source\\repos\\quanlycaphe\\quanlycaphe\\nhacungcap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|solutionrelative:quanlycaphe\\nhacungcap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\quanlyban.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|solutionrelative:quanlycaphe\\quanlyban.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\khachhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|solutionrelative:quanlycaphe\\khachhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\khuyenmai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|solutionrelative:quanlycaphe\\khuyenmai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\khuyenmai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|solutionrelative:quanlycaphe\\khuyenmai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\nhacungcap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|solutionrelative:quanlycaphe\\nhacungcap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\khachhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|solutionrelative:quanlycaphe\\khachhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\quanlyban.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|solutionrelative:quanlycaphe\\quanlyban.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\formchinh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|solutionrelative:quanlycaphe\\formchinh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\quanlyban.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|solutionrelative:quanlycaphe\\quanlyban.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\nhacungcap.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|solutionrelative:quanlycaphe\\nhacungcap.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\khachhang.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|solutionrelative:quanlycaphe\\khachhang.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\khuyenmai.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|solutionrelative:quanlycaphe\\khuyenmai.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\DangNhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|solutionrelative:quanlycaphe\\DangNhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\dangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4DEA1770-FFA3-46FB-85BF-5D2BFD37F488}|quanlycaphe\\quanlycaphe.csproj|solutionrelative:quanlycaphe\\dangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "KhuyenMai.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\KhuyenMai.cs",
+              "RelativeDocumentMoniker": "quanlycaphe\\KhuyenMai.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\KhuyenMai.cs",
+              "RelativeToolTip": "quanlycaphe\\KhuyenMai.cs",
+              "ViewState": "AgIAAHYAAAAAAAAAAAAlwIkAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T14:37:39.761Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NhaCungCap.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\NhaCungCap.cs",
+              "RelativeDocumentMoniker": "quanlycaphe\\NhaCungCap.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\NhaCungCap.cs [Design]",
+              "RelativeToolTip": "quanlycaphe\\NhaCungCap.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T17:42:15.53Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "QuanLyBan.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\QuanLyBan.cs",
+              "RelativeDocumentMoniker": "quanlycaphe\\QuanLyBan.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\QuanLyBan.cs [Design]",
+              "RelativeToolTip": "quanlycaphe\\QuanLyBan.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T14:11:03.737Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "KhachHang.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\KhachHang.cs",
+              "RelativeDocumentMoniker": "quanlycaphe\\KhachHang.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\KhachHang.cs [Design]",
+              "RelativeToolTip": "quanlycaphe\\KhachHang.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T17:42:22.569Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "KhuyenMai.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\KhuyenMai.cs",
+              "RelativeDocumentMoniker": "quanlycaphe\\KhuyenMai.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\KhuyenMai.cs [Design]",
+              "RelativeToolTip": "quanlycaphe\\KhuyenMai.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T16:48:51.289Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "QuanLyBan.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\QuanLyBan.cs",
+              "RelativeDocumentMoniker": "quanlycaphe\\QuanLyBan.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\QuanLyBan.cs",
+              "RelativeToolTip": "quanlycaphe\\QuanLyBan.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAArwLoAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T15:08:46.147Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "KhachHang.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\KhachHang.cs",
+              "RelativeDocumentMoniker": "quanlycaphe\\KhachHang.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\KhachHang.cs",
+              "RelativeToolTip": "quanlycaphe\\KhachHang.cs",
+              "ViewState": "AgIAANkAAAAAAAAAAAAgwOoAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-27T16:50:01.384Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "NhaCungCap.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\NhaCungCap.cs",
+              "RelativeDocumentMoniker": "quanlycaphe\\NhaCungCap.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\NhaCungCap.cs",
+              "RelativeToolTip": "quanlycaphe\\NhaCungCap.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAEwEgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T17:43:48.782Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "QuanLyBan.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\QuanLyBan.Designer.cs",
+              "RelativeDocumentMoniker": "quanlycaphe\\QuanLyBan.Designer.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\QuanLyBan.Designer.cs",
+              "RelativeToolTip": "quanlycaphe\\QuanLyBan.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T14:12:03.966Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FormChinh.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\FormChinh.cs",
+              "RelativeDocumentMoniker": "quanlycaphe\\FormChinh.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\FormChinh.cs [Design]",
+              "RelativeToolTip": "quanlycaphe\\FormChinh.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T16:48:51.331Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "NhaCungCap.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\NhaCungCap.Designer.cs",
+              "RelativeDocumentMoniker": "quanlycaphe\\NhaCungCap.Designer.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\NhaCungCap.Designer.cs",
+              "RelativeToolTip": "quanlycaphe\\NhaCungCap.Designer.cs",
+              "ViewState": "AgIAAO8AAAAAAAAAAAAlwAIBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T17:10:02.559Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "KhachHang.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\KhachHang.Designer.cs",
+              "RelativeDocumentMoniker": "quanlycaphe\\KhachHang.Designer.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\KhachHang.Designer.cs",
+              "RelativeToolTip": "quanlycaphe\\KhachHang.Designer.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwIUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T15:42:38.304Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "KhuyenMai.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\KhuyenMai.Designer.cs",
+              "RelativeDocumentMoniker": "quanlycaphe\\KhuyenMai.Designer.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\KhuyenMai.Designer.cs",
+              "RelativeToolTip": "quanlycaphe\\KhuyenMai.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T16:45:36.08Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "DangNhap.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\DangNhap.cs",
+              "RelativeDocumentMoniker": "quanlycaphe\\DangNhap.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\DangNhap.cs",
+              "RelativeToolTip": "quanlycaphe\\DangNhap.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAApwB0AAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T16:48:50.927Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "DangNhap.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\DangNhap.cs",
+              "RelativeDocumentMoniker": "quanlycaphe\\DangNhap.cs",
+              "ToolTip": "C:\\Users\\Admin\\source\\repos\\quanlycaphe\\quanlycaphe\\DangNhap.cs [Design]",
+              "RelativeToolTip": "quanlycaphe\\DangNhap.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-24T16:48:51.288Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

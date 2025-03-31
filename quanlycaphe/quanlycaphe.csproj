@@ -183,8 +183,17 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="quanlidonhang\ChiTietHoaDon.resx">
+      <DependentUpon>ChiTietHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="quanlidonhang\Dasboard.resx">
       <DependentUpon>Dasboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="quanlidonhang\ThanhToanHoaDon.resx">
+      <DependentUpon>ThanhToanHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="quanlidonhang\ThemHoaDon.resx">
+      <DependentUpon>ThemHoaDon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuanLyBan.resx">
       <DependentUpon>QuanLyBan.cs</DependentUpon>
@@ -208,6 +217,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="icon\" />
+    <Folder Include="imageSP\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

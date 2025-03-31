@@ -31,5 +31,10 @@ namespace quanlycaphe.quanlidonhang
         {
 
         }
+
+        private void dgvSanPhamDuocThem_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -13,16 +13,15 @@ namespace quanlycaphe.quanlidonhang
 {
     public partial class Dasboard : Form
     {
-        private SqlConnection con = new SqlConnection(@"Data Source=VUATAM\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True;Encrypt=True");
+private SqlConnection con = new SqlConnection(@"Data Source=VUATAM\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True;Encrypt=True;TrustServerCertificate=True");
+
 
         public Dasboard()
         {
             InitializeComponent();
             loadDonHang();
-            disableTextBox();
+      
             nhapExcel.Enabled = false;
-            buttonCapNhat.Enabled = false;
-            buttonXoa.Enabled = false;
             xuatExcel.Enabled = false;
         }
 
@@ -33,7 +32,8 @@ namespace quanlycaphe.quanlidonhang
             {
                 con.Open();
             }
-            string sql = "select * from DonHang";
+            string sql = "select dh.MaDonHang , kh.TenKhachHang , nv.TenNhanVien , dh.NgayDat, dh.TongTien , dh.MaKhuyenMai from DonHang dh join KhachHang kh on dh.MaKhachHang = kh.MaKhachHang " +
+                "join NhanVien nv on nv.MaNhanVien = dh.MaNhanVien";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable tb = new DataTable();
@@ -67,12 +67,56 @@ namespace quanlycaphe.quanlidonhang
 
         private void buttonThemMoi_Click(object sender, EventArgs e)
         {
-
+            ThemHoaDon themHoaDon = new ThemHoaDon();
+            themHoaDon.ShowDialog();
         }
 
-        private void txtTimKiem_Click(object sender, EventArgs e)
+        private void buttonTimKiem_Click(object sender, EventArgs e)
         {
+            string txtTimKiemTmp = txtTimKiem.Text.Trim();
 
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+
+                // Xây dựng câu truy vấn SQL với điều kiện tìm kiếm (nếu cần)
+                string sql = "SELECT dh.MaDonHang, kh.tenkhachhang, nv.tennhanvien, dh.NgayDat, dh.tongtien, dh.MaKhuyenMai " +
+                             "FROM donhang dh " +
+                             "JOIN nhanvien nv ON dh.MaNhanVien = nv.MaNhanVien " +
+                             "JOIN khachhang kh ON dh.MaKhachHang = kh.MaKhachHang " +
+                             "WHERE dh.MaDonHang LIKE '%" + txtTimKiemTmp + "%' " +
+                             "OR kh.tenkhachhang LIKE N'%" + txtTimKiemTmp + "%' " +
+                             "OR nv.tennhanvien LIKE N'%" + txtTimKiemTmp + "%' " +
+                             "OR dh.NgayDat LIKE '%" + txtTimKiemTmp + "%' " +
+                             "OR dh.tongtien LIKE '%" + txtTimKiemTmp + "%' " +
+                             "OR dh.MaKhuyenMai LIKE '%" + txtTimKiemTmp + "%'";
+
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable tb = new DataTable();
+                    da.Fill(tb);
+
+                    dgvDanhSachHoaDon.DataSource = tb;
+                    dgvDanhSachHoaDon.Refresh();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi xảy ra: " + ex.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
         }
+
+
     }
 }

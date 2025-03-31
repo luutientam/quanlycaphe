@@ -33,20 +33,20 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.timKiem = new System.Windows.Forms.Button();
-            this.txtTenKM_TK = new System.Windows.Forms.TextBox();
-            this.dgvDanhSachHoaDon = new System.Windows.Forms.DataGridView();
-            this.nhapExcel = new System.Windows.Forms.Button();
             this.themHoaDon = new System.Windows.Forms.Button();
-            this.xuatExcel = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtTimKiem = new System.Windows.Forms.TextBox();
+            this.dgvDanhSachHoaDon = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtDuongDan = new System.Windows.Forms.TextBox();
+            this.nhapExcel = new System.Windows.Forms.Button();
+            this.xuatExcel = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.buttonBrowse = new System.Windows.Forms.Button();
+            this.txtDuongDan = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachHoaDon)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -56,7 +56,7 @@
             // 
             this.groupBox1.Controls.Add(this.timKiem);
             this.groupBox1.Controls.Add(this.themHoaDon);
-            this.groupBox1.Controls.Add(this.txtTenKM_TK);
+            this.groupBox1.Controls.Add(this.txtTimKiem);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(1, -11);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
@@ -73,24 +73,39 @@
             this.timKiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.timKiem.Image = ((System.Drawing.Image)(resources.GetObject("timKiem.Image")));
             this.timKiem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.timKiem.Location = new System.Drawing.Point(1027, 29);
+            this.timKiem.Location = new System.Drawing.Point(1007, 30);
             this.timKiem.Margin = new System.Windows.Forms.Padding(5);
             this.timKiem.Name = "timKiem";
-            this.timKiem.Size = new System.Drawing.Size(119, 54);
+            this.timKiem.Size = new System.Drawing.Size(147, 54);
             this.timKiem.TabIndex = 9;
             this.timKiem.Text = "Tìm kiếm";
             this.timKiem.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.timKiem.UseVisualStyleBackColor = false;
-            this.timKiem.Click += new System.EventHandler(this.txtTimKiem_Click);
             // 
-            // txtTenKM_TK
+            // themHoaDon
             // 
-            this.txtTenKM_TK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTenKM_TK.Location = new System.Drawing.Point(645, 43);
-            this.txtTenKM_TK.Margin = new System.Windows.Forms.Padding(5);
-            this.txtTenKM_TK.Name = "txtTenKM_TK";
-            this.txtTenKM_TK.Size = new System.Drawing.Size(352, 29);
-            this.txtTenKM_TK.TabIndex = 3;
+            this.themHoaDon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.themHoaDon.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.themHoaDon.Image = ((System.Drawing.Image)(resources.GetObject("themHoaDon.Image")));
+            this.themHoaDon.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.themHoaDon.Location = new System.Drawing.Point(61, 32);
+            this.themHoaDon.Margin = new System.Windows.Forms.Padding(5);
+            this.themHoaDon.Name = "themHoaDon";
+            this.themHoaDon.Size = new System.Drawing.Size(146, 51);
+            this.themHoaDon.TabIndex = 31;
+            this.themHoaDon.Text = "Thêm mới";
+            this.themHoaDon.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.themHoaDon.UseVisualStyleBackColor = true;
+            this.themHoaDon.Click += new System.EventHandler(this.buttonThemMoi_Click);
+            // 
+            // txtTimKiem
+            // 
+            this.txtTimKiem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTimKiem.Location = new System.Drawing.Point(645, 43);
+            this.txtTimKiem.Margin = new System.Windows.Forms.Padding(5);
+            this.txtTimKiem.Name = "txtTimKiem";
+            this.txtTimKiem.Size = new System.Drawing.Size(352, 29);
+            this.txtTimKiem.TabIndex = 3;
             // 
             // dgvDanhSachHoaDon
             // 
@@ -131,6 +146,43 @@
             this.dgvDanhSachHoaDon.TabIndex = 13;
             this.dgvDanhSachHoaDon.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKhuyenMai_CellContentClick);
             // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "MaDonHang";
+            this.Column1.HeaderText = "Mã đơn hàng";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "TenKhachHang";
+            this.Column2.HeaderText = "Tên khách hàng";
+            this.Column2.Name = "Column2";
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "TenNhanVien";
+            this.Column3.HeaderText = "Nhân viên lập hóa đơn";
+            this.Column3.Name = "Column3";
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "NgayDat";
+            this.Column5.HeaderText = "Ngày lập hóa đơn";
+            this.Column5.Name = "Column5";
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "TongTien";
+            this.Column8.HeaderText = "Tổng tiền(KM)";
+            this.Column8.Name = "Column8";
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "MaKhuyenMai";
+            this.Column4.HeaderText = "Mã KM";
+            this.Column4.Name = "Column4";
+            // 
             // nhapExcel
             // 
             this.nhapExcel.BackColor = System.Drawing.Color.Turquoise;
@@ -146,22 +198,6 @@
             this.nhapExcel.Text = "Nhập excel";
             this.nhapExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.nhapExcel.UseVisualStyleBackColor = false;
-            // 
-            // themHoaDon
-            // 
-            this.themHoaDon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.themHoaDon.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.themHoaDon.Image = ((System.Drawing.Image)(resources.GetObject("themHoaDon.Image")));
-            this.themHoaDon.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.themHoaDon.Location = new System.Drawing.Point(61, 32);
-            this.themHoaDon.Margin = new System.Windows.Forms.Padding(5);
-            this.themHoaDon.Name = "themHoaDon";
-            this.themHoaDon.Size = new System.Drawing.Size(146, 51);
-            this.themHoaDon.TabIndex = 31;
-            this.themHoaDon.Text = "Thêm mới";
-            this.themHoaDon.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.themHoaDon.UseVisualStyleBackColor = true;
-            this.themHoaDon.Click += new System.EventHandler(this.buttonThemMoi_Click);
             // 
             // xuatExcel
             // 
@@ -194,52 +230,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "MaHoaDon";
-            this.Column1.HeaderText = "Mã hóa đơn";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "TenKhachHang";
-            this.Column2.HeaderText = "Tên khách hàng";
-            this.Column2.Name = "Column2";
-            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "NhanVienLapHoaDon";
-            this.Column3.HeaderText = "Nhân viên lập hóa đơn";
-            this.Column3.Name = "Column3";
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "NgayLapHoaDon";
-            this.Column5.HeaderText = "Ngày lập hóa đơn";
-            this.Column5.Name = "Column5";
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "TongTienKM";
-            this.Column8.HeaderText = "Tổng tiền(KM)";
-            this.Column8.Name = "Column8";
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "MaKM";
-            this.Column4.HeaderText = "Mã KM";
-            this.Column4.Name = "Column4";
-            // 
-            // txtDuongDan
-            // 
-            this.txtDuongDan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDuongDan.Location = new System.Drawing.Point(458, 153);
-            this.txtDuongDan.Margin = new System.Windows.Forms.Padding(5);
-            this.txtDuongDan.Name = "txtDuongDan";
-            this.txtDuongDan.Size = new System.Drawing.Size(352, 29);
-            this.txtDuongDan.TabIndex = 32;
-            // 
             // buttonBrowse
             // 
             this.buttonBrowse.BackColor = System.Drawing.Color.NavajoWhite;
@@ -256,6 +246,15 @@
             this.buttonBrowse.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.buttonBrowse.UseVisualStyleBackColor = false;
             // 
+            // txtDuongDan
+            // 
+            this.txtDuongDan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDuongDan.Location = new System.Drawing.Point(458, 153);
+            this.txtDuongDan.Margin = new System.Windows.Forms.Padding(5);
+            this.txtDuongDan.Name = "txtDuongDan";
+            this.txtDuongDan.Size = new System.Drawing.Size(352, 29);
+            this.txtDuongDan.TabIndex = 32;
+            // 
             // Dasboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,6 +264,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.dgvDanhSachHoaDon);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Dasboard";
             this.Text = "   ";
             this.groupBox1.ResumeLayout(false);
@@ -280,19 +280,19 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button timKiem;
-        private System.Windows.Forms.TextBox txtTenKM_TK;
+        private System.Windows.Forms.TextBox txtTimKiem;
         private System.Windows.Forms.DataGridView dgvDanhSachHoaDon;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.Button nhapExcel;
         private System.Windows.Forms.Button themHoaDon;
         private System.Windows.Forms.Button xuatExcel;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button buttonBrowse;
         private System.Windows.Forms.TextBox txtDuongDan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
 }

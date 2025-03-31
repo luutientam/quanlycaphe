@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KhuyenMai));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label4 = new System.Windows.Forms.Label();
             this.txtTenKM_TK = new System.Windows.Forms.TextBox();
             this.buttonXoa = new System.Windows.Forms.Button();
@@ -81,6 +81,7 @@
             this.label4.Size = new System.Drawing.Size(102, 19);
             this.label4.TabIndex = 6;
             this.label4.Text = "Phần trăm giảm";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // txtTenKM_TK
             // 
@@ -90,6 +91,7 @@
             this.txtTenKM_TK.Name = "txtTenKM_TK";
             this.txtTenKM_TK.Size = new System.Drawing.Size(352, 29);
             this.txtTenKM_TK.TabIndex = 3;
+            this.txtTenKM_TK.TextChanged += new System.EventHandler(this.txtTenKM_TK_TextChanged);
             // 
             // buttonXoa
             // 
@@ -166,6 +168,7 @@
             this.txtPhanTramGiam_TK.Name = "txtPhanTramGiam_TK";
             this.txtPhanTramGiam_TK.Size = new System.Drawing.Size(352, 29);
             this.txtPhanTramGiam_TK.TabIndex = 7;
+            this.txtPhanTramGiam_TK.TextChanged += new System.EventHandler(this.txtPhanTramGiam_TK_TextChanged);
             // 
             // label11
             // 
@@ -177,6 +180,7 @@
             this.label11.Size = new System.Drawing.Size(46, 19);
             this.label11.TabIndex = 23;
             this.label11.Text = "Mô tả";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // txtMoTa
             // 
@@ -187,6 +191,7 @@
             this.txtMoTa.Name = "txtMoTa";
             this.txtMoTa.Size = new System.Drawing.Size(352, 68);
             this.txtMoTa.TabIndex = 22;
+            this.txtMoTa.TextChanged += new System.EventHandler(this.txtMoTa_TextChanged);
             // 
             // label10
             // 
@@ -198,6 +203,7 @@
             this.label10.Size = new System.Drawing.Size(102, 19);
             this.label10.TabIndex = 21;
             this.label10.Text = "Phần trăm giảm";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // label12
             // 
@@ -209,24 +215,25 @@
             this.label12.Size = new System.Drawing.Size(94, 19);
             this.label12.TabIndex = 10;
             this.label12.Text = "Ngày áp dụng";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // dgvKhuyenMai
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.dgvKhuyenMai.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.dgvKhuyenMai.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvKhuyenMai.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvKhuyenMai.BackgroundColor = System.Drawing.Color.White;
             this.dgvKhuyenMai.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvKhuyenMai.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dgvKhuyenMai.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvKhuyenMai.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvKhuyenMai.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvKhuyenMai.ColumnHeadersHeight = 35;
             this.dgvKhuyenMai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvKhuyenMai.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -248,6 +255,7 @@
             this.dgvKhuyenMai.Size = new System.Drawing.Size(1182, 326);
             this.dgvKhuyenMai.TabIndex = 10;
             this.dgvKhuyenMai.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKhuyenMai_CellClick);
+            this.dgvKhuyenMai.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKhuyenMai_CellContentClick);
             // 
             // Column1
             // 
@@ -296,6 +304,7 @@
             this.label8.Size = new System.Drawing.Size(102, 19);
             this.label8.TabIndex = 11;
             this.label8.Text = "Mã khuyến mãi";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label5
             // 
@@ -307,6 +316,7 @@
             this.label5.Size = new System.Drawing.Size(94, 19);
             this.label5.TabIndex = 16;
             this.label5.Text = "Ngày kết thúc";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label7
             // 
@@ -318,6 +328,7 @@
             this.label7.Size = new System.Drawing.Size(104, 19);
             this.label7.TabIndex = 12;
             this.label7.Text = "Tên khuyến mãi";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label6
             // 
@@ -329,6 +340,7 @@
             this.label6.Size = new System.Drawing.Size(91, 19);
             this.label6.TabIndex = 15;
             this.label6.Text = "Ngày bắt đầu";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // txtMaKM_TK
             // 
@@ -338,6 +350,7 @@
             this.txtMaKM_TK.Name = "txtMaKM_TK";
             this.txtMaKM_TK.Size = new System.Drawing.Size(352, 29);
             this.txtMaKM_TK.TabIndex = 2;
+            this.txtMaKM_TK.TextChanged += new System.EventHandler(this.txtMaKM_TK_TextChanged);
             // 
             // txtMaKM
             // 
@@ -347,6 +360,7 @@
             this.txtMaKM.Name = "txtMaKM";
             this.txtMaKM.Size = new System.Drawing.Size(352, 29);
             this.txtMaKM.TabIndex = 13;
+            this.txtMaKM.TextChanged += new System.EventHandler(this.txtMaKM_TextChanged);
             // 
             // label1
             // 
@@ -358,6 +372,7 @@
             this.label1.Size = new System.Drawing.Size(102, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã khuyến mãi";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtTenKM
             // 
@@ -367,6 +382,7 @@
             this.txtTenKM.Name = "txtTenKM";
             this.txtTenKM.Size = new System.Drawing.Size(352, 29);
             this.txtTenKM.TabIndex = 14;
+            this.txtTenKM.TextChanged += new System.EventHandler(this.txtTenKM_TextChanged);
             // 
             // label2
             // 
@@ -378,6 +394,7 @@
             this.label2.Size = new System.Drawing.Size(104, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "Tên khuyến mãi";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // groupBox2
             // 
@@ -407,6 +424,7 @@
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cập nhật thông tin chi tiết về khuyến mãi";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // txtPhanTramGiam
             // 
@@ -416,6 +434,7 @@
             this.txtPhanTramGiam.Name = "txtPhanTramGiam";
             this.txtPhanTramGiam.Size = new System.Drawing.Size(352, 29);
             this.txtPhanTramGiam.TabIndex = 36;
+            this.txtPhanTramGiam.TextChanged += new System.EventHandler(this.txtPhanTramGiam_TextChanged);
             // 
             // buttonHuyThaoTac
             // 
@@ -442,6 +461,7 @@
             this.dtNgayKetThuc.Name = "dtNgayKetThuc";
             this.dtNgayKetThuc.Size = new System.Drawing.Size(352, 29);
             this.dtNgayKetThuc.TabIndex = 34;
+            this.dtNgayKetThuc.ValueChanged += new System.EventHandler(this.dtNgayKetThuc_ValueChanged);
             // 
             // dtNgayBatDau
             // 
@@ -451,6 +471,7 @@
             this.dtNgayBatDau.Name = "dtNgayBatDau";
             this.dtNgayBatDau.Size = new System.Drawing.Size(352, 29);
             this.dtNgayBatDau.TabIndex = 33;
+            this.dtNgayBatDau.ValueChanged += new System.EventHandler(this.dtNgayBatDau_ValueChanged);
             // 
             // buttonThemMoi
             // 
@@ -488,6 +509,7 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin tìm kiếm";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // dtNgayApDung_TK
             // 
@@ -497,6 +519,7 @@
             this.dtNgayApDung_TK.Name = "dtNgayApDung_TK";
             this.dtNgayApDung_TK.Size = new System.Drawing.Size(352, 29);
             this.dtNgayApDung_TK.TabIndex = 31;
+            this.dtNgayApDung_TK.ValueChanged += new System.EventHandler(this.dtNgayApDung_TK_ValueChanged);
             // 
             // KhuyenMai
             // 

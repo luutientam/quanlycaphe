@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using xls = Microsoft.Office.Interop.Excel;
 
 namespace quanlycaphe
 {
@@ -85,9 +86,18 @@ namespace quanlycaphe
             da.Fill(tb);
             cmd.Dispose();
             con.Close();
+            DataRow r = tb.NewRow();
+            r["MaVaiTro"] = "";
+            r["TenVaiTro"] = "--- Chọn vai trò ---";
+            tb.Rows.InsertAt(r, 0);
+
             cbbVaiTro.DataSource = tb;
             cbbVaiTro.DisplayMember = "TenVaiTro";
             cbbVaiTro.ValueMember = "MaVaiTro";
+
+            cbbVaiTro_TK.DataSource = tb;
+            cbbVaiTro_TK.DisplayMember = "TenVaiTro";
+            cbbVaiTro_TK.ValueMember = "MaVaiTro";
         }
         public void loadNguoiDung()
         {
@@ -125,20 +135,12 @@ namespace quanlycaphe
             txtMatKhau.Text = dgvNguoiDung.Rows[i].Cells[8].Value.ToString();
             txtEmail.Text = dgvNguoiDung.Rows[i].Cells[9].Value.ToString();
             dtNgayTao.Value = Convert.ToDateTime(dgvNguoiDung.Rows[i].Cells[10].Value.ToString());
-            string trangThai = dgvNguoiDung.Rows[i].Cells[11].Value.ToString();
-            if (Convert.ToInt32(trangThai) == 1)
-            {
-                cbbTrangThai.Text = "Hoạt động";
-            }
-            else if (Convert.ToInt32(trangThai) == 0)
-            {
-                cbbTrangThai.Text = "Khóa";
-            }
-            else
-            {
-                cbbTrangThai.Text = "Chưa xác minh";
-            }
+            cbbTrangThai.Text = dgvNguoiDung.Rows[i].Cells[11].Value.ToString();
+           
             enableTextBox();
+            txtTB.Text = "";
+            txtTenDangNhap.Enabled = false;
+            
             buttonCapNhat.Enabled = true;
             buttonXoa.Enabled = true;
             buttonHuyThaoTac.Enabled = true;
@@ -258,17 +260,13 @@ namespace quanlycaphe
                 return;
             }
             String trangThai = cbbTrangThai.Text;
-            if (trangThai == "Hoạt động" || cbbTrangThai.SelectedIndex == -1)
+            if (cbbTrangThai.SelectedIndex == -1)
             {
-                trangThai = "1";
+                trangThai = "Hoạt động";
             }
-            else if (trangThai == "Khóa")
+            if(MessageBox.Show("Bạn có chắc chắn muốn thêm mới người dùng này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
-                trangThai = "0";
-            }
-            else
-            {
-                trangThai = "2";
+                return;
             }
             if (con.State == ConnectionState.Closed)
             {
@@ -355,40 +353,36 @@ namespace quanlycaphe
                 MessageBox.Show("Tên đăng nhập không được chứa khoảng trắng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if(checkTrungTenDangNhap(tenDangNhap))
-            {
-                MessageBox.Show("Tên đăng nhập đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            //if(checkTrungTenDangNhap(tenDangNhap))
+            //{
+            //    MessageBox.Show("Tên đăng nhập đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
             String trangThai = cbbTrangThai.Text;
-            if (trangThai == "Hoạt động" || cbbTrangThai.SelectedIndex == -1)
+            if (cbbTrangThai.SelectedIndex == -1)
             {
-                trangThai = "1";
+                trangThai = "Hoạt động";
             }
-            else if (trangThai == "Khóa")
+            if(MessageBox.Show("Bạn có chắc chắn muốn cập nhật thông tin người dùng này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
-                trangThai = "0";
-            }
-            else
-            {
-                trangThai = "2";
+                return;
             }
             if (con.State == ConnectionState.Closed)
             {
                 con.Open();
             }
-            String sqlND = "UPDATE NguoiDung SET TenNguoiDung = N'" + tenNguoiDung + "', MaVaiTro = '" + maVaiTro + "', SoDienThoai = '" + soDienThoai + "', TenNguoiDung = '" + tenDangNhap + "', NgaySinh = '" + ngaySinh + "', GioiTinh = N'" + gioiTinh + "', DiaChi = N'" + diaChi + "' WHERE MaNguoiDung = '" + maNguoiDung + "'";
+            String sqlND = "UPDATE NguoiDung SET TenNguoiDung = N'" + tenNguoiDung + "', MaVaiTro = '" + maVaiTro + "', SoDienThoai = '" + soDienThoai + "', NgaySinh = '" + ngaySinh + "', GioiTinh = N'" + gioiTinh + "', DiaChi = N'" + diaChi + "' WHERE MaNguoiDung = '" + maNguoiDung + "'";
             SqlCommand cmdND = new SqlCommand(sqlND, con);
             cmdND.ExecuteNonQuery();
             cmdND.Dispose();
-            string sqlTK = "UPDATE TaiKhoan SET TenDangNhap = '" + tenDangNhap + "', MatKhau = '" + matKhau + "', Email = '" + email + "', TrangThai = '" + trangThai + "' WHERE MaTaiKhoan = 'MTK" + maNguoiDung + "'";
+            string sqlTK = "UPDATE TaiKhoan SET TenDangNhap = '" + tenDangNhap + "', MatKhau = '" + matKhau + "', Email = '" + email + "', TrangThai = N'" + trangThai + "' WHERE MaTaiKhoan = 'MTK" + maNguoiDung + "'";
             SqlCommand cmdTK = new SqlCommand(sqlTK, con);
             cmdTK.ExecuteNonQuery();
             cmdTK.Dispose();
             con.Close();
 
             loadNguoiDung();
-
+            MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             clear();
             disableTextBox();
             buttonLuu.Enabled = false;
@@ -401,6 +395,10 @@ namespace quanlycaphe
         {
             String maNguoiDung = txtMaND.Text;
             String maTaiKhoan = "MTK" + maNguoiDung;
+            if(MessageBox.Show("Bạn có chắc chắn muốn xóa người dùng này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                return;
+            }
             if (con.State == ConnectionState.Closed)
             {
                 con.Open();
@@ -415,7 +413,7 @@ namespace quanlycaphe
             cmdTK.Dispose();
             con.Close();
             loadNguoiDung();
-
+            MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             clear();
             disableTextBox();
             buttonLuu.Enabled = false;
@@ -468,6 +466,243 @@ namespace quanlycaphe
                 txtTB.ForeColor = Color.Green;
             }
             dr.Close();
+        }
+
+        private void buttonTimKiem_Click(object sender, EventArgs e)
+        {
+            String tenNguoiDung = txtTenNguoiDung_TK.Text;
+            String vaiTro = cbbVaiTro_TK.SelectedValue.ToString();
+            String gioiTinh = cbbGioiTinh_TK.Text;
+            String tenDangNhap = txtTenDangNhap_TK.Text;
+            String trangThai = cbbTrangThai_TK.Text;
+            String diaChi = txtDiaChi_TK.Text;
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            if(cbbGioiTinh_TK.SelectedIndex == -1 || gioiTinh == "-- Chọn giới tính --")
+            {
+                gioiTinh = "";
+            }
+            if(cbbTrangThai_TK.SelectedIndex == -1 || trangThai == "-- Chọn trạng thái --")
+            {
+                trangThai = "";
+            }
+            string sql = "select N.MaNguoiDung, N.TenNguoiDung, V.TenVaiTro, N.SoDienThoai, N.NgaySinh, N.GioiTinh, " +
+             "N.DiaChi, T.TenDangNhap, T.MatKhau, T.Email, T.NgayTao, T.TrangThai " +
+             "from NguoiDung N " +
+             "join TaiKhoan T on N.MaTaiKhoan = T.MaTaiKhoan " +
+             "join VaiTro V on N.MaVaiTro = V.MaVaiTro " +
+             "where N.TenNguoiDung like N'%" + tenNguoiDung + "%' " +
+             "and T.tenDangNhap like '%" + tenDangNhap + "%' " +
+             "and N.GioiTinh like N'%" + gioiTinh + "%' " +
+             "and N.DiaChi like N'%" + diaChi + "%' " +
+             "and T.TrangThai like N'%" + trangThai + "%' " +
+             "and V.MaVaiTro like '%" + vaiTro + "%'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable tb = new DataTable();
+            da.Fill(tb);
+            cmd.Dispose();
+            con.Close();
+            dgvNguoiDung.DataSource = tb;
+            dgvNguoiDung.Refresh();
+
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+        public void ExportExcel(DataTable tb, string sheetname)
+        {
+            //Tạo các đối tượng Excel
+
+            xls.Application oExcel = new xls.Application();
+            xls.Workbooks oBooks;
+            xls.Sheets oSheets;
+            xls.Workbook oBook;
+            xls.Worksheet oSheet;
+            //Tạo mới một Excel WorkBook 
+            oExcel.Visible = true;
+            oExcel.DisplayAlerts = false;
+            oExcel.Application.SheetsInNewWorkbook = 1;
+            oBooks = oExcel.Workbooks;
+            oBook = (xls.Workbook)(oExcel.Workbooks.Add(Type.Missing));
+            oSheets = oBook.Worksheets;
+            oSheet = (xls.Worksheet)oSheets.get_Item(1);
+            oSheet.Name = sheetname;
+            // Tạo phần đầu nếu muốn
+            xls.Range head = oSheet.get_Range("A1", "G1");
+            head.MergeCells = true;
+            head.Value2 = "THỐNG KÊ THÔNG TIN VỀ NGƯỜI DÙNG";
+            head.Font.Bold = true;
+            head.Font.Name = "Tahoma";
+            head.Font.Size = "18";
+            head.HorizontalAlignment = xls.XlHAlign.xlHAlignCenter;
+            // Tạo tiêu đề cột 
+            xls.Range cl1 = oSheet.get_Range("A3", "A3");
+            cl1.Value2 = "STT";
+            cl1.ColumnWidth = 6.0;
+            xls.Range cl2 = oSheet.get_Range("B3", "B3");
+            cl2.Value2 = "MÃ NGƯỜI DÙNG";
+            cl2.ColumnWidth = 16.0;
+
+            xls.Range cl02 = oSheet.get_Range("C3", "C3");
+            cl02.Value2 = "Tên NGƯỜI DÙNG";
+            cl02.ColumnWidth = 20.0;
+
+            xls.Range cl3 = oSheet.get_Range("D3", "D3");
+            cl3.Value2 = "VAI TRÒ";
+            cl3.ColumnWidth = 15.0;
+            xls.Range cl4 = oSheet.get_Range("E3", "E3");
+            cl4.Value2 = "SỐ ĐIỆN THOẠI";
+            cl4.ColumnWidth = 15.0;
+            xls.Range cl5 = oSheet.get_Range("F3", "F3");
+            cl5.Value2 = "NGÀY SINH";
+            cl5.ColumnWidth = 12.0;
+            xls.Range cl6 = oSheet.get_Range("G3", "G3");
+            cl6.Value2 = "GIỚI TÍNH";
+            cl6.ColumnWidth = 14.0;
+            //xls.Range cl6_1 = oSheet.get_Range("F4", "F1000");
+            //cl6_1.Columns.NumberFormat = "dd/mm/yyyy";
+
+
+            xls.Range cl7 = oSheet.get_Range("H3", "H3");
+            cl7.Value2 = "ĐỊA CHỈ";
+            cl7.ColumnWidth = 30;
+
+            xls.Range cl8 = oSheet.get_Range("I3", "I3");
+            cl8.Value2 = "TÊN ĐĂNG NHẬP";
+            cl8.ColumnWidth = 20.0;
+
+            xls.Range cl9 = oSheet.get_Range("J3", "J3");
+            cl9.Value2 = "MẬT KHẨU";
+            cl9.ColumnWidth = 15.0;
+
+            xls.Range cl10 = oSheet.get_Range("K3", "K3");
+            cl10.Value2 = "EMAIL";
+            cl10.ColumnWidth = 30.0;
+
+            xls.Range cl11 = oSheet.get_Range("L3", "L3");
+            cl11.Value2 = "NGÀY TẠO";
+            cl11.ColumnWidth = 13.0;
+
+            xls.Range cl12 = oSheet.get_Range("M3", "M3");
+            cl12.Value2 = "TRẠNG THÁI";
+            cl12.ColumnWidth = 15.0;
+
+            //xls.Range cl8 = oSheet.get_Range("H3", "H3");
+            //cl8.Value2 = "GHI CHÚ";
+            //cl8.ColumnWidth = 15.0;
+            xls.Range rowHead = oSheet.get_Range("A3", "M3");
+            rowHead.Font.Bold = true;
+            // Kẻ viền
+            rowHead.Borders.LineStyle = xls.Constants.xlSolid;
+            // Thiết lập màu nền
+            rowHead.Interior.ColorIndex = 44;
+            rowHead.HorizontalAlignment = xls.XlHAlign.xlHAlignCenter;
+            // Tạo mảng đối tượng để lưu dữ toàn bồ dữ liệu trong DataTable,
+            // Tạo mảng đối tượng để lưu toàn bộ dữ liệu trong DataTable
+            object[,] arr = new object[tb.Rows.Count, tb.Columns.Count + 1]; // Thêm 1 cột cho STT
+
+            // Chuyển dữ liệu từ DataTable vào mảng đối tượng
+            for (int r = 0; r < tb.Rows.Count; r++)
+            {
+                arr[r, 0] = r + 1; // STT ở cột đầu tiên (A)
+                DataRow dr = tb.Rows[r];
+
+                for (int c = 0; c < tb.Columns.Count; c++)
+                {
+                    if (c == 6 || c == 12) // Cột ngày sinh (E) - chú ý: chỉ số mảng bắt đầu từ 0
+                    {
+                        DateTime tempDate;
+                        if (DateTime.TryParse(dr[c].ToString(), out tempDate))
+                        {
+                            arr[r, c + 1] = tempDate.ToOADate(); // Chuyển thành kiểu số của Excel
+                        }
+                        else
+                        {
+                            arr[r, c + 1] = dr[c].ToString(); // Nếu không phải ngày hợp lệ, giữ nguyên
+                        }
+                    }
+                    else if (c == 3) // Cột số điện thoại
+                    {
+                        arr[r, c + 1] = "'" + dr[c].ToString();
+                    }
+
+                    else
+                    {
+                        arr[r, c + 1] = dr[c]; // Dịch cột sang phải một đơn vị
+                    }
+                }
+            }
+            //Thiết lập vùng điền dữ liệu
+            int rowStart = 4;
+            int columnStart = 1;
+            int rowEnd = rowStart + tb.Rows.Count - 1;
+            int columnEnd = tb.Columns.Count + 1;
+            // Ô bắt đầu điền dữ liệu
+            xls.Range c1 = (xls.Range)oSheet.Cells[rowStart, columnStart];
+            // Ô kết thúc điền dữ liệu
+            xls.Range c2 = (xls.Range)oSheet.Cells[rowEnd, columnEnd];
+            // Lấy về vùng điền dữ liệu
+            xls.Range range = oSheet.get_Range(c1, c2);
+            //Điền dữ liệu vào vùng đã thiết lập
+            range.Value2 = arr;
+            // Định dạng lại cột ngày sinh (E)
+            xls.Range dateColumn = oSheet.Range[oSheet.Cells[rowStart, 6], oSheet.Cells[rowEnd, 6]];
+            dateColumn.NumberFormat = "dd/mm/yyyy";
+
+            // Định dạng lại cột ngày sinh (K)
+            xls.Range dateColumn2 = oSheet.Range[oSheet.Cells[rowStart, 12], oSheet.Cells[rowEnd, 12]];
+            dateColumn2.NumberFormat = "dd/mm/yyyy";
+            // Kẻ viền
+            range.Borders.LineStyle = xls.Constants.xlSolid;
+            // Căn giữa cột STT
+            xls.Range c3 = (xls.Range)oSheet.Cells[rowEnd, columnStart];
+            xls.Range c4 = oSheet.get_Range(c1, c3);
+            oSheet.get_Range(c3, c4).HorizontalAlignment = xls.XlHAlign.xlHAlignCenter;
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            String tenNguoiDung = txtTenNguoiDung_TK.Text;
+            String vaiTro = cbbVaiTro_TK.SelectedValue.ToString();
+            String gioiTinh = cbbGioiTinh_TK.Text;
+            String tenDangNhap = txtTenDangNhap_TK.Text;
+            String trangThai = cbbTrangThai_TK.Text;
+            String diaChi = txtDiaChi_TK.Text;
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            if (cbbGioiTinh_TK.SelectedIndex == -1 || gioiTinh == "-- Chọn giới tính --")
+            {
+                gioiTinh = "";
+            }
+            if (cbbTrangThai_TK.SelectedIndex == -1 || trangThai == "-- Chọn trạng thái --")
+            {
+                trangThai = "";
+            }
+            string sql = "select N.MaNguoiDung, N.TenNguoiDung, V.TenVaiTro, N.SoDienThoai, N.NgaySinh, N.GioiTinh, " +
+             "N.DiaChi, T.TenDangNhap, T.MatKhau, T.Email, T.NgayTao, T.TrangThai " +
+             "from NguoiDung N " +
+             "join TaiKhoan T on N.MaTaiKhoan = T.MaTaiKhoan " +
+             "join VaiTro V on N.MaVaiTro = V.MaVaiTro " +
+             "where N.TenNguoiDung like N'%" + tenNguoiDung + "%' " +
+             "and T.tenDangNhap like '%" + tenDangNhap + "%' " +
+             "and N.GioiTinh like N'%" + gioiTinh + "%' " +
+             "and N.DiaChi like N'%" + diaChi + "%' " +
+             "and T.TrangThai like N'%" + trangThai + "%' " +
+             "and V.MaVaiTro like '%" + vaiTro + "%'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable tb = new DataTable();
+            da.Fill(tb);
+            cmd.Dispose();
+            con.Close();
+            ExportExcel(tb, "Danh sách người dùng");
         }
     }
 }

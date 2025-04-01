@@ -40,3 +40,6 @@ C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.csproj
 C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.exe
 C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.pdb
 C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.quanlidonhang.Dasboard.resources
+C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.quanlidonhang.ChiTietHoaDon.resources
+C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.quanlidonhang.ThanhToanHoaDon.resources
+C:\Users\Admin\source\repos\quanlycaphe\quanlycaphe\obj\Debug\quanlycaphe.quanlidonhang.ThemHoaDon.resources

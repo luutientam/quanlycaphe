@@ -253,7 +253,7 @@ namespace quanlycaphe
             {
                 con.Open();
             }
-            String sql = "insert docgia values('" + maKH + "', N'" + tenKH + "', N'" + sdt + "' , '" + sdt + "', N'" + diaChi + "')";
+            String sql = "insert KhachHang values('" + maKH + "', N'" + tenKH + "', N'" + sdt + "' , '" + sdt + "', N'" + diaChi + "')";
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.ExecuteNonQuery();
             cmd.Dispose();
@@ -296,14 +296,9 @@ namespace quanlycaphe
                                 i++;
                                 continue;
                             }
-                            // Xử lý ngày sinh
-                            DateTime ngaySinh;
-                            if (!DateTime.TryParse(wsheet.Cells[i, 4].Value?.ToString(), out ngaySinh))
-                            {
-                                ngaySinh = DateTime.MinValue; // Gán giá trị mặc định nếu lỗi
-                            }
+                            
 
-                            // Gọi phương thức ThemDocGia với dữ liệu đã được ép kiểu đúng
+                            // Gọi phương thức ThemKhachHang với dữ liệu đã được ép kiểu đúng
                             ThemKhachHang(maKH, tenKH, sdt, email, diaChi);
                             i++;
                         }
@@ -440,6 +435,11 @@ namespace quanlycaphe
             cmd.Dispose();
             con.Close();
             ExportExcel(dtt, "Danh sách khách hàng");
+        }
+
+        private void txtDuongDan_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

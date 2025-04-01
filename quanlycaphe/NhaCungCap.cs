@@ -390,9 +390,9 @@ namespace quanlycaphe
                             /// Đọc dữ liệu từ Excel
                             string maNCC = wsheet.Cells[i, 1].Value?.ToString();
                             string tenNCC = wsheet.Cells[i, 2].Value?.ToString();
-                            string sdt = wsheet.Cells[i, 3].Value?.ToString();
-                            string email = wsheet.Cells[i, 5].Value?.ToString();
-                            string diaChi = wsheet.Cells[i, 6].Value?.ToString();
+                            string sdt = wsheet.Cells[i, 4].Value?.ToString();
+                            string email = wsheet.Cells[i, 3].Value?.ToString();
+                            string diaChi = wsheet.Cells[i, 5].Value?.ToString();
 
                             if (checkTrungMaNCC(maNCC))
                             {
@@ -459,7 +459,7 @@ namespace quanlycaphe
             //xls.Range cl8 = oSheet.get_Range("H3", "H3");
             //cl8.Value2 = "GHI CHÚ";
             //cl8.ColumnWidth = 15.0;
-            xls.Range rowHead = oSheet.get_Range("A3", "G3");
+            xls.Range rowHead = oSheet.get_Range("A3", "E3");
             rowHead.Font.Bold = true;
             // Kẻ viền
             rowHead.Borders.LineStyle = xls.Constants.xlSolid;
@@ -473,19 +473,27 @@ namespace quanlycaphe
             // Chuyển dữ liệu từ DataTable vào mảng đối tượng
             for (int r = 0; r < tb.Rows.Count; r++)
             {
-                arr[r, 0] = r + 1; // STT ở cột đầu tiên (A)
+              //  arr[r, 0] = r + 1; // STT ở cột đầu tiên (A)
                 DataRow dr = tb.Rows[r];
 
                 for (int c = 0; c < tb.Columns.Count; c++)
                 {
-                    arr[r, c + 1] = dr[c]; // Dịch cột sang phải một đơn vị
+                    if (c == 2)
+                    {
+                        arr[r, c ] = "'" + dr[c].ToString();
+                    }
+                    else
+                    {
+                        arr[r, c ] = dr[c];
+                    }
+                    
                 }
             }
             //Thiết lập vùng điền dữ liệu
             int rowStart = 4;
             int columnStart = 1;
             int rowEnd = rowStart + tb.Rows.Count - 1;
-            int columnEnd = tb.Columns.Count + 1;
+            int columnEnd = tb.Columns.Count;
             // Ô bắt đầu điền dữ liệu
             xls.Range c1 = (xls.Range)oSheet.Cells[rowStart, columnStart];
             // Ô kết thúc điền dữ liệu
@@ -515,6 +523,7 @@ namespace quanlycaphe
             {
                 txtDuongDan.Text = openFileDialog.FileName;
                 ReadExcel(openFileDialog.FileName);
+                MessageBox.Show("Nhập files thành công", "Thông báo", MessageBoxButtons.OK);
                 loadNhaCungCap();
             }
         }

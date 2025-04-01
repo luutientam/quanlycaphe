@@ -28,10 +28,24 @@ private SqlConnection con = new SqlConnection(@"Data Source=VUATAM\SQLEXPRESS;In
         public void loadDonHang()
         {
             // load don hang len datagridview
-            if (con.State == ConnectionState.Closed)
+            
+
+            try
+            {
+                if (con.State == ConnectionState.Closed)
             {
                 con.Open();
             }
+
+            }catch (Exception ex)
+            {
+                SqlConnection con = new SqlConnection(@"Data Source=localhost;Initial Catalog=quanlycafe;Integrated Security=True;Encrypt=True;TrustServerCertificate=True");
+             if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+            }
+           
             string sql = "select dh.MaDonHang , kh.TenKhachHang , nv.TenNhanVien , dh.NgayDat, dh.TongTien , dh.MaKhuyenMai from DonHang dh join KhachHang kh on dh.MaKhachHang = kh.MaKhachHang " +
                 "join NhanVien nv on nv.MaNhanVien = dh.MaNhanVien";
             SqlCommand cmd = new SqlCommand(sql, con);
@@ -72,6 +86,11 @@ private SqlConnection con = new SqlConnection(@"Data Source=VUATAM\SQLEXPRESS;In
         }
 
         private void buttonTimKiem_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void timKiem_Click(object sender, EventArgs e)
         {
             string txtTimKiemTmp = txtTimKiem.Text.Trim();
 
@@ -117,6 +136,9 @@ private SqlConnection con = new SqlConnection(@"Data Source=VUATAM\SQLEXPRESS;In
             }
         }
 
+        private void txtTimKiem_TextChanged(object sender, EventArgs e)
+        {
 
+        }
     }
 }

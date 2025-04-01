@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using xls = Microsoft.Office.Interop.Excel;
+
 
 namespace quanlycaphe
 {
@@ -281,6 +283,168 @@ namespace quanlycaphe
             dgvKhuyenMai.Refresh();
 
              
+        }
+        public void ExportExcel(DataTable tb, string sheetname)
+        {
+            //Tạo các đối tượng Excel
+
+            xls.Application oExcel = new xls.Application();
+            xls.Workbooks oBooks;
+            xls.Sheets oSheets;
+            xls.Workbook oBook;
+            xls.Worksheet oSheet;
+            //Tạo mới một Excel WorkBook 
+            oExcel.Visible = true;
+            oExcel.DisplayAlerts = false;
+            oExcel.Application.SheetsInNewWorkbook = 1;
+            oBooks = oExcel.Workbooks;
+            oBook = (xls.Workbook)(oExcel.Workbooks.Add(Type.Missing));
+            oSheets = oBook.Worksheets;
+            oSheet = (xls.Worksheet)oSheets.get_Item(1);
+            oSheet.Name = sheetname;
+            // Tạo phần đầu nếu muốn
+            xls.Range head = oSheet.get_Range("A1", "G1");
+            head.MergeCells = true;
+            head.Value2 = "THỐNG KÊ THÔNG TIN VỀ KHUYẾN MÃI";
+            head.Font.Bold = true;
+            head.Font.Name = "Tahoma";
+            head.Font.Size = "18";
+            head.HorizontalAlignment = xls.XlHAlign.xlHAlignCenter;
+            // Tạo tiêu đề cột 
+            xls.Range cl1 = oSheet.get_Range("A3", "A3");
+            cl1.Value2 = "STT";
+            cl1.ColumnWidth = 6.0;
+            xls.Range cl2 = oSheet.get_Range("B3", "B3");
+            cl2.Value2 = "MÃ KHUYỄN MÃI";
+            cl2.ColumnWidth = 16.0;
+
+
+            xls.Range cl3 = oSheet.get_Range("C3", "C3");
+            cl3.Value2 = "TÊN KHUYẾN MÃI";
+            cl3.ColumnWidth = 18.0;
+            xls.Range cl4 = oSheet.get_Range("D3", "D3");
+            cl4.Value2 = "MÔ TẢ";
+            cl4.ColumnWidth = 20.0;
+            xls.Range cl5 = oSheet.get_Range("E3", "E3");
+            cl5.Value2 = "NGÀY BẮT ĐẦU";
+            cl5.ColumnWidth = 15.0;
+            xls.Range cl6 = oSheet.get_Range("F3", "F3");
+            cl6.Value2 = "NGÀY KẾT THÚC";
+            cl6.ColumnWidth = 15.0;
+            //xls.Range cl6_1 = oSheet.get_Range("F4", "F1000");
+            //cl6_1.Columns.NumberFormat = "dd/mm/yyyy";
+
+
+            xls.Range cl7 = oSheet.get_Range("G3", "G3");
+            cl7.Value2 = "PHẦN TRĂM GIẢM";
+            cl7.ColumnWidth = 18.0;
+
+            //xls.Range cl8 = oSheet.get_Range("I3", "I3");
+            //cl8.Value2 = "TÊN ĐĂNG NHẬP";
+            //cl8.ColumnWidth = 20.0;
+
+            //xls.Range cl9 = oSheet.get_Range("J3", "J3");
+            //cl9.Value2 = "MẬT KHẨU";
+            //cl9.ColumnWidth = 15.0;
+
+            //xls.Range cl10 = oSheet.get_Range("K3", "K3");
+            //cl10.Value2 = "EMAIL";
+            //cl10.ColumnWidth = 30.0;
+
+            //xls.Range cl11 = oSheet.get_Range("L3", "L3");
+            //cl11.Value2 = "NGÀY TẠO";
+            //cl11.ColumnWidth = 13.0;
+
+            //xls.Range cl12 = oSheet.get_Range("M3", "M3");
+            //cl12.Value2 = "TRẠNG THÁI";
+            //cl12.ColumnWidth = 15.0;
+
+            //xls.Range cl8 = oSheet.get_Range("H3", "H3");
+            //cl8.Value2 = "GHI CHÚ";
+            //cl8.ColumnWidth = 15.0;
+            xls.Range rowHead = oSheet.get_Range("A3", "G3");
+            rowHead.Font.Bold = true;
+            // Kẻ viền
+            rowHead.Borders.LineStyle = xls.Constants.xlSolid;
+            // Thiết lập màu nền
+            rowHead.Interior.ColorIndex = 44;
+            rowHead.HorizontalAlignment = xls.XlHAlign.xlHAlignCenter;
+            // Tạo mảng đối tượng để lưu dữ toàn bồ dữ liệu trong DataTable,
+            // Tạo mảng đối tượng để lưu toàn bộ dữ liệu trong DataTable
+            object[,] arr = new object[tb.Rows.Count, tb.Columns.Count + 1]; // Thêm 1 cột cho STT
+
+            // Chuyển dữ liệu từ DataTable vào mảng đối tượng
+            for (int r = 0; r < tb.Rows.Count; r++)
+            {
+                arr[r, 0] = r + 1; // STT ở cột đầu tiên (A)
+                DataRow dr = tb.Rows[r];
+
+                for (int c = 0; c < tb.Columns.Count; c++)
+                {
+                    if (c == 5 || c == 6) // Cột ngày sinh (E) - chú ý: chỉ số mảng bắt đầu từ 0
+                    {
+                        DateTime tempDate;
+                        if (DateTime.TryParse(dr[c].ToString(), out tempDate))
+                        {
+                            arr[r, c + 1] = tempDate.ToOADate(); // Chuyển thành kiểu số của Excel
+                        }
+                        else
+                        {
+                            arr[r, c + 1] = dr[c].ToString(); // Nếu không phải ngày hợp lệ, giữ nguyên
+                        }
+                    }
+                    else
+                    {
+                        arr[r, c + 1] = dr[c]; // Dịch cột sang phải một đơn vị
+                    }
+                }
+            }
+            //Thiết lập vùng điền dữ liệu
+            int rowStart = 4;
+            int columnStart = 1;
+            int rowEnd = rowStart + tb.Rows.Count - 1;
+            int columnEnd = tb.Columns.Count + 1;
+            // Ô bắt đầu điền dữ liệu
+            xls.Range c1 = (xls.Range)oSheet.Cells[rowStart, columnStart];
+            // Ô kết thúc điền dữ liệu
+            xls.Range c2 = (xls.Range)oSheet.Cells[rowEnd, columnEnd];
+            // Lấy về vùng điền dữ liệu
+            xls.Range range = oSheet.get_Range(c1, c2);
+            //Điền dữ liệu vào vùng đã thiết lập
+            range.Value2 = arr;
+            // Định dạng lại cột ngày sinh (E)
+            xls.Range dateColumn = oSheet.Range[oSheet.Cells[rowStart, 5], oSheet.Cells[rowEnd, 5]];
+            dateColumn.NumberFormat = "dd/mm/yyyy";
+
+            // Định dạng lại cột ngày sinh (K)
+            xls.Range dateColumn2 = oSheet.Range[oSheet.Cells[rowStart, 6], oSheet.Cells[rowEnd, 6]];
+            dateColumn2.NumberFormat = "dd/mm/yyyy";
+            // Kẻ viền
+            range.Borders.LineStyle = xls.Constants.xlSolid;
+            // Căn giữa cột STT
+            xls.Range c3 = (xls.Range)oSheet.Cells[rowEnd, columnStart];
+            xls.Range c4 = oSheet.get_Range(c1, c3);
+            oSheet.get_Range(c3, c4).HorizontalAlignment = xls.XlHAlign.xlHAlignCenter;
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            String maKM = txtMaKM_TK.Text;
+            String tenKM = txtTenKM_TK.Text;
+            //DateTime ngayApDung = dtNgayApDung_TK.Value;
+            //String ngayApDungsql = ngayApDung.ToString("yyyy-MM-dd");
+            String phanTramGiam = txtPhanTramGiam_TK.Text;
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            string sql = "select * from KhuyenMai where MaKhuyenMai like '%" + maKM + "%' and TenKhuyenMai like N'%" + tenKM + "%' and PhanTramGiam like '%" + phanTramGiam + "%'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable tb = new DataTable();
+            da.Fill(tb);
+            cmd.Dispose();
+            con.Close();
+            ExportExcel(tb, "KhuyenMai");
         }
     }
 }

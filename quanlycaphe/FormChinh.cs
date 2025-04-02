@@ -85,5 +85,10 @@ namespace quanlycaphe
         {
             loadform(new KhuyenMai());
         }
+
+        private void nhânViênToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadform(new QuanLyNhanVien());
+        }
     }
 }

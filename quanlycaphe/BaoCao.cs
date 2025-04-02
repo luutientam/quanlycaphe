@@ -16,5 +16,20 @@ namespace quanlycaphe
         {
             InitializeComponent();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void báoCáoDoanhThuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void doanhThuTheoNgàyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -15,21 +15,37 @@ namespace quanlycaphe
         public FormChinh()
         {
             InitializeComponent();
+            if(User.MaNguoiDung != null)
+            {
+                label1.Text = "Xin chào: " + User.TenNguoiDung;
+                label2.Text = "Quyền: " + User.MaVaiTro;
+                label3.Text = "Mã: " + User.MaNguoiDung;
+            }
+            else
+            {
+                label1.Text = "Xin chào: " + User.TenNhanVien;
+                label2.Text = "Quyền: Nhân viên";
+                label3.Text = "Mã: " + User.MaNhanVien;
+            }
+            //label3.Text = "Ngày: " + DateTime.Now.ToString("dd/MM/yyyy");
 
         }
-        public void loadform(object Form)
+        public void loadform(Form form)
         {
+            if (form == null) return; // Tránh lỗi khi truyền vào null
+
             if (this.panel1.Controls.Count > 0)
             {
                 this.panel1.Controls.RemoveAt(0);
             }
-            Form fh = Form as Form;
-            fh.TopLevel = false;
-            fh.Dock = DockStyle.Fill;
-            this.panel1.Controls.Add(fh);
-            this.panel1.Tag = fh;
-            fh.Show();
+
+            form.TopLevel = false;
+            form.Dock = DockStyle.Fill;
+            this.panel1.Controls.Add(form);
+            this.panel1.Tag = form;
+            form.Show();
         }
+
 
         private void FormChinh_Load(object sender, EventArgs e)
         {
@@ -58,8 +74,9 @@ namespace quanlycaphe
 
         private void MenuDonHang_Click(object sender, EventArgs e)
         {
-            loadform(new DonHang());
+            loadform(new quanlidonhang.Dasboard()); // Đảm bảo Dasboard kế thừa từ Form
         }
+
 
         private void MenuKH_Click(object sender, EventArgs e)
         {

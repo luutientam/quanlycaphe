@@ -446,10 +446,5 @@ namespace quanlycaphe
             con.Close();
             ExportExcel(tb, "KhuyenMai");
         }
-
-        private void buttonLuu_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

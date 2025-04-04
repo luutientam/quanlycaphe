@@ -16,12 +16,7 @@ namespace quanlycaphe
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-<<<<<<< HEAD
-            Application.Run(new FormChinh());
-        } 
-=======
             Application.Run(new DangNhap());
         }
->>>>>>> 2300b829f7a4ef2d78865073546f4c0610511314
     }
 }

@@ -95,6 +95,12 @@
     <Compile Include="BaoCao.Designer.cs">
       <DependentUpon>BaoCao.cs</DependentUpon>
     </Compile>
+    <Compile Include="KhuyenMai.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KhuyenMai.Designer.cs">
+      <DependentUpon>KhuyenMai.cs</DependentUpon>
+    </Compile>
     <Compile Include="QuanLyNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,12 +149,6 @@
     </Compile>
     <Compile Include="KhachHang.Designer.cs">
       <DependentUpon>KhachHang.cs</DependentUpon>
-    </Compile>
-    <Compile Include="KhuyenMai.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="KhuyenMai.Designer.cs">
-      <DependentUpon>KhuyenMai.cs</DependentUpon>
     </Compile>
     <Compile Include="NguoiDung.cs">
       <SubType>Form</SubType>
@@ -215,7 +215,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="KhuyenMai.resx">
       <DependentUpon>KhuyenMai.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="NguoiDung.resx">
       <DependentUpon>NguoiDung.cs</DependentUpon>

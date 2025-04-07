@@ -13,7 +13,7 @@ namespace quanlycaphe
 {
     public partial class DangNhap : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=localhost;Initial Catalog=quanlycafe;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
 
         public DangNhap()
         {
@@ -61,11 +61,12 @@ namespace quanlycaphe
                     con.Open();
                 }
 
-                string query = "SELECT n.MaNguoiDung, n.MaVaiTro, n.TenNguoiDung, n.SoDienThoai, n.NgaySinh, n.GioiTinh, n.DiaChi, " +
+                string query = "SELECT n.MaNguoiDung, n.MaVaiTro, vt.TenVaiTro, n.TenNguoiDung, n.SoDienThoai, n.NgaySinh, n.GioiTinh, n.DiaChi, " +
                                "nv.MaNhanVien, nv.TenNhanVien, nv.SoDienThoai AS SoDienThoai, nv.DiaChi AS DiaChi " +
                                "FROM NguoiDung n " +
                                "LEFT JOIN TaiKhoan t ON n.MaTaiKhoan = t.MaTaiKhoan " +
                                "LEFT JOIN NhanVien nv ON n.MaTaiKhoan = nv.MaTaiKhoan " +
+                               "LEFT JOIN VaiTro vt ON vt.MaVaiTro = n.MaVaiTro " +
                                "WHERE t.TenDangNhap = '" + txtTaiKhoan.Text + "' AND t.MatKhau = '" + textBoxMatKhau.Text + "'";
 
                 SqlDataAdapter sda = new SqlDataAdapter(query, con);
@@ -76,6 +77,7 @@ namespace quanlycaphe
                 {
                     User.MaNguoiDung = dt.Rows[0]["MaNguoiDung"].ToString();
                     User.MaVaiTro = dt.Rows[0]["MaVaiTro"].ToString();
+                    User.TenVaiTro = dt.Rows[0]["TenVaiTro"].ToString();
                     User.TenNguoiDung = dt.Rows[0]["TenNguoiDung"].ToString();
                     User.SoDienThoai = dt.Rows[0]["SoDienThoai"].ToString();
                     User.NgaySinh = dt.Rows[0]["NgaySinh"].ToString();
@@ -91,6 +93,7 @@ namespace quanlycaphe
                     {
                         User.MaNguoiDung = null;
                         User.MaVaiTro = null;
+                        User.TenVaiTro = null;
                         User.TenNguoiDung = null;
 
                         User.MaNhanVien = dt.Rows[0]["MaNhanVien"].ToString();

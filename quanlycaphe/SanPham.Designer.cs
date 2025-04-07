@@ -619,6 +619,7 @@
             this.txtDuongDanCU.Name = "txtDuongDanCU";
             this.txtDuongDanCU.Size = new System.Drawing.Size(194, 29);
             this.txtDuongDanCU.TabIndex = 59;
+            this.txtDuongDanCU.Visible = false;
             // 
             // txtDuongDanMOI
             // 
@@ -629,6 +630,7 @@
             this.txtDuongDanMOI.Name = "txtDuongDanMOI";
             this.txtDuongDanMOI.Size = new System.Drawing.Size(194, 29);
             this.txtDuongDanMOI.TabIndex = 58;
+            this.txtDuongDanMOI.Visible = false;
             // 
             // label9
             // 

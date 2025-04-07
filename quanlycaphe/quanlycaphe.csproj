@@ -95,6 +95,12 @@
     <Compile Include="BaoCao.Designer.cs">
       <DependentUpon>BaoCao.cs</DependentUpon>
     </Compile>
+    <Compile Include="ht.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ht.Designer.cs">
+      <DependentUpon>ht.cs</DependentUpon>
+    </Compile>
     <Compile Include="KhuyenMai.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,6 +201,12 @@
       <DependentUpon>SanPham.cs</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
+    <Compile Include="VaiTro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VaiTro.Designer.cs">
+      <DependentUpon>VaiTro.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BaoCao.resx">
       <DependentUpon>BaoCao.cs</DependentUpon>
     </EmbeddedResource>
@@ -209,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormChinh.resx">
       <DependentUpon>FormChinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ht.resx">
+      <DependentUpon>ht.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KhachHang.resx">
       <DependentUpon>KhachHang.cs</DependentUpon>
@@ -249,6 +264,9 @@
     <EmbeddedResource Include="SanPham.resx">
       <DependentUpon>SanPham.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="VaiTro.resx">
+      <DependentUpon>VaiTro.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -278,6 +296,15 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
     <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel1">
       <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>1</VersionMajor>
       <VersionMinor>9</VersionMinor>

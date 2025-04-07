@@ -18,8 +18,8 @@ namespace quanlycaphe
 {
     public partial class SanPham : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=localhost;Initial Catalog=quanlycafe;Integrated Security=True");
-
+        SqlConnection con = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
+        private Image originalImage;
         public SanPham()
         {
             InitializeComponent();
@@ -33,6 +33,8 @@ namespace quanlycaphe
             buttonHuyThaoTac.Enabled = false;
             buttonThemMoi.Enabled = true;
             dtNgayTao.Enabled = false;
+            originalImage = pictureBox1.Image;
+
         }
         public void clear()
         {
@@ -41,7 +43,7 @@ namespace quanlycaphe
             txtGia.Text = "";
             txtMoTa.Text = "";
             txtSoLuong.Text = "";
-            pictureBox1.Image = null;
+            pictureBox1.Image = originalImage;
             txtDuongDanCU.Text = null;
             txtDuongDanMOI.Text = null;
             cbbTenDanhMuc.SelectedIndex = 0;

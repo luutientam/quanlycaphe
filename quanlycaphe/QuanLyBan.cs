@@ -14,7 +14,7 @@ namespace quanlycaphe
 {
     public partial class QuanLyBan : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=localhost;Initial Catalog=quanlycafe;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
         public QuanLyBan()
         {
             InitializeComponent();

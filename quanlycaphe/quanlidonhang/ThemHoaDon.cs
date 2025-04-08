@@ -12,7 +12,7 @@ namespace quanlycaphe.quanlidonhang
         private Dasboard das; // hoặc whatever class contains loadDonHang()
         private ThemHoaDon themHoaDon;
 
-        public ThemHoaDon(Dasboard das)
+        public ThemHoaDon()
         {
             
             InitializeComponent();
@@ -725,7 +725,7 @@ namespace quanlycaphe.quanlidonhang
                     MessageBox.Show("Thêm hóa đơn thành công, vui lòng thanh toán!");
                     // Đóng kết nối
                     con.Close();
-                    das.loadDonHang();
+                   // das.loadDonHang();
                     this.Dispose(); 
                     
                 }

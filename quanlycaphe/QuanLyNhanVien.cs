@@ -68,7 +68,9 @@ namespace quanlycaphe
 
         private void button4_Click(object sender, EventArgs e)
         {
+
             MessageBox.Show("Vui long lien he voi 19001858 de tro giup!");
+
         }
 
         private void btthoat_Click(object sender, EventArgs e)
@@ -138,6 +140,11 @@ namespace quanlycaphe
                 if (cbtrangthai.SelectedIndex == 0)
                 {
                     MessageBox.Show("Vui long chon trang thai!", "loi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (sdt.Length != 10 || !sdt.All(char.IsDigit))
+                {
+                    MessageBox.Show("Số điện thoại phải đủ 10 số!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -657,6 +664,11 @@ namespace quanlycaphe
             }
             dtnhanvien.DataSource =dt;
             dtnhanvien.Refresh();
+        }
+
+        private void txtsuasdt_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

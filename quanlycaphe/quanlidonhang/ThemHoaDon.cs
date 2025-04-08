@@ -1,6 +1,15 @@
-﻿using System;
+﻿
+using DocumentFormat.OpenXml.VariantTypes;
+using DocumentFormat.OpenXml.Wordprocessing;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace quanlycaphe.quanlidonhang
@@ -9,10 +18,8 @@ namespace quanlycaphe.quanlidonhang
     {
         private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
         private SanPham sanPham; // Khai báo biến SanPham
-        private Dasboard das; // hoặc whatever class contains loadDonHang()
-        private ThemHoaDon themHoaDon;
-
-        public ThemHoaDon(Dasboard das)
+        Dasboard das = new Dasboard();
+        public ThemHoaDon()
         {
             
             InitializeComponent();
@@ -23,15 +30,8 @@ namespace quanlycaphe.quanlidonhang
             loadcbbBan();
             maNhanVien.Text = User.MaNhanVien;
             maNhanVien.Enabled = false;
-            this.das = das; // gán instance được truyền vào
-
+            
         }
-
-        public ThemHoaDon(ThemHoaDon themHoaDon)
-        {
-            this.themHoaDon = themHoaDon;
-        }
-
         public void loadcbbBan()
         {
             if (con.State == ConnectionState.Closed)
@@ -587,18 +587,10 @@ namespace quanlycaphe.quanlidonhang
             }
         }
 
-        private void buttonThemMoi_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void thanhToan_Click(object sender, EventArgs e)
         {
             try
             {
-
-
-
                 // Lấy dữ liệu từ giao diện
                 /*string maKhachHangGiaoDien = cbxMaKhachHang.SelectedItem.ToString();*/
                 string maKhachHangGiaoDien = cbxMaKhachHang.SelectedItem?.ToString();
@@ -724,10 +716,10 @@ namespace quanlycaphe.quanlidonhang
 
                     MessageBox.Show("Thêm hóa đơn thành công, vui lòng thanh toán!");
                     // Đóng kết nối
+
                     con.Close();
                     das.loadDonHang();
-                    this.Dispose(); 
-                    
+                    this.Dispose();
                 }
                 catch (Exception ex)
                 {

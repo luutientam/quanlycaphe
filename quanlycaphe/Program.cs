@@ -16,7 +16,7 @@ namespace quanlycaphe
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new quanlidonhang.Dasboard());
+            Application.Run(new DangNhap());
         }
     }
 }

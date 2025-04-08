@@ -18,8 +18,8 @@ namespace quanlycaphe
 {
     public partial class SanPham : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=localhost;Initial Catalog=quanlycafe;Integrated Security=True");
-
+        SqlConnection con = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
+        private Image originalImage;
         public SanPham()
         {
             InitializeComponent();
@@ -33,6 +33,8 @@ namespace quanlycaphe
             buttonHuyThaoTac.Enabled = false;
             buttonThemMoi.Enabled = true;
             dtNgayTao.Enabled = false;
+            originalImage = pictureBox1.Image;
+
         }
         public void clear()
         {
@@ -41,7 +43,7 @@ namespace quanlycaphe
             txtGia.Text = "";
             txtMoTa.Text = "";
             txtSoLuong.Text = "";
-            pictureBox1.Image = null;
+            pictureBox1.Image = originalImage;
             txtDuongDanCU.Text = null;
             txtDuongDanMOI.Text = null;
             cbbTenDanhMuc.SelectedIndex = 0;
@@ -204,7 +206,7 @@ namespace quanlycaphe
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image Files|*.jpg;*.png;*.bmp";
+            openFileDialog.Filter = "Image Files|*.jpg;*.png;*.bmp;*.jfif;*.jpeg";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 pictureBox1.Image = Image.FromFile(openFileDialog.FileName);
@@ -314,7 +316,7 @@ namespace quanlycaphe
             {
                 con.Open();
             }
-            string sql = "INSERT INTO SanPham VALUES('"+maSP+"', '"+tenSP+"', '"+maDanhMuc+"', '"+gia+"', '"+moTa+"', '"+duongDanTuongDoi+"', '"+ngayTao+"', '"+maNhaCungCap+"', '"+soLuong+"')";
+            string sql = "INSERT INTO SanPham VALUES('"+maSP+"', N'"+tenSP+"', '"+maDanhMuc+"', '"+gia+"', N'"+moTa+"', '"+duongDanTuongDoi+"', '"+ngayTao+"', '"+maNhaCungCap+"', '"+soLuong+"')";
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.ExecuteNonQuery();
             cmd.Dispose();
@@ -533,7 +535,7 @@ namespace quanlycaphe
             {
                 con.Open();
             }
-            String sql = "UPDATE SanPham SET TenSanPham = '" + tenSP + "', MaDanhMuc = '" + maDanhMuc + "', Gia = '" + gia + "', MoTa = N'" + moTa + "', HinhAnh = '" + duongDanTuongDoi + "', NgayTao = '" + ngayTao + "', MaNhaCungCap = '" + maNhaCungCap + "', SoLuong = '" + soLuong + "' WHERE MaSanPham = '" + maSP + "'";
+            String sql = "UPDATE SanPham SET TenSanPham = N'" + tenSP + "', MaDanhMuc = '" + maDanhMuc + "', Gia = '" + gia + "', MoTa = N'" + moTa + "', HinhAnh = '" + duongDanTuongDoi + "', NgayTao = '" + ngayTao + "', MaNhaCungCap = '" + maNhaCungCap + "', SoLuong = '" + soLuong + "' WHERE MaSanPham = '" + maSP + "'";
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.ExecuteNonQuery();
             cmd.Dispose();
@@ -794,6 +796,93 @@ namespace quanlycaphe
             cmd.Dispose();
             con.Close();
             ExportExcel(tb, "Danh sách sản phẩm");
+        }
+        public void ThemSanPham(String maSP, String tenSP, String maDanhMuc, decimal gia, String moTa, String maNhaCungCap, int soLuong)
+        {
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            string hinhanh = "chưa có";
+            string ngayTao = DateTime.Now.ToString("yyyy-MM-dd");
+            //String ngaySinhSql = ngaySinh.ToString("yyyy-MM-dd");
+            String sql = "insert SanPham values('" + maSP + "', N'" + tenSP + "', '" + maDanhMuc + "', '" + gia + "', N'" + moTa + "', N'"+hinhanh+"', '"+ngayTao+"', '"+maNhaCungCap+"', '"+soLuong+"')";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.ExecuteNonQuery();
+            cmd.Dispose();
+            con.Close();
+            MessageBox.Show("Thêm mới thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+        private void ReadExcel(String filename)
+        {
+            //kiểm tra xem filename đã có dữ liệu chưa
+            if (filename == null)
+            {
+                MessageBox.Show("Chưa chọn file");
+            }
+            else
+            {
+                xls.Application Excel = new xls.Application();// tạp một app làm việc mới
+                                                              // mở dữ liệu từ file
+                Excel.Workbooks.Open(filename);
+                //đọc dữ liệu từng sheet của excel
+                foreach (xls.Worksheet wsheet in Excel.Worksheets)
+                {
+                    int i = 2;  //để đọc từng dòng của sheet bắt đầu từ dòng số 2
+                    do
+                    {
+                        if (wsheet.Cells[i, 1].Value == null && wsheet.Cells[i, 2].Value == null && wsheet.Cells[i, 3].Value == null)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            /// Đọc dữ liệu từ Excel
+                            string maSP = wsheet.Cells[i, 1].Value?.ToString();
+                            string tenSP = wsheet.Cells[i, 2].Value?.ToString();
+                            string maDanhMuc = wsheet.Cells[i, 3].Value?.ToString();
+                            string giaxc = wsheet.Cells[i, 4].Value?.ToString();
+                            string moTa = wsheet.Cells[i, 5].Value?.ToString();
+                            string maNhaCungCap = wsheet.Cells[i, 6].Value?.ToString();
+                            string soLuongxc = wsheet.Cells[i, 7].Value?.ToString();
+
+                            decimal gia = Convert.ToDecimal(giaxc);
+                            int soLuong = Convert.ToInt32(soLuongxc);
+                            if (checkTrungMaSanPham(maSP))
+                            {
+                                MessageBox.Show("Trùng mã sản phẩm -> " + maSP + " <- !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                i++;
+                                continue;
+                            }
+                            //// Xử lý ngày sinh
+                            //DateTime ngaySinh;
+                            //if (!DateTime.TryParse(wsheet.Cells[i, 4].Value?.ToString(), out ngaySinh))
+                            //{
+                            //    ngaySinh = DateTime.MinValue; // Gán giá trị mặc định nếu lỗi
+                            //}
+
+                            // Gọi phương thức ThemDocGia với dữ liệu đã được ép kiểu đúng
+                            ThemSanPham(maSP, tenSP, maDanhMuc, gia, moTa, maNhaCungCap, soLuong);
+                            i++;
+                        }
+                    }
+                    while (true);
+                }
+            }
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx";
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.RestoreDirectory = true;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                //txtDuongDan.Text = openFileDialog.FileName;
+                ReadExcel(openFileDialog.FileName);
+                loadSanPham();
+            }
         }
     }
 }

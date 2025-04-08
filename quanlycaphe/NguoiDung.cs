@@ -15,7 +15,7 @@ namespace quanlycaphe
 {
     public partial class NguoiDung : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=localhost;Initial Catalog=quanlycafe;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
 
         public NguoiDung()
         {
@@ -273,7 +273,7 @@ namespace quanlycaphe
                 con.Open();
             }
             String maTaiKhoan = "MTK" + maNguoiDung;
-            String sqlTK = "INSERT INTO TaiKhoan VALUES('" + maTaiKhoan + "', '" + tenDangNhap + "', '" + matKhau + "', '" + email + "', '" + ngayTao + "', '" + trangThai + "')";
+            String sqlTK = "INSERT INTO TaiKhoan VALUES('" + maTaiKhoan + "', '" + tenDangNhap + "', '" + matKhau + "', '" + email + "', '" + ngayTao + "', N'" + trangThai + "')";
             SqlCommand cmdTK = new SqlCommand(sqlTK, con);
             cmdTK.ExecuteNonQuery();
             cmdTK.Dispose();
@@ -703,6 +703,96 @@ namespace quanlycaphe
             cmd.Dispose();
             con.Close();
             ExportExcel(tb, "Danh sách người dùng");
+        }
+        public void ThemNguoiDung(String maND, String maVaiTro, String soDienThoai, String tenNguoiDung, DateTime ngaySinh, String gioiTinh, String diaChi, String tenDangNhap, String matKhau, String email, String trangThai)
+        {
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            String maTaiKhoan = "MTK" + maND;
+            String ngayTao = DateTime.Now.ToString("yyyy-MM-dd");
+            String sqlTK = "INSERT INTO TaiKhoan VALUES('" + maTaiKhoan + "', '" + tenDangNhap + "', '" + matKhau + "', '" + email + "', '" + ngayTao + "', N'" + trangThai + "')";
+            SqlCommand cmdTK = new SqlCommand(sqlTK, con);
+            cmdTK.ExecuteNonQuery();
+            cmdTK.Dispose();
+            String sqlND = "INSERT INTO NguoiDung VALUES('" + maND + "', '" + maVaiTro + "', '" + maTaiKhoan + "', '" + soDienThoai + "', N'" + tenNguoiDung + "', '" + ngaySinh.ToString("yyyy-MM-dd") + "', N'" + gioiTinh + "', N'" + diaChi + "')";
+            SqlCommand cmdND = new SqlCommand(sqlND, con);
+            cmdND.ExecuteNonQuery();
+            cmdND.Dispose();
+            con.Close();
+            MessageBox.Show("Thêm mới thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            loadNguoiDung();
+        }
+        private void ReadExcel(String filename)
+        {
+            //kiểm tra xem filename đã có dữ liệu chưa
+            if (filename == null)
+            {
+                MessageBox.Show("Chưa chọn file");
+            }
+            else
+            {
+                xls.Application Excel = new xls.Application();// tạp một app làm việc mới
+                                                              // mở dữ liệu từ file
+                Excel.Workbooks.Open(filename);
+                //đọc dữ liệu từng sheet của excel
+                foreach (xls.Worksheet wsheet in Excel.Worksheets)
+                {
+                    int i = 2;  //để đọc từng dòng của sheet bắt đầu từ dòng số 2
+                    do
+                    {
+                        if (wsheet.Cells[i, 1].Value == null && wsheet.Cells[i, 2].Value == null && wsheet.Cells[i, 3].Value == null)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            /// Đọc dữ liệu từ Excel
+                            string maND = wsheet.Cells[i, 1].Value?.ToString();
+                            string maVaiTro = wsheet.Cells[i, 2].Value?.ToString();
+                            string soDienThoai = wsheet.Cells[i, 3].Value?.ToString();
+                            string tenNguoiDung = wsheet.Cells[i, 4].Value?.ToString();
+                            // Xử lý ngày sinh
+                            DateTime ngaySinh;
+                            if (!DateTime.TryParse(wsheet.Cells[i, 5].Value?.ToString(), out ngaySinh))
+                            {
+                                ngaySinh = DateTime.MinValue; // Gán giá trị mặc định nếu lỗi
+                            }
+                            string gioiTinh = wsheet.Cells[i, 6].Value?.ToString();
+                            string diaChi = wsheet.Cells[i, 7].Value?.ToString();
+                            string tenDanhNhap = wsheet.Cells[i, 8].Value?.ToString();
+                            string matKhau = wsheet.Cells[i, 9].Value?.ToString();
+                            string email = wsheet.Cells[i, 10].Value?.ToString();
+                            string trangThai = wsheet.Cells[i, 11].Value?.ToString();
+                            if (checkTrungMaNguoiDung(maND))
+                            {
+                                MessageBox.Show("Trùng mã người dùng -> " + maND + " <- !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                i++;
+                                continue;
+                            }
+                            
+                            // Gọi phương thức ThemDocGia với dữ liệu đã được ép kiểu đúng
+                            ThemNguoiDung(maND, maVaiTro, soDienThoai, tenNguoiDung, ngaySinh, gioiTinh, diaChi, tenDanhNhap, matKhau, email, trangThai);
+                            i++;
+                        }
+                    }
+                    while (true);
+                }
+            }
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx";
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.RestoreDirectory = true;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                //txtDuongDan.Text = openFileDialog.FileName;
+                ReadExcel(openFileDialog.FileName);
+                loadNguoiDung();
+            }
         }
     }
 }

@@ -29,9 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NguoiDung));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbbTrangThai_TK = new System.Windows.Forms.ComboBox();
+            this.txtDiaChi_TK = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.cbbGioiTinh_TK = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtTenDangNhap_TK = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.cbbVaiTro_TK = new System.Windows.Forms.ComboBox();
             this.buttonTimKiem = new System.Windows.Forms.Button();
             this.txtTenNguoiDung_TK = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -80,15 +89,6 @@
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cbbVaiTro_TK = new System.Windows.Forms.ComboBox();
-            this.txtTenDangNhap_TK = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cbbGioiTinh_TK = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtDiaChi_TK = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.cbbTrangThai_TK = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -120,6 +120,104 @@
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin tìm kiếm";
+            // 
+            // cbbTrangThai_TK
+            // 
+            this.cbbTrangThai_TK.FormattingEnabled = true;
+            this.cbbTrangThai_TK.Items.AddRange(new object[] {
+            "-- Chọn trạng thái --",
+            "Hoạt động",
+            "Khóa",
+            "Chờ xác minh"});
+            this.cbbTrangThai_TK.Location = new System.Drawing.Point(649, 67);
+            this.cbbTrangThai_TK.Name = "cbbTrangThai_TK";
+            this.cbbTrangThai_TK.Size = new System.Drawing.Size(352, 29);
+            this.cbbTrangThai_TK.TabIndex = 57;
+            this.cbbTrangThai_TK.Text = "-- Chọn trạng thái --";
+            // 
+            // txtDiaChi_TK
+            // 
+            this.txtDiaChi_TK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDiaChi_TK.Location = new System.Drawing.Point(649, 104);
+            this.txtDiaChi_TK.Margin = new System.Windows.Forms.Padding(5);
+            this.txtDiaChi_TK.Name = "txtDiaChi_TK";
+            this.txtDiaChi_TK.Size = new System.Drawing.Size(352, 29);
+            this.txtDiaChi_TK.TabIndex = 56;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(579, 108);
+            this.label18.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(51, 19);
+            this.label18.TabIndex = 55;
+            this.label18.Text = "Địa chỉ";
+            // 
+            // cbbGioiTinh_TK
+            // 
+            this.cbbGioiTinh_TK.FormattingEnabled = true;
+            this.cbbGioiTinh_TK.Items.AddRange(new object[] {
+            "-- Chọn giới tính --",
+            "Nam",
+            "Nữ",
+            "Khác"});
+            this.cbbGioiTinh_TK.Location = new System.Drawing.Point(132, 104);
+            this.cbbGioiTinh_TK.Name = "cbbGioiTinh_TK";
+            this.cbbGioiTinh_TK.Size = new System.Drawing.Size(352, 29);
+            this.cbbGioiTinh_TK.TabIndex = 54;
+            this.cbbGioiTinh_TK.Text = "-- Chọn giới tính --";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(64, 108);
+            this.label12.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(59, 19);
+            this.label12.TabIndex = 53;
+            this.label12.Text = "Giới tính";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(562, 65);
+            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 19);
+            this.label4.TabIndex = 41;
+            this.label4.Text = "Trạng thái";
+            // 
+            // txtTenDangNhap_TK
+            // 
+            this.txtTenDangNhap_TK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTenDangNhap_TK.Location = new System.Drawing.Point(649, 22);
+            this.txtTenDangNhap_TK.Margin = new System.Windows.Forms.Padding(5);
+            this.txtTenDangNhap_TK.Name = "txtTenDangNhap_TK";
+            this.txtTenDangNhap_TK.Size = new System.Drawing.Size(352, 29);
+            this.txtTenDangNhap_TK.TabIndex = 40;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(532, 26);
+            this.label17.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(98, 19);
+            this.label17.TabIndex = 39;
+            this.label17.Text = "Tên đăng nhập";
+            // 
+            // cbbVaiTro_TK
+            // 
+            this.cbbVaiTro_TK.FormattingEnabled = true;
+            this.cbbVaiTro_TK.Location = new System.Drawing.Point(132, 60);
+            this.cbbVaiTro_TK.Name = "cbbVaiTro_TK";
+            this.cbbVaiTro_TK.Size = new System.Drawing.Size(352, 29);
+            this.cbbVaiTro_TK.TabIndex = 38;
             // 
             // buttonTimKiem
             // 
@@ -557,21 +655,21 @@
             // 
             // dgvNguoiDung
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.dgvNguoiDung.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.dgvNguoiDung.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvNguoiDung.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvNguoiDung.BackgroundColor = System.Drawing.Color.White;
             this.dgvNguoiDung.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvNguoiDung.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dgvNguoiDung.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNguoiDung.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNguoiDung.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvNguoiDung.ColumnHeadersHeight = 35;
             this.dgvNguoiDung.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvNguoiDung.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -673,104 +771,6 @@
             this.Column12.HeaderText = "Trạng thái";
             this.Column12.Name = "Column12";
             // 
-            // cbbVaiTro_TK
-            // 
-            this.cbbVaiTro_TK.FormattingEnabled = true;
-            this.cbbVaiTro_TK.Location = new System.Drawing.Point(132, 60);
-            this.cbbVaiTro_TK.Name = "cbbVaiTro_TK";
-            this.cbbVaiTro_TK.Size = new System.Drawing.Size(352, 29);
-            this.cbbVaiTro_TK.TabIndex = 38;
-            // 
-            // txtTenDangNhap_TK
-            // 
-            this.txtTenDangNhap_TK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTenDangNhap_TK.Location = new System.Drawing.Point(649, 22);
-            this.txtTenDangNhap_TK.Margin = new System.Windows.Forms.Padding(5);
-            this.txtTenDangNhap_TK.Name = "txtTenDangNhap_TK";
-            this.txtTenDangNhap_TK.Size = new System.Drawing.Size(352, 29);
-            this.txtTenDangNhap_TK.TabIndex = 40;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(532, 26);
-            this.label17.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(98, 19);
-            this.label17.TabIndex = 39;
-            this.label17.Text = "Tên đăng nhập";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(562, 65);
-            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 19);
-            this.label4.TabIndex = 41;
-            this.label4.Text = "Trạng thái";
-            // 
-            // cbbGioiTinh_TK
-            // 
-            this.cbbGioiTinh_TK.FormattingEnabled = true;
-            this.cbbGioiTinh_TK.Items.AddRange(new object[] {
-            "-- Chọn giới tính --",
-            "Nam",
-            "Nữ",
-            "Khác"});
-            this.cbbGioiTinh_TK.Location = new System.Drawing.Point(132, 104);
-            this.cbbGioiTinh_TK.Name = "cbbGioiTinh_TK";
-            this.cbbGioiTinh_TK.Size = new System.Drawing.Size(352, 29);
-            this.cbbGioiTinh_TK.TabIndex = 54;
-            this.cbbGioiTinh_TK.Text = "-- Chọn giới tính --";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(64, 108);
-            this.label12.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(59, 19);
-            this.label12.TabIndex = 53;
-            this.label12.Text = "Giới tính";
-            // 
-            // txtDiaChi_TK
-            // 
-            this.txtDiaChi_TK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDiaChi_TK.Location = new System.Drawing.Point(649, 104);
-            this.txtDiaChi_TK.Margin = new System.Windows.Forms.Padding(5);
-            this.txtDiaChi_TK.Name = "txtDiaChi_TK";
-            this.txtDiaChi_TK.Size = new System.Drawing.Size(352, 29);
-            this.txtDiaChi_TK.TabIndex = 56;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(579, 108);
-            this.label18.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(51, 19);
-            this.label18.TabIndex = 55;
-            this.label18.Text = "Địa chỉ";
-            // 
-            // cbbTrangThai_TK
-            // 
-            this.cbbTrangThai_TK.FormattingEnabled = true;
-            this.cbbTrangThai_TK.Items.AddRange(new object[] {
-            "-- Chọn trạng thái --",
-            "Hoạt động",
-            "Khóa",
-            "Chờ xác minh"});
-            this.cbbTrangThai_TK.Location = new System.Drawing.Point(649, 67);
-            this.cbbTrangThai_TK.Name = "cbbTrangThai_TK";
-            this.cbbTrangThai_TK.Size = new System.Drawing.Size(352, 29);
-            this.cbbTrangThai_TK.TabIndex = 57;
-            this.cbbTrangThai_TK.Text = "-- Chọn trạng thái --";
-            // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.SeaShell;
@@ -786,6 +786,7 @@
             this.button2.Text = "Nhập Excel";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 

@@ -15,7 +15,7 @@ namespace quanlycaphe
 {
     public partial class KhuyenMai : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=127.0.0.1;Initial Catalog=quanlycafe;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
         public KhuyenMai()
         {
             InitializeComponent();
@@ -107,10 +107,18 @@ namespace quanlycaphe
                 dtNgayKetThuc.Value = Convert.ToDateTime(dgvKhuyenMai.Rows[i].Cells[4].Value.ToString());
                 txtPhanTramGiam.Text = dgvKhuyenMai.Rows[i].Cells[5].Value.ToString();
             }
+            enableTextBox();
+            txtMaKM.Enabled = false;
+            buttonThemMoi.Enabled = false;
+            buttonLuu.Enabled = false;
+            buttonCapNhat.Enabled = true;
+            buttonXoa.Enabled = true;
+            buttonHuyThaoTac.Enabled = true;
         }
 
         private void buttonThemMoi_Click(object sender, EventArgs e)
         {
+            buttonThemMoi.Enabled = false;
             buttonLuu.Enabled = true;
             buttonCapNhat.Enabled = false;
             buttonXoa.Enabled = false;
@@ -127,6 +135,7 @@ namespace quanlycaphe
             buttonCapNhat.Enabled = false;
             buttonXoa.Enabled = false;
             buttonHuyThaoTac.Enabled = false;
+            buttonThemMoi.Enabled = true;
         }
 
         private void buttonLuu_Click(object sender, EventArgs e)
@@ -184,6 +193,7 @@ namespace quanlycaphe
             buttonCapNhat.Enabled = false;
             buttonXoa.Enabled = false;
             buttonHuyThaoTac.Enabled = false;
+            buttonThemMoi.Enabled = true;
         }
 
         private void buttonCapNhat_Click(object sender, EventArgs e)
@@ -236,6 +246,7 @@ namespace quanlycaphe
             buttonCapNhat.Enabled = false;
             buttonXoa.Enabled = false;
             buttonHuyThaoTac.Enabled = false;
+            buttonThemMoi.Enabled = true;
         }
 
         private void buttonXoa_Click(object sender, EventArgs e)
@@ -258,6 +269,7 @@ namespace quanlycaphe
                 buttonCapNhat.Enabled = false;
                 buttonXoa.Enabled = false;
                 buttonHuyThaoTac.Enabled = false;
+                buttonThemMoi.Enabled = true;
             }
         }
 
@@ -445,6 +457,193 @@ namespace quanlycaphe
             cmd.Dispose();
             con.Close();
             ExportExcel(tb, "KhuyenMai");
+        }
+
+        private void txtTenKM_TK_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPhanTramGiam_TK_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMoTa_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvKhuyenMai_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMaKM_TK_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMaKM_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTenKM_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPhanTramGiam_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtNgayKetThuc_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtNgayBatDau_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+        public void ThemKhuyenMai(String maKM, String tenKM, String moTa, DateTime ngayBatDau, DateTime ngayKetThuc, String phanTramGiam)
+        {
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            string sql = "insert into KhuyenMai values('" + maKM + "', N'" + tenKM + "', N'" + moTa + "', '" + ngayBatDau.ToString("yyyy-MM-dd") + "', '" + ngayKetThuc.ToString("yyyy-MM-dd") + "', '" + phanTramGiam + "')";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.ExecuteNonQuery();
+            cmd.Dispose();
+            con.Close();
+            MessageBox.Show("Thêm mới thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            loadKhuyenMai();
+        }
+        private void ReadExcel(String filename)
+        {
+            //kiểm tra xem filename đã có dữ liệu chưa
+            if (filename == null)
+            {
+                MessageBox.Show("Chưa chọn file");
+            }
+            else
+            {
+                xls.Application Excel = new xls.Application();// tạp một app làm việc mới
+                                                              // mở dữ liệu từ file
+                Excel.Workbooks.Open(filename);
+                //đọc dữ liệu từng sheet của excel
+                foreach (xls.Worksheet wsheet in Excel.Worksheets)
+                {
+                    int i = 2;  //để đọc từng dòng của sheet bắt đầu từ dòng số 2
+                    do
+                    {
+                        if (wsheet.Cells[i, 1].Value == null && wsheet.Cells[i, 2].Value == null && wsheet.Cells[i, 3].Value == null)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            /// Đọc dữ liệu từ Excel
+                            string maKM = wsheet.Cells[i, 1].Value?.ToString();
+                            string tenKhuyenMai = wsheet.Cells[i, 2].Value?.ToString();
+                            string moTa = wsheet.Cells[i, 3].Value?.ToString();
+                            DateTime ngayBatDau;
+                            if (!DateTime.TryParse(wsheet.Cells[i, 4].Value?.ToString(), out ngayBatDau))
+                            {
+                                ngayBatDau = DateTime.MinValue; // Gán giá trị mặc định nếu lỗi
+                            }
+                            DateTime ngayKetThuc;
+                            if (!DateTime.TryParse(wsheet.Cells[i, 5].Value?.ToString(), out ngayKetThuc))
+                            {
+                                ngayKetThuc = DateTime.MinValue; // Gán giá trị mặc định nếu lỗi
+                            }
+                            string phanTramGiam = wsheet.Cells[i, 6].Value?.ToString();
+                            if (checkTrungMaKhuyenMai(maKM))
+                            {
+                                MessageBox.Show("Trùng mã khuyến mãi -> " + maKM + " <- !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                i++;
+                                continue;
+                            }
+
+                            // Gọi phương thức ThemDocGia với dữ liệu đã được ép kiểu đúng
+                            ThemKhuyenMai(maKM, tenKhuyenMai, moTa, ngayBatDau, ngayKetThuc, phanTramGiam);
+                            i++;
+                        }
+                    }
+                    while (true);
+                }
+            }
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx";
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.RestoreDirectory = true;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                //txtDuongDan.Text = openFileDialog.FileName;
+                ReadExcel(openFileDialog.FileName);
+                loadKhuyenMai();
+            }
         }
     }
 }

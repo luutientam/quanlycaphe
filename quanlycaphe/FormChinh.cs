@@ -12,23 +12,47 @@ namespace quanlycaphe
 {
     public partial class FormChinh : Form
     {
+        private Timer timer;
+
         public FormChinh()
         {
             InitializeComponent();
-            //if(User.MaNguoiDung != null)
-            //{
-            //    label1.Text = "Xin chào: " + User.TenNguoiDung;
-            //    label2.Text = "Quyền: " + User.MaVaiTro;
-            //    label3.Text = "Mã: " + User.MaNguoiDung;
-            //}
-            //else
-            //{
-            //    label1.Text = "Xin chào: " + User.TenNhanVien;
-            //    label2.Text = "Quyền: Nhân viên";
-            //    label3.Text = "Mã: " + User.MaNhanVien;
-            //}
-            //label3.Text = "Ngày: " + DateTime.Now.ToString("dd/MM/yyyy");
+            if (User.MaNhanVien == null)
+            {
+                lblHoTen.Text = "" + User.TenNguoiDung + " _ " + User.TenVaiTro;
+                //label2.Text = "Quyền: " + User.MaVaiTro;
+                //label3.Text = "Mã: " + User.MaNguoiDung;
+            }
+            else
+            {
+                lblHoTen.Text = "" + User.TenNhanVien + " _  Nhân viên";
+                //label2.Text = "Quyền: Nhân viên";
+                //label3.Text = "Mã: " + User.MaNhanVien;
+            }
+            lblTime.Text = "" + DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
+            //// Tạo và cấu hình Timer để cập nhật thời gian
+            timer = new Timer();
+            timer.Interval = 1000; // 1 giây
+            timer.Tick += timer1_Tick;
+            timer.Start();
 
+            loadform(new ht());
+
+        }
+        public void defaultColorItem()
+        {
+            MenuNguoiDung.BackColor = Color.Beige;
+            MenuSanPham.BackColor = Color.Beige;
+            sảnPhẩmToolStripMenuItem1.BackColor = Color.Beige;
+            danhMụcSảnPhẩmToolStripMenuItem.BackColor = Color.Beige;
+            MenuDonHang.BackColor = Color.Beige;
+            MenuKH.BackColor = Color.Beige;
+            MenuBan.BackColor = Color.Beige;
+            MenuNCC.BackColor = Color.Beige;
+            MenuBC.BackColor = Color.Beige;
+            MenuKM.BackColor = Color.Beige;
+            nhânViênToolStripMenuItem.BackColor = Color.Beige;
+            vaiTròToolStripMenuItem.BackColor = Color.Beige;
         }
         public void loadform(Form form)
         {
@@ -60,52 +84,108 @@ namespace quanlycaphe
         private void MenuNguoiDung_Click(object sender, EventArgs e)
         {
             loadform(new NguoiDung());
+            defaultColorItem();
+            MenuNguoiDung.BackColor = Color.PeachPuff;
         }
 
         private void sảnPhẩmToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             loadform(new SanPham());
+            defaultColorItem();
+            sảnPhẩmToolStripMenuItem1.BackColor = Color.PeachPuff;
+            MenuSanPham.BackColor = Color.PeachPuff;
         }
 
         private void danhMụcSảnPhẩmToolStripMenuItem_Click(object sender, EventArgs e)
         {
             loadform(new DanhMucSanPham());
+            defaultColorItem();
+            danhMụcSảnPhẩmToolStripMenuItem.BackColor = Color.PeachPuff;
+            MenuSanPham.BackColor = Color.PeachPuff;
         }
 
         private void MenuDonHang_Click(object sender, EventArgs e)
         {
             loadform(new quanlidonhang.Dasboard()); // Đảm bảo Dasboard kế thừa từ Form
+            defaultColorItem();
+            MenuDonHang.BackColor = Color.PeachPuff;
+
         }
 
 
         private void MenuKH_Click(object sender, EventArgs e)
         {
             loadform(new KhachHang());
+            defaultColorItem();
+            MenuKH.BackColor = Color.PeachPuff;
         }
 
         private void MenuBan_Click(object sender, EventArgs e)
         {
             loadform(new QuanLyBan());
+            defaultColorItem();
+            MenuBan.BackColor = Color.PeachPuff;
         }
 
         private void MenuNCC_Click(object sender, EventArgs e)
         {
             loadform(new NhaCungCap());
+            defaultColorItem();
+            MenuNCC.BackColor = Color.PeachPuff;
         }
 
         private void MenuBC_Click(object sender, EventArgs e)
         {
             loadform(new BaoCao());
+            defaultColorItem();
+            MenuBC.BackColor = Color.PeachPuff;
         }
 
         private void MenuKM_Click(object sender, EventArgs e)
         {
             loadform(new KhuyenMai());
+            defaultColorItem();
+            MenuKH.BackColor = Color.PeachPuff;
         }
 
         private void nhânViênToolStripMenuItem_Click(object sender, EventArgs e)
         {
             loadform(new QuanLyNhanVien());
+            defaultColorItem();
+            nhânViênToolStripMenuItem.BackColor = Color.PeachPuff;
+        }
+
+        private void menuStrip1_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Bạn có muốn đăng xuất không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                DangNhap dangNhap = new DangNhap();
+                dangNhap.Show();
+                this.Hide();
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblTime.Text = DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
+        }
+
+        private void toolStripMenuItem1_Click_1(object sender, EventArgs e)
+        {
+            loadform(new ht());
+            defaultColorItem();
+        }
+
+        private void vaiTròToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadform(new VaiTro());
+            defaultColorItem();
+            vaiTròToolStripMenuItem.BackColor = Color.PeachPuff;
         }
 
         private void tổngQuanToolStripMenuItem_Click(object sender, EventArgs e)

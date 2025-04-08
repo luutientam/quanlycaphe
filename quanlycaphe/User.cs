@@ -10,6 +10,7 @@ namespace quanlycaphe
     {
         public static string MaNguoiDung;
         public static string MaVaiTro;
+        public static string TenVaiTro;
         public static string TenNguoiDung;
         public static string SoDienThoai;
         public static string NgaySinh;

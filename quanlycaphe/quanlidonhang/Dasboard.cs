@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +14,7 @@ namespace quanlycaphe.quanlidonhang
 {
     public partial class Dasboard : Form
     {
-private SqlConnection con = new SqlConnection(@"Data Source=VUATAM\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True;Encrypt=True;TrustServerCertificate=True");
+private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
 
 
         public Dasboard()
@@ -24,6 +25,9 @@ private SqlConnection con = new SqlConnection(@"Data Source=VUATAM\SQLEXPRESS;In
             nhapExcel.Enabled = false;
             xuatExcel.Enabled = false;
         }
+
+
+
 
         public void loadDonHang()
         {
@@ -39,7 +43,7 @@ private SqlConnection con = new SqlConnection(@"Data Source=VUATAM\SQLEXPRESS;In
 
             }catch (Exception ex)
             {
-                SqlConnection con = new SqlConnection(@"Data Source=localhost;Initial Catalog=quanlycafe;Integrated Security=True;Encrypt=True;TrustServerCertificate=True");
+                SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
              if (con.State == ConnectionState.Closed)
                 {
                     con.Open();
@@ -139,6 +143,25 @@ private SqlConnection con = new SqlConnection(@"Data Source=VUATAM\SQLEXPRESS;In
         private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvDanhSachHoaDon_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int i = e.RowIndex;
+            if (i >= 0)
+            {
+                DataGridViewRow row = dgvDanhSachHoaDon.Rows[i];
+                string maHoaDon = row.Cells[0].Value.ToString();
+                string tenKhachHang = row.Cells[1].Value.ToString();
+                string tenNhanVien = row.Cells[2].Value.ToString();
+                string ngayLap = row.Cells[3].Value.ToString();
+                string tongTien = row.Cells[4].Value.ToString();
+                string maKhuyenMai = row.Cells[5].Value.ToString();
+
+                ChiTietHoaDon cthd = new ChiTietHoaDon();
+                cthd.setData(maHoaDon, tenKhachHang, tenNhanVien, ngayLap, tongTien, maKhuyenMai);
+                cthd.ShowDialog();
+            }
         }
     }
 }

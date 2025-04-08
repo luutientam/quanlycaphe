@@ -11,7 +11,7 @@ namespace quanlycaphe
         //su dung íntance-báed(doi tuong rieng)
     {
         //chuoi ket noi connection string dung de xac dinh thong tin ket noi den sql
-        private static readonly string connectionString = @"Data Source=localhost;Initial Catalog=quanlycafe;Integrated Security=True";
+        private static readonly string connectionString = "Data Source=LAPTOP-G9RUONMC\\DUONGDIEM;Initial Catalog=quanlycafe;Integrated Security=True";
 
         //bien la 1 doi tuong cua lop sqlConnection , dung de thiet lap va quan ly ket noi voi co so du lieiu
         private SqlConnection con;

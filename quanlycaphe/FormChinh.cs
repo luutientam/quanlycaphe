@@ -187,5 +187,15 @@ namespace quanlycaphe
             defaultColorItem();
             vaiTròToolStripMenuItem.BackColor = Color.PeachPuff;
         }
+
+        private void tổngQuanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadform(new TongQuan());
+        }
+
+        private void báoCáoDoanhThuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadform(new BaoCao());
+        }
     }
 }

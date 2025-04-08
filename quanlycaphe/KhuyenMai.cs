@@ -107,10 +107,18 @@ namespace quanlycaphe
                 dtNgayKetThuc.Value = Convert.ToDateTime(dgvKhuyenMai.Rows[i].Cells[4].Value.ToString());
                 txtPhanTramGiam.Text = dgvKhuyenMai.Rows[i].Cells[5].Value.ToString();
             }
+            enableTextBox();
+            txtMaKM.Enabled = false;
+            buttonThemMoi.Enabled = false;
+            buttonLuu.Enabled = false;
+            buttonCapNhat.Enabled = true;
+            buttonXoa.Enabled = true;
+            buttonHuyThaoTac.Enabled = true;
         }
 
         private void buttonThemMoi_Click(object sender, EventArgs e)
         {
+            buttonThemMoi.Enabled = false;
             buttonLuu.Enabled = true;
             buttonCapNhat.Enabled = false;
             buttonXoa.Enabled = false;
@@ -127,6 +135,7 @@ namespace quanlycaphe
             buttonCapNhat.Enabled = false;
             buttonXoa.Enabled = false;
             buttonHuyThaoTac.Enabled = false;
+            buttonThemMoi.Enabled = true;
         }
 
         private void buttonLuu_Click(object sender, EventArgs e)
@@ -184,6 +193,7 @@ namespace quanlycaphe
             buttonCapNhat.Enabled = false;
             buttonXoa.Enabled = false;
             buttonHuyThaoTac.Enabled = false;
+            buttonThemMoi.Enabled = true;
         }
 
         private void buttonCapNhat_Click(object sender, EventArgs e)
@@ -236,6 +246,7 @@ namespace quanlycaphe
             buttonCapNhat.Enabled = false;
             buttonXoa.Enabled = false;
             buttonHuyThaoTac.Enabled = false;
+            buttonThemMoi.Enabled = true;
         }
 
         private void buttonXoa_Click(object sender, EventArgs e)
@@ -258,6 +269,7 @@ namespace quanlycaphe
                 buttonCapNhat.Enabled = false;
                 buttonXoa.Enabled = false;
                 buttonHuyThaoTac.Enabled = false;
+                buttonThemMoi.Enabled = true;
             }
         }
 
@@ -551,10 +563,87 @@ namespace quanlycaphe
         {
 
         }
+        public void ThemKhuyenMai(String maKM, String tenKM, String moTa, DateTime ngayBatDau, DateTime ngayKetThuc, String phanTramGiam)
+        {
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            string sql = "insert into KhuyenMai values('" + maKM + "', N'" + tenKM + "', N'" + moTa + "', '" + ngayBatDau.ToString("yyyy-MM-dd") + "', '" + ngayKetThuc.ToString("yyyy-MM-dd") + "', '" + phanTramGiam + "')";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.ExecuteNonQuery();
+            cmd.Dispose();
+            con.Close();
+            MessageBox.Show("Thêm mới thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            loadKhuyenMai();
+        }
+        private void ReadExcel(String filename)
+        {
+            //kiểm tra xem filename đã có dữ liệu chưa
+            if (filename == null)
+            {
+                MessageBox.Show("Chưa chọn file");
+            }
+            else
+            {
+                xls.Application Excel = new xls.Application();// tạp một app làm việc mới
+                                                              // mở dữ liệu từ file
+                Excel.Workbooks.Open(filename);
+                //đọc dữ liệu từng sheet của excel
+                foreach (xls.Worksheet wsheet in Excel.Worksheets)
+                {
+                    int i = 2;  //để đọc từng dòng của sheet bắt đầu từ dòng số 2
+                    do
+                    {
+                        if (wsheet.Cells[i, 1].Value == null && wsheet.Cells[i, 2].Value == null && wsheet.Cells[i, 3].Value == null)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            /// Đọc dữ liệu từ Excel
+                            string maKM = wsheet.Cells[i, 1].Value?.ToString();
+                            string tenKhuyenMai = wsheet.Cells[i, 2].Value?.ToString();
+                            string moTa = wsheet.Cells[i, 3].Value?.ToString();
+                            DateTime ngayBatDau;
+                            if (!DateTime.TryParse(wsheet.Cells[i, 4].Value?.ToString(), out ngayBatDau))
+                            {
+                                ngayBatDau = DateTime.MinValue; // Gán giá trị mặc định nếu lỗi
+                            }
+                            DateTime ngayKetThuc;
+                            if (!DateTime.TryParse(wsheet.Cells[i, 5].Value?.ToString(), out ngayKetThuc))
+                            {
+                                ngayKetThuc = DateTime.MinValue; // Gán giá trị mặc định nếu lỗi
+                            }
+                            string phanTramGiam = wsheet.Cells[i, 6].Value?.ToString();
+                            if (checkTrungMaKhuyenMai(maKM))
+                            {
+                                MessageBox.Show("Trùng mã khuyến mãi -> " + maKM + " <- !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                i++;
+                                continue;
+                            }
 
+                            // Gọi phương thức ThemDocGia với dữ liệu đã được ép kiểu đúng
+                            ThemKhuyenMai(maKM, tenKhuyenMai, moTa, ngayBatDau, ngayKetThuc, phanTramGiam);
+                            i++;
+                        }
+                    }
+                    while (true);
+                }
+            }
+        }
         private void button2_Click(object sender, EventArgs e)
         {
-
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx";
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.RestoreDirectory = true;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                //txtDuongDan.Text = openFileDialog.FileName;
+                ReadExcel(openFileDialog.FileName);
+                loadKhuyenMai();
+            }
         }
     }
 }

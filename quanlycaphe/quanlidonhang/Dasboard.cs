@@ -13,7 +13,7 @@ namespace quanlycaphe.quanlidonhang
 {
     public partial class Dasboard : Form
     {
-private SqlConnection con = new SqlConnection(@"Data Source=VUATAM\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True;Encrypt=True;TrustServerCertificate=True");
+private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
 
 
         public Dasboard()
@@ -39,7 +39,7 @@ private SqlConnection con = new SqlConnection(@"Data Source=VUATAM\SQLEXPRESS;In
 
             }catch (Exception ex)
             {
-                SqlConnection con = new SqlConnection(@"Data Source=localhost;Initial Catalog=quanlycafe;Integrated Security=True;Encrypt=True;TrustServerCertificate=True");
+                SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
              if (con.State == ConnectionState.Closed)
                 {
                     con.Open();

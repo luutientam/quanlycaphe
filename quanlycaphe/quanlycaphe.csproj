@@ -95,6 +95,13 @@
     <Compile Include="BaoCao.Designer.cs">
       <DependentUpon>BaoCao.cs</DependentUpon>
     </Compile>
+    
+    <Compile Include="TongQuan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TongQuan.Designer.cs">
+      <DependentUpon>TongQuan.cs</DependentUpon>
+    </Compile>
     <Compile Include="ht.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -263,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SanPham.resx">
       <DependentUpon>SanPham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TongQuan.resx">
+      <DependentUpon>TongQuan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VaiTro.resx">
       <DependentUpon>VaiTro.cs</DependentUpon>

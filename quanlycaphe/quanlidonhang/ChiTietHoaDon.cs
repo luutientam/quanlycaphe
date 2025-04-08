@@ -31,12 +31,12 @@ namespace quanlycaphe.quanlidonhang
 
                     string sql = @"
                         SELECT sp.tensanpham AS [Tên sản phẩm], 
-                               cthd.soluong AS [Số lượng], 
-                               cthd.gia AS [Giá]
+                               ctdh.soluong AS [Số lượng], 
+                               ctdh.gia AS [Giá]
                         FROM donhang dh
                         JOIN chitietdonhang ctdh ON dh.madonhang = ctdh.madonhang
                         JOIN sanpham sp ON ctdh.masanpham = sp.masanpham
-                        WHERE dh.madonhang = @maHoaDon_1";
+                        WHERE dh.madonhang = @mahd";
 
                     using (SqlCommand cmd = new SqlCommand(sql, connection))
                     {
@@ -46,9 +46,9 @@ namespace quanlycaphe.quanlidonhang
 
                         DataTable dt = new DataTable();
                         dt.Columns.Add("STT");
-                        dt.Columns.Add("Tên sản phẩm");
-                        dt.Columns.Add("Số Lượng");
-                        dt.Columns.Add("Giá");
+                        dt.Columns.Add("TenSanPham");
+                        dt.Columns.Add("SoLuong");
+                        dt.Columns.Add("Gia");
 
                         int i = 0;
                         while (reader.Read())

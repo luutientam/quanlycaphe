@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="TongQuan.Designer.cs">
       <DependentUpon>TongQuan.cs</DependentUpon>
+    </Compile>
     <Compile Include="ht.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +273,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TongQuan.resx">
       <DependentUpon>TongQuan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VaiTro.resx">
       <DependentUpon>VaiTro.cs</DependentUpon>
     </EmbeddedResource>

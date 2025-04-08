@@ -61,6 +61,7 @@
             this.quayLai.TabIndex = 27;
             this.quayLai.Text = "Quay lại";
             this.quayLai.UseVisualStyleBackColor = true;
+            this.quayLai.Click += new System.EventHandler(this.quayLai_Click);
             // 
             // nhanVienLapHoaDon
             // 

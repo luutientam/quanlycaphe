@@ -13,7 +13,7 @@ namespace quanlycaphe.quanlidonhang
 {
     public partial class Dasboard : Form
     {
-private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST;Initial Catalog=quanlycafe;Integrated Security=True");
+private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
 
 
         public Dasboard()

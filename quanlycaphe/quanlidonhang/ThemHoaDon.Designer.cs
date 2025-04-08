@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ThemHoaDon));
             this.maNhanVien = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -99,21 +99,21 @@
             // 
             // dgvSanPhamDuocThem
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.dgvSanPhamDuocThem.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.dgvSanPhamDuocThem.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvSanPhamDuocThem.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSanPhamDuocThem.BackgroundColor = System.Drawing.Color.White;
             this.dgvSanPhamDuocThem.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvSanPhamDuocThem.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dgvSanPhamDuocThem.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSanPhamDuocThem.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSanPhamDuocThem.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvSanPhamDuocThem.ColumnHeadersHeight = 35;
             this.dgvSanPhamDuocThem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvSanPhamDuocThem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -132,6 +132,7 @@
             this.dgvSanPhamDuocThem.RowTemplate.Height = 30;
             this.dgvSanPhamDuocThem.Size = new System.Drawing.Size(754, 310);
             this.dgvSanPhamDuocThem.TabIndex = 13;
+            this.dgvSanPhamDuocThem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSanPhamDuocThem_CellClick_1);
             this.dgvSanPhamDuocThem.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSanPhamDuocThem_CellContentClick);
             // 
             // Column1
@@ -281,6 +282,7 @@
             this.xoaSanPham.Text = "Xóa sản phẩm";
             this.xoaSanPham.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.xoaSanPham.UseVisualStyleBackColor = true;
+            this.xoaSanPham.Click += new System.EventHandler(this.xoaSanPham_Click);
             // 
             // suaSoLuong
             // 
@@ -295,6 +297,7 @@
             this.suaSoLuong.Text = "Sửa số lượng";
             this.suaSoLuong.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.suaSoLuong.UseVisualStyleBackColor = true;
+            this.suaSoLuong.Click += new System.EventHandler(this.suaSoLuong_Click);
             // 
             // label7
             // 
@@ -347,6 +350,7 @@
             this.tongTienHoaDonKhuyenMai.Name = "tongTienHoaDonKhuyenMai";
             this.tongTienHoaDonKhuyenMai.Size = new System.Drawing.Size(294, 20);
             this.tongTienHoaDonKhuyenMai.TabIndex = 45;
+            this.tongTienHoaDonKhuyenMai.TextChanged += new System.EventHandler(this.tongTienHoaDonKhuyenMai_TextChanged);
             // 
             // khuyenMai
             // 
@@ -356,6 +360,7 @@
             this.khuyenMai.Size = new System.Drawing.Size(294, 21);
             this.khuyenMai.TabIndex = 46;
             this.khuyenMai.Text = "Khuyến mãi";
+            this.khuyenMai.SelectedIndexChanged += new System.EventHandler(this.khuyenMai_SelectedIndexChanged_1);
             // 
             // thanhToan
             // 
@@ -370,6 +375,7 @@
             this.thanhToan.Text = "Thanh toán";
             this.thanhToan.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.thanhToan.UseVisualStyleBackColor = true;
+            this.thanhToan.Click += new System.EventHandler(this.thanhToan_Click);
             // 
             // huyHoaDon
             // 

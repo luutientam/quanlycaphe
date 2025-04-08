@@ -35,6 +35,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvSanPhamDuocThem = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbxMaKhachHang = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.ngayLapHoaDon = new System.Windows.Forms.TextBox();
@@ -56,10 +60,6 @@
             this.thanhToan = new System.Windows.Forms.Button();
             this.huyHoaDon = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSanPhamDuocThem)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,6 +71,7 @@
             this.maNhanVien.Name = "maNhanVien";
             this.maNhanVien.Size = new System.Drawing.Size(294, 20);
             this.maNhanVien.TabIndex = 3;
+            this.maNhanVien.TextChanged += new System.EventHandler(this.maNhanVien_TextChanged);
             // 
             // label2
             // 
@@ -133,6 +134,31 @@
             this.dgvSanPhamDuocThem.TabIndex = 13;
             this.dgvSanPhamDuocThem.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSanPhamDuocThem_CellContentClick);
             // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "MaSanPham";
+            this.Column1.HeaderText = "Mã sản phẩm";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "TenSanPham";
+            this.Column2.HeaderText = "Tên sản phẩm";
+            this.Column2.Name = "Column2";
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "SoLuong";
+            this.Column4.HeaderText = "Số lượng";
+            this.Column4.Name = "Column4";
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "Gia";
+            this.Column3.HeaderText = "Giá";
+            this.Column3.Name = "Column3";
+            // 
             // cbxMaKhachHang
             // 
             this.cbxMaKhachHang.FormattingEnabled = true;
@@ -182,6 +208,7 @@
             this.chonSanPham.Size = new System.Drawing.Size(203, 21);
             this.chonSanPham.TabIndex = 13;
             this.chonSanPham.Text = "Chọn sản phẩm";
+            this.chonSanPham.SelectedIndexChanged += new System.EventHandler(this.chonSanPham_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -213,6 +240,7 @@
             this.tenSanPhamDuocChon.Name = "tenSanPhamDuocChon";
             this.tenSanPhamDuocChon.Size = new System.Drawing.Size(113, 20);
             this.tenSanPhamDuocChon.TabIndex = 13;
+            this.tenSanPhamDuocChon.TextChanged += new System.EventHandler(this.tenSanPhamDuocChon_TextChanged);
             // 
             // soLuong
             // 
@@ -222,6 +250,7 @@
             this.soLuong.Name = "soLuong";
             this.soLuong.Size = new System.Drawing.Size(113, 20);
             this.soLuong.TabIndex = 15;
+            this.soLuong.TextChanged += new System.EventHandler(this.soLuong_TextChanged);
             // 
             // themSanPham
             // 
@@ -237,6 +266,7 @@
             this.themSanPham.Text = "Thêm sản phẩm";
             this.themSanPham.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.themSanPham.UseVisualStyleBackColor = true;
+            this.themSanPham.Click += new System.EventHandler(this.themSanPham_Click);
             // 
             // xoaSanPham
             // 
@@ -354,6 +384,7 @@
             this.huyHoaDon.Text = "Hủy";
             this.huyHoaDon.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.huyHoaDon.UseVisualStyleBackColor = true;
+            this.huyHoaDon.Click += new System.EventHandler(this.huyHoaDon_Click);
             // 
             // label10
             // 
@@ -364,31 +395,6 @@
             this.label10.Size = new System.Drawing.Size(236, 45);
             this.label10.TabIndex = 49;
             this.label10.Text = "Thêm hóa đơn";
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "Gia";
-            this.Column3.HeaderText = "Giá";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "SoLuong";
-            this.Column4.HeaderText = "Số lượng";
-            this.Column4.Name = "Column4";
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "TenSanPham";
-            this.Column2.HeaderText = "Tên sản phẩm";
-            this.Column2.Name = "Column2";
-            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "MaSanPham";
-            this.Column1.HeaderText = "Mã sản phẩm";
-            this.Column1.Name = "Column1";
             // 
             // ThemHoaDon
             // 

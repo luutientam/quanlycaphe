@@ -107,5 +107,15 @@ namespace quanlycaphe
         {
             loadform(new QuanLyNhanVien());
         }
+
+        private void tổngQuanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadform(new TongQuan());
+        }
+
+        private void báoCáoDoanhThuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadform(new BaoCao());
+        }
     }
 }

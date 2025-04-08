@@ -191,19 +191,20 @@
             this.MenuBC.Padding = new System.Windows.Forms.Padding(4, 30, 4, 0);
             this.MenuBC.Size = new System.Drawing.Size(326, 62);
             this.MenuBC.Text = "Báo cáo";
-            this.MenuBC.Click += new System.EventHandler(this.MenuBC_Click);
             // 
             // tổngQuanToolStripMenuItem
             // 
             this.tổngQuanToolStripMenuItem.Name = "tổngQuanToolStripMenuItem";
             this.tổngQuanToolStripMenuItem.Size = new System.Drawing.Size(285, 32);
             this.tổngQuanToolStripMenuItem.Text = "Tổng Quan";
+            this.tổngQuanToolStripMenuItem.Click += new System.EventHandler(this.tổngQuanToolStripMenuItem_Click);
             // 
             // báoCáoDoanhThuToolStripMenuItem
             // 
             this.báoCáoDoanhThuToolStripMenuItem.Name = "báoCáoDoanhThuToolStripMenuItem";
             this.báoCáoDoanhThuToolStripMenuItem.Size = new System.Drawing.Size(285, 32);
             this.báoCáoDoanhThuToolStripMenuItem.Text = "Báo Cáo Doanh Thu";
+            this.báoCáoDoanhThuToolStripMenuItem.Click += new System.EventHandler(this.báoCáoDoanhThuToolStripMenuItem_Click);
             // 
             // MenuKM
             // 

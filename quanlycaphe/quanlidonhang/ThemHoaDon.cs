@@ -18,7 +18,9 @@ namespace quanlycaphe.quanlidonhang
     {
         private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
         private SanPham sanPham; // Khai báo biến SanPham
-        Dasboard das = new Dasboard();
+        private Dasboard das; // hoặc whatever class contains loadDonHang()
+        private ThemHoaDon themHoaDon;
+
         public ThemHoaDon()
         {
             
@@ -718,8 +720,9 @@ namespace quanlycaphe.quanlidonhang
                     // Đóng kết nối
 
                     con.Close();
-                    das.loadDonHang();
-                    this.Dispose();
+                   // das.loadDonHang();
+                    this.Dispose(); 
+                    
                 }
                 catch (Exception ex)
                 {

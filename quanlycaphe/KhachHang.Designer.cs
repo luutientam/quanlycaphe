@@ -315,6 +315,7 @@
             this.txtTenKH_tk.Name = "txtTenKH_tk";
             this.txtTenKH_tk.Size = new System.Drawing.Size(352, 26);
             this.txtTenKH_tk.TabIndex = 3;
+            this.txtTenKH_tk.TextChanged += new System.EventHandler(this.txtTenKH_tk_TextChanged);
             // 
             // groupBox1
             // 

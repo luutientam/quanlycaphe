@@ -82,12 +82,14 @@ private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS
         {
 
         }
-
+        private Dasboard das;
         private void buttonThemMoi_Click(object sender, EventArgs e)
+            
         {
-            ThemHoaDon themHoaDon = new ThemHoaDon();
+           ThemHoaDon themHoaDon = new ThemHoaDon();
             themHoaDon.ShowDialog();
         }
+        
 
         private void buttonTimKiem_Click(object sender, EventArgs e)
         {

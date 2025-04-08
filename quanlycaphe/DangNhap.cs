@@ -13,7 +13,7 @@ namespace quanlycaphe
 {
     public partial class DangNhap : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
 
         public DangNhap()
         {

@@ -61,64 +61,80 @@ namespace quanlycaphe
                     con.Open();
                 }
 
-                string query = "SELECT n.MaNguoiDung, n.MaVaiTro, vt.TenVaiTro, n.TenNguoiDung, n.SoDienThoai, n.NgaySinh, n.GioiTinh, n.DiaChi, " +
-                               "nv.MaNhanVien, nv.TenNhanVien, nv.SoDienThoai AS SoDienThoai, nv.DiaChi AS DiaChi " +
+                string query = "SELECT t.MaTaiKhoan, n.MaNguoiDung, n.MaVaiTro, vt.TenVaiTro, n.TenNguoiDung, n.SoDienThoai, n.NgaySinh, n.GioiTinh, n.DiaChi, " +
+                               "nv.MaNhanVien, nv.TenNhanVien, nv.SoDienThoai AS SoDienThoaiNV, nv.DiaChi AS DiaChi, t.TrangThai " +
                                "FROM NguoiDung n " +
                                "LEFT JOIN TaiKhoan t ON n.MaTaiKhoan = t.MaTaiKhoan " +
                                "LEFT JOIN NhanVien nv ON n.MaTaiKhoan = nv.MaTaiKhoan " +
                                "LEFT JOIN VaiTro vt ON vt.MaVaiTro = n.MaVaiTro " +
-                               "WHERE t.TenDangNhap = '" + txtTaiKhoan.Text + "' AND t.MatKhau = '" + textBoxMatKhau.Text + "'";
+                               "WHERE t.TenDangNhap = @TenDangNhap AND t.MatKhau = @MatKhau";
 
-                SqlDataAdapter sda = new SqlDataAdapter(query, con);
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@TenDangNhap", txtTaiKhoan.Text.Trim());
+                cmd.Parameters.AddWithValue("@MatKhau", textBoxMatKhau.Text.Trim());
+
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
 
                 if (dt.Rows.Count == 1)
                 {
-                    User.MaNguoiDung = dt.Rows[0]["MaNguoiDung"].ToString();
-                    User.MaVaiTro = dt.Rows[0]["MaVaiTro"].ToString();
-                    User.TenVaiTro = dt.Rows[0]["TenVaiTro"].ToString();
-                    User.TenNguoiDung = dt.Rows[0]["TenNguoiDung"].ToString();
-                    User.SoDienThoai = dt.Rows[0]["SoDienThoai"].ToString();
-                    User.NgaySinh = dt.Rows[0]["NgaySinh"].ToString();
-                    User.GioiTinh = dt.Rows[0]["GioiTinh"].ToString();
-                    User.DiaChi = dt.Rows[0]["DiaChi"].ToString();
-                    User.MaTaiKhoan = dt.Rows[0]["MaTaiKhoan"].ToString();
-                    
-                    User.MaNhanVien = null;
-                    User.TenNhanVien = null;
-
-                    // Nếu là nhân viên, lấy thêm thông tin nhân viên
-                    if (dt.Rows[0]["MaNhanVien"] != null)
+                    var row = dt.Rows[0];
+                    String trangThai = row["TrangThai"].ToString();
+                    if (trangThai == "Khóa")
                     {
+                        MessageBox.Show("Tài khoản đã bị khóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    else if (trangThai == "Chờ xác nhận" || trangThai == "Chờ xác minh")
+                    {
+                        MessageBox.Show("Tài khoản đang chờ xác nhận!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+                    if (!Convert.IsDBNull(row["MaNguoiDung"]))
+                    {
+                        User.MaNguoiDung = row["MaNguoiDung"].ToString();
+                        User.MaVaiTro = row["MaVaiTro"].ToString();
+                        User.TenVaiTro = row["TenVaiTro"].ToString();
+                        User.TenNguoiDung = row["TenNguoiDung"].ToString();
+                        User.SoDienThoai = row["SoDienThoai"].ToString();
+                        User.NgaySinh = row["NgaySinh"].ToString();
+                        User.GioiTinh = row["GioiTinh"].ToString();
+                        User.DiaChi = row["DiaChi"].ToString();
+                        User.MaTaiKhoan = row["MaTaiKhoan"].ToString();
+
+                        User.MaNhanVien = null;
+                        User.TenNhanVien = null;
+                    }
+                    else if (!Convert.IsDBNull(row["MaNhanVien"]))
+                    {
+                        User.MaNhanVien = row["MaNhanVien"].ToString();
+                        User.TenNhanVien = row["TenNhanVien"].ToString();
+                        User.SoDienThoai = row["SoDienThoaiNV"].ToString();
+                        User.DiaChi = row["DiaChi"].ToString();
+                        User.NgaySinh = row["NgaySinh"].ToString();
+                        User.GioiTinh = row["GioiTinh"].ToString();
+                        User.MaTaiKhoan = row["MaTaiKhoan"].ToString();
+
                         User.MaNguoiDung = null;
                         User.MaVaiTro = null;
                         User.TenVaiTro = null;
                         User.TenNguoiDung = null;
-
-                        User.MaNhanVien = dt.Rows[0]["MaNhanVien"].ToString();
-                        User.TenNhanVien = dt.Rows[0]["TenNhanVien"].ToString();
-                        User.SoDienThoai = dt.Rows[0]["SoDienThoai"].ToString();
-                        User.DiaChi = dt.Rows[0]["DiaChi"].ToString();
-                        User.NgaySinh = dt.Rows[0]["NgaySinh"].ToString();
-                        User.GioiTinh = dt.Rows[0]["GioiTinh"].ToString();
-                        User.MaTaiKhoan = dt.Rows[0]["MaTaiKhoan"].ToString();
                     }
-                }
 
+                    FormChinh f = new FormChinh();
+                    f.Show();
+                    this.Hide();
+                }
                 else
                 {
-                        FormChinh f = new FormChinh();
-                        f.Show();
-                        this.Hide();
-                        //MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu", "Thông báo", MessageBoxButtons.OK,MessageBoxIcon.Warning);
-                    }
+                    MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+            }
+
             catch (Exception ex)
             {
-                FormChinh f = new FormChinh();
-                f.Show();
-                this.Hide();
+                MessageBox.Show("Lỗi: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }

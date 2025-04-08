@@ -17,7 +17,7 @@ namespace quanlycaphe
         public FormChinh()
         {
             InitializeComponent();
-            if (User.MaNguoiDung != null)
+            if (User.MaNhanVien == null)
             {
                 lblHoTen.Text = "" + User.TenNguoiDung + " _ " + User.TenVaiTro;
                 //label2.Text = "Quyền: " + User.MaVaiTro;
@@ -25,7 +25,7 @@ namespace quanlycaphe
             }
             else
             {
-                lblHoTen.Text = "" + User.TenNhanVien;
+                lblHoTen.Text = "" + User.TenNhanVien + " _  Nhân viên";
                 //label2.Text = "Quyền: Nhân viên";
                 //label3.Text = "Mã: " + User.MaNhanVien;
             }

@@ -1,4 +1,4 @@
-﻿using DocumentFormat.OpenXml.Office2013.Drawing.ChartStyle;
+﻿
 using DocumentFormat.OpenXml.VariantTypes;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System;
@@ -21,13 +21,37 @@ namespace quanlycaphe.quanlidonhang
 
         public ThemHoaDon()
         {
-/*            maNhanVien.Text = User.MaNhanVien + " - " + User.TenNhanVien;
-            maNhanVien.Enabled = false;*/
+            
             InitializeComponent();
             loadMaKhachHang();
             setNgayLapHoaDon();
             loadSanPham();
             loadMaKhuyenMai();
+            maNhanVien.Text = User.MaNhanVien;
+            maNhanVien.Enabled = false;
+            loadcbbBan();
+        }
+        public void loadcbbBan()
+        {
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            string sql = "SELECT * FROM Ban";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable tb = new DataTable();
+            da.Fill(tb);
+            cmd.Dispose();
+            con.Close();
+            DataRow r = tb.NewRow();
+            r["MaBan"] = "";
+            r["TenBan"] = "--- Chọn bàn ---";
+            tb.Rows.InsertAt(r, 0);
+
+            cbbBan.DataSource = tb;
+            cbbBan.DisplayMember = "TenBan";
+            cbbBan.ValueMember = "MaBan";
         }
         private void label1_Click(object sender, EventArgs e)
         {
@@ -508,7 +532,7 @@ namespace quanlycaphe.quanlidonhang
             }
         }
 
-        private void truSoLuongTrongKho(String maSanPham, int soLuong)
+        private void truSoLuongTrongKho(String maSanPham, int soLuong, SqlTransaction transaction)
         {
             try
             {
@@ -519,7 +543,7 @@ namespace quanlycaphe.quanlidonhang
 
                 // Lấy số lượng trong kho của sản phẩm
                 string sqlLaySoLuong = "SELECT soluong FROM sanpham WHERE masanpham = @MaSanPham";
-                SqlCommand cmdLaySoLuong = new SqlCommand(sqlLaySoLuong, con);
+                SqlCommand cmdLaySoLuong = new SqlCommand(sqlLaySoLuong, con, transaction); // Gán transaction
                 cmdLaySoLuong.Parameters.AddWithValue("@MaSanPham", maSanPham);
                 SqlDataReader reader = cmdLaySoLuong.ExecuteReader();
 
@@ -534,7 +558,7 @@ namespace quanlycaphe.quanlidonhang
                 if (soLuongTrongKhoInt >= soLuong)
                 {
                     string sqlCapNhatSoLuong = "UPDATE sanpham SET soluong = @SoLuong WHERE masanpham = @MaSanPham";
-                    SqlCommand cmdCapNhat = new SqlCommand(sqlCapNhatSoLuong, con);
+                    SqlCommand cmdCapNhat = new SqlCommand(sqlCapNhatSoLuong, con, transaction); // Gán transaction
                     cmdCapNhat.Parameters.AddWithValue("@SoLuong", soLuongTrongKhoInt - soLuong);
                     cmdCapNhat.Parameters.AddWithValue("@MaSanPham", maSanPham);
                     cmdCapNhat.ExecuteNonQuery();
@@ -548,14 +572,8 @@ namespace quanlycaphe.quanlidonhang
             {
                 MessageBox.Show("Lỗi truy vấn dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally
-            {
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                }
-            }
         }
+
         private void thanhToan_Click(object sender, EventArgs e)
         {
             try
@@ -585,6 +603,7 @@ namespace quanlycaphe.quanlidonhang
                     return;
                 }
 
+
                 string[] str3 = khuyenMaiGiaoDien.Split(new string[] { " - " }, StringSplitOptions.None);
                 string khuyenMai_1 = str3[0];
 
@@ -599,7 +618,12 @@ namespace quanlycaphe.quanlidonhang
                     MessageBox.Show("Vui lòng chọn khách hàng");
                     return;
                 }
-
+                if(cbbBan.SelectedValue == "")
+                {
+                    MessageBox.Show("Vui lòng chọn bàn");
+                    return;
+                }
+                string maBan = cbbBan.SelectedValue.ToString();
                 if (dgvSanPhamDuocThem.Rows.Count == 0)
                 {
                     MessageBox.Show("Vui lòng chọn ít nhất một sản phẩm");
@@ -611,53 +635,67 @@ namespace quanlycaphe.quanlidonhang
                     MessageBox.Show("Vui lòng chọn mã khuyến mại");
                     return;
                 }
-
+                
                 // Chuyển đổi tổng tiền từ chuỗi sang số khi có >= 1 sản phẩm được chọn 
                 double tongTienHoaDon_1 = double.Parse(tongTienText);
-
+               
                 // Kết nối với cơ sở dữ liệu
                 if (con.State == ConnectionState.Closed)
                 {
                     con.Open();
                 }
                 SqlTransaction transaction = con.BeginTransaction();
+                string maDonHang = "DH" + DateTime.Now.ToString("yyyyMMddHHmmss") +
+                   Guid.NewGuid().ToString("N").Substring(0, 3).ToUpper();
+               
 
+                string trangThai = "Thành công";
                 try
                 {
                     // Thêm hóa đơn vào bảng `hoadon`
-                    string sqlInsertHoaDon = "INSERT INTO donhang (makhachhang, manhanvien, ngaydat, tongtien, makhuyenmai) VALUES (@MaKH, @MaNV, @NgayLap, @TongTien, @MaKM)";
+                    string sqlInsertHoaDon = "INSERT INTO donhang (MaDonHang, MaKhachHang,MaBan, MaNhanVien,MaKhuyenMai, TongTien, NgayDat, TrangThai) VALUES (@MaDH, @MaKH,@MaBan, @MaNV, @MaKhuyenMai, @TongTien,@NgatDat,@TrangThai)";
                     SqlCommand cmdHoaDon = new SqlCommand(sqlInsertHoaDon, con, transaction);
+                    cmdHoaDon.Parameters.AddWithValue("@MaDH", maDonHang);
                     cmdHoaDon.Parameters.AddWithValue("@MaKH", maKhachHang_1);
+                    cmdHoaDon.Parameters.AddWithValue("@MaBan", maBan);
                     cmdHoaDon.Parameters.AddWithValue("@MaNV", maNhanVien_1);
-                    cmdHoaDon.Parameters.AddWithValue("@NgayLap", ngayLapHoaDonDateTime);
+                    cmdHoaDon.Parameters.AddWithValue("@MaKhuyenMai", khuyenMai_1);
                     cmdHoaDon.Parameters.AddWithValue("@TongTien", tongTienHoaDon_1);
-                    cmdHoaDon.Parameters.AddWithValue("@MaKM", khuyenMai_1);
+                    cmdHoaDon.Parameters.AddWithValue("@NgatDat", ngayLapHoaDonDateTime);
+                    cmdHoaDon.Parameters.AddWithValue("@TrangThai", trangThai);
+
                     cmdHoaDon.ExecuteNonQuery();
 
                     // Lấy mã hóa đơn vừa thêm (auto-increment)
                     cmdHoaDon.CommandText = "SELECT SCOPE_IDENTITY()";
-                    int maHoaDon_1 = Convert.ToInt32(cmdHoaDon.ExecuteScalar());
+                    //int maHoaDon_1 = Convert.ToInt32(cmdHoaDon.ExecuteScalar());
 
                     // Thêm từng chi tiết hóa đơn vào bảng `chitiethoadon`
-                    string sqlInsertChiTietHD = "INSERT INTO chitietdonhang (machitietdonhang, masanpham, soluong, gia) VALUES (@MaHD, @MaSP, @SoLuong, @Gia)";
+                    string sqlInsertChiTietHD = "INSERT INTO chitietdonhang (machitietdonhang,madonhang, masanpham, soluong, gia) VALUES (@MaCTDH,@MaDH, @MaSP, @SoLuong, @Gia)";
                     SqlCommand cmdChiTietHD = new SqlCommand(sqlInsertChiTietHD, con, transaction);
                     foreach (DataGridViewRow row in dgvSanPhamDuocThem.Rows)
                     {
                         if (row.IsNewRow) continue;
-
-                        string maSP = row.Cells["masanpham"].Value.ToString();
-                        int soLuong = Convert.ToInt32(row.Cells["soluong"].Value);
-                        double gia = Convert.ToDouble(row.Cells["gia"].Value);
-
+                        string maChiTietDonHang = "CT" + Guid.NewGuid().ToString("N").Substring(0, 8).ToUpper();
+                        //string maSP = row.Cells["Mã sản phẩm"].Value.ToString();
+                        //int soLuong = Convert.ToInt32(row.Cells["Số lượng"].Value);
+                        //double gia = Convert.ToDouble(row.Cells["Giá"].Value);
+                        string maSP = row.Cells["MaSP"].Value?.ToString();
+                        //string tenSP = row.Cells["Tên sản phẩm"].Value?.ToString();
+                        int soLuong = Convert.ToInt32(row.Cells["SoLg"].Value);
+                        double gia = Convert.ToDouble(row.Cells["Giaa"].Value);
                         cmdChiTietHD.Parameters.Clear();
-                        cmdChiTietHD.Parameters.AddWithValue("@MaHD", maHoaDon_1);
+                        cmdChiTietHD.Parameters.AddWithValue("@MaCTDH", maChiTietDonHang);
+                        cmdChiTietHD.Parameters.AddWithValue("@MaDH", maDonHang);
                         cmdChiTietHD.Parameters.AddWithValue("@MaSP", maSP);
                         cmdChiTietHD.Parameters.AddWithValue("@SoLuong", soLuong);
                         cmdChiTietHD.Parameters.AddWithValue("@Gia", gia);
                         cmdChiTietHD.ExecuteNonQuery();
 
                         // Trừ số lượng trong kho khi thêm hóa đơn
-                        truSoLuongTrongKho(maSP, soLuong);
+                        truSoLuongTrongKho(maSP, soLuong, transaction);
+
+                        
                     }
 
                     // Commit transaction
@@ -678,6 +716,11 @@ namespace quanlycaphe.quanlidonhang
             {
                 MessageBox.Show("Lỗi khi thêm hóa đơn: " + ex.Message);
             }
+        }
+
+        private void ThemHoaDon_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

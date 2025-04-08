@@ -27,9 +27,10 @@ namespace quanlycaphe.quanlidonhang
             setNgayLapHoaDon();
             loadSanPham();
             loadMaKhuyenMai();
+            loadcbbBan();
             maNhanVien.Text = User.MaNhanVien;
             maNhanVien.Enabled = false;
-            loadcbbBan();
+            
         }
         public void loadcbbBan()
         {
@@ -44,15 +45,27 @@ namespace quanlycaphe.quanlidonhang
             da.Fill(tb);
             cmd.Dispose();
             con.Close();
+
+            // Tạo thêm cột hiển thị mới
+            tb.Columns.Add("HienThi", typeof(string));
+            foreach (DataRow row in tb.Rows)
+            {
+                row["HienThi"] = row["TenBan"].ToString() + " - " + row["TrangThai"].ToString();
+            }
+
+            // Thêm dòng mặc định đầu tiên
             DataRow r = tb.NewRow();
             r["MaBan"] = "";
             r["TenBan"] = "--- Chọn bàn ---";
+            r["TrangThai"] = "";
+            r["HienThi"] = "--- Chọn bàn ---";
             tb.Rows.InsertAt(r, 0);
 
             cbbBan.DataSource = tb;
-            cbbBan.DisplayMember = "TenBan";
+            cbbBan.DisplayMember = "HienThi"; // Hiển thị dạng "TenBan - TrangThai"
             cbbBan.ValueMember = "MaBan";
         }
+
         private void label1_Click(object sender, EventArgs e)
         {
 

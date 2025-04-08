@@ -45,7 +45,7 @@ namespace quanlycaphe.quanlidonhang
                         SqlDataReader reader = cmd.ExecuteReader();
 
                         DataTable dt = new DataTable();
-                        dt.Columns.Add("STT");
+                        dt.Columns.Add("stt");
                         dt.Columns.Add("TenSanPham");
                         dt.Columns.Add("SoLuong");
                         dt.Columns.Add("Gia");

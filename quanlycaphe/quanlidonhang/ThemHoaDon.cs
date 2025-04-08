@@ -15,7 +15,7 @@ namespace quanlycaphe.quanlidonhang
 {
     public partial class ThemHoaDon : Form
     {
-        private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST;Initial Catalog=quanlycafe;Integrated Security=True;Encrypt=True;TrustServerCertificate=True");
+        private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
         private SanPham sanPham; // Khai báo biến SanPham
 
         public ThemHoaDon()
@@ -185,7 +185,6 @@ namespace quanlycaphe.quanlidonhang
                 string[] str = tenSanPhamDuocChonChuaTach.Split('-');
                 string tenSanPhamDuocChon = str[0].Trim();
                 this.tenSanPhamDuocChon.Text = tenSanPhamDuocChon;
-
                 string soLuongSanPham = soLuong.Text; // Lấy số lượng từ giao diện
                 sanPham = LayThongTinSanPhamDaChon(tenSanPhamDuocChon); // Lấy thông tin sản phẩm
             }
@@ -225,18 +224,18 @@ namespace quanlycaphe.quanlidonhang
                 bool sanPhamDaTonTai = false;
                 // Duyệt qua tất cả các dòng trong bảng để kiểm tra xem sản phẩm đã tồn tại hay chưa
                 foreach (DataRow row in model.Rows)
-                {   
+                {
                     string maSanPhamTrongBang = row["masanpham"].ToString(); // Lấy mã sản phẩm từ cột đầu tiên
                     if (maSanPhamTrongBang != null && maSanPhamTrongBang.Equals(sanPham.MaSanPham))
                     {
                         // Nếu sản phẩm đã tồn tại, tăng số lượng lên
-                        int soLuongHienTai = Convert.ToInt32(row["soluong"]); // Lấy số lượng từ cột 2 dưới dạng chuỗi
+                        int soLuongHienTai = row["soluong"] == DBNull.Value ? 0 : Convert.ToInt32(row["soluong"]);
 
                         soLuongHienTai += Convert.ToInt32(soLuong.Text); // Tăng số lượng lên
                         row["soluong"] = soLuongHienTai; // Cập nhật số lượng
 
                         // Cập nhật giá theo số lượng mới
-                        double giaSanPham = sanPham.Gia; // Giá của sản phẩm
+                        double giaSanPham = sanPham.Gia;
                         row["gia"] = giaSanPham * soLuongHienTai; // Cập nhật giá
 
                         sanPhamDaTonTai = true;
@@ -248,8 +247,7 @@ namespace quanlycaphe.quanlidonhang
                 if (!sanPhamDaTonTai)
                 {
                     string tenSanPham = tenSanPhamDuocChon.Text.Trim();
-                    string sLuong = soLuong.Text;
-                    int soLuongInt = Convert.ToInt32(sLuong);
+                    int soLuongInt = Convert.ToInt32(soLuong.Text);
                     int i = kiemTraSoLuong(tenSanPham, soLuongInt);
                     if (i == 1)
                     {
@@ -261,9 +259,8 @@ namespace quanlycaphe.quanlidonhang
                         MessageBox.Show("Số lượng quá 10 \n" + soLuongTrongKho());
                         return;
                     }
-                    model.Rows.Add(sanPham.MaSanPham, sanPham.TenSanPham, soLuong.Text, sanPham.Gia);
+                    model.Rows.Add(sanPham.MaSanPham, sanPham.TenSanPham, soLuongInt, sanPham.Gia);
                 }
-
             }
             else
             {
@@ -272,6 +269,7 @@ namespace quanlycaphe.quanlidonhang
             // Gọi phương thức tính tổng tiền sau khi thêm sản phẩm
             tinhTongTien();
         }
+
 
         private void tinhTongTien()
         {

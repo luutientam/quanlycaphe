@@ -39,7 +39,7 @@ private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST;Initial Ca
 
             }catch (Exception ex)
             {
-                SqlConnection con = new SqlConnection(@"Data Source=localhost;Initial Catalog=quanlycafe;Integrated Security=True;Encrypt=True;TrustServerCertificate=True");
+                SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
              if (con.State == ConnectionState.Closed)
                 {
                     con.Open();

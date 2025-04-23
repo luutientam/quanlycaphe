@@ -275,7 +275,8 @@ namespace quanlycaphe
                 CapNhatTTSanPham f = new CapNhatTTSanPham(this);
                 f.capNhatThongTin(maSP,tenSP,tenDanhMuc,gia,moTa,duongDanAnh,duongDanDayDu,tenNhaCungCap,ngayTao,hanSuDung,soLuong,giaNhap,maKhuyenMai);
                 f.ShowDialog();
-
+                f.Dispose();
+                
             }
 
         }
@@ -318,7 +319,7 @@ namespace quanlycaphe
             oSheet = (xls.Worksheet)oSheets.get_Item(1);
             oSheet.Name = sheetname;
             // Tạo phần đầu nếu muốn
-            xls.Range head = oSheet.get_Range("A1", "G1");
+            xls.Range head = oSheet.get_Range("A1", "M1");
             head.MergeCells = true;
             head.Value2 = "THỐNG KÊ THÔNG TIN VỀ SẢN PHẨM";
             head.Font.Bold = true;
@@ -345,7 +346,7 @@ namespace quanlycaphe
             cl5.ColumnWidth = 15.0;
             xls.Range cl6 = oSheet.get_Range("F3", "F3");
             cl6.Value2 = "MÔ TẢ";
-            cl6.ColumnWidth = 15.0;
+            cl6.ColumnWidth = 30.0;
             //xls.Range cl6_1 = oSheet.get_Range("F4", "F1000");
             //cl6_1.Columns.NumberFormat = "dd/mm/yyyy";
 
@@ -366,18 +367,19 @@ namespace quanlycaphe
             cl10.Value2 = "SỐ LƯỢNG";
             cl10.ColumnWidth = 20.0;
 
-            //xls.Range cl11 = oSheet.get_Range("L3", "L3");
-            //cl11.Value2 = "NGÀY TẠO";
-            //cl11.ColumnWidth = 13.0;
+            xls.Range cl11 = oSheet.get_Range("K3", "K3");
+            cl11.Value2 = "HẠN SỬ DỤNG";
+            cl11.ColumnWidth = 20.0;
 
-            //xls.Range cl12 = oSheet.get_Range("M3", "M3");
-            //cl12.Value2 = "TRẠNG THÁI";
-            //cl12.ColumnWidth = 15.0;
+            xls.Range cl12 = oSheet.get_Range("L3", "L3");
+            cl12.Value2 = "GIÁ NHẬP";
+            cl12.ColumnWidth = 20.0;
 
-            //xls.Range cl8 = oSheet.get_Range("H3", "H3");
-            //cl8.Value2 = "GHI CHÚ";
-            //cl8.ColumnWidth = 15.0;
-            xls.Range rowHead = oSheet.get_Range("A3", "J3");
+            xls.Range cl13 = oSheet.get_Range("M3", "M3");
+            cl13.Value2 = "KHUYẾN MÃI";
+            cl13.ColumnWidth = 15.0;
+
+            xls.Range rowHead = oSheet.get_Range("A3", "M3");
             rowHead.Font.Bold = true;
             // Kẻ viền
             rowHead.Borders.LineStyle = xls.Constants.xlSolid;
@@ -396,7 +398,7 @@ namespace quanlycaphe
                 
                 for (int c = 0; c < tb.Columns.Count; c++)
                 {
-                    if (c == 8) // Cột ngày sinh (E) - chú ý: chỉ số mảng bắt đầu từ 0
+                    if (c == 8 || c == 11) 
                     {
                         DateTime tempDate;
                         if (DateTime.TryParse(dr[c].ToString(), out tempDate))
@@ -430,6 +432,9 @@ namespace quanlycaphe
             // Định dạng lại cột ngày sinh (E)
             xls.Range dateColumn = oSheet.Range[oSheet.Cells[rowStart, 8], oSheet.Cells[rowEnd, 8]];
             dateColumn.NumberFormat = "dd/mm/yyyy";
+            // Định dạng lại cột ngày sinh (E)
+            xls.Range dateColumn2 = oSheet.Range[oSheet.Cells[rowStart, 11], oSheet.Cells[rowEnd, 11]];
+            dateColumn2.NumberFormat = "dd/mm/yyyy";
 
             // Kẻ viền
             range.Borders.LineStyle = xls.Constants.xlSolid;
@@ -461,7 +466,7 @@ namespace quanlycaphe
             {
                 con.Open();
             }
-            string sql = "SELECT sp.MaSanPham, sp.TenSanPham, m.TenDanhMuc, sp.Gia, sp.MoTa, sp.HinhAnh, sp.NgayTao, ncc.TenNhaCungCap, sp.SoLuong FROM SanPham sp join DanhMuc m on sp.MaDanhMuc = m.MaDanhMuc join NhaCungCap ncc on ncc.MaNhaCungCap = sp.MaNhaCungCap WHERE sp.MaSanPham like '%" + maSP + "%' and sp.TenSanPham like N'%" + tenSP + "%' and m.MaDanhMuc like '%" + maDanhMuc + "%' and ncc.MaNhaCungCap like '%" + Ncc + "%'";
+            string sql = "SELECT sp.MaSanPham, sp.TenSanPham, m.TenDanhMuc, sp.Gia, sp.MoTa, sp.HinhAnh, sp.NgayTao, ncc.TenNhaCungCap, sp.SoLuong , sp.HanSuDung, sp.GiaNhap, sp.MaKhuyenMai FROM SanPham sp join DanhMuc m on sp.MaDanhMuc = m.MaDanhMuc join NhaCungCap ncc on ncc.MaNhaCungCap = sp.MaNhaCungCap WHERE sp.MaSanPham like '%" + maSP + "%' and sp.TenSanPham like N'%" + tenSP + "%' and m.MaDanhMuc like '%" + maDanhMuc + "%' and ncc.MaNhaCungCap like '%" + Ncc + "%'";
             if (gia1 == 0 && gia2 == 0)
             {
                 sql += "";
@@ -486,7 +491,7 @@ namespace quanlycaphe
             con.Close();
             ExportExcel(tb, "Danh sách sản phẩm");
         }
-        public void ThemSanPham(String maSP, String tenSP, String maDanhMuc, decimal gia, String moTa, String maNhaCungCap, int soLuong)
+        public void ThemSanPham(String maSP, String tenSP, String maDanhMuc, decimal gia, String moTa, String maNhaCungCap, int soLuong,DateTime hsd, decimal giaNhap, string maKM)
         {
             if (con.State == ConnectionState.Closed)
             {
@@ -495,7 +500,16 @@ namespace quanlycaphe
             string hinhanh = "chưa có";
             string ngayTao = DateTime.Now.ToString("yyyy-MM-dd");
             //String ngaySinhSql = ngaySinh.ToString("yyyy-MM-dd");
-            String sql = "insert SanPham values('" + maSP + "', N'" + tenSP + "', '" + maDanhMuc + "', '" + gia + "', N'" + moTa + "', N'"+hinhanh+"', '"+ngayTao+"', '"+maNhaCungCap+"', '"+soLuong+"')";
+            string sql = "INSERT INTO SanPham VALUES('" + maSP + "', N'" + tenSP + "', '" + maDanhMuc + "', '" + gia + "', N'" + moTa + "', N'" + hinhanh + "', '" + ngayTao + "', '" + maNhaCungCap + "', '" + soLuong + "','" + hsd + "','" + giaNhap + "'";
+            if (maKM != null)
+            {
+                sql += ", '" + maKM + "'";
+            }
+            else
+            {
+                sql += ", NULL";
+            }
+            sql += ")";
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.ExecuteNonQuery();
             cmd.Dispose();
@@ -535,9 +549,16 @@ namespace quanlycaphe
                             string moTa = wsheet.Cells[i, 5].Value?.ToString();
                             string maNhaCungCap = wsheet.Cells[i, 6].Value?.ToString();
                             string soLuongxc = wsheet.Cells[i, 7].Value?.ToString();
-
+                            string giaNhapxc = wsheet.Cells[i, 9].Value?.ToString();
                             decimal gia = Convert.ToDecimal(giaxc);
+                            decimal giaNhap = Convert.ToDecimal(giaNhapxc);
                             int soLuong = Convert.ToInt32(soLuongxc);
+                            DateTime hanSuDung;
+                            if (!DateTime.TryParse(wsheet.Cells[i, 8].Value?.ToString(), out hanSuDung))
+                            {
+                                hanSuDung = DateTime.MinValue; // Gán giá trị mặc định nếu lỗi
+                            }
+                            string maKhuyenMai = wsheet.Cells[i, 10].Value?.ToString();
                             if (checkTrungMaSanPham(maSP))
                             {
                                 MessageBox.Show("Trùng mã sản phẩm -> " + maSP + " <- !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -552,7 +573,7 @@ namespace quanlycaphe
                             //}
 
                             // Gọi phương thức ThemDocGia với dữ liệu đã được ép kiểu đúng
-                            ThemSanPham(maSP, tenSP, maDanhMuc, gia, moTa, maNhaCungCap, soLuong);
+                            ThemSanPham(maSP, tenSP, maDanhMuc, gia, moTa, maNhaCungCap, soLuong, hanSuDung, giaNhap, maKhuyenMai);
                             i++;
                         }
                     }

@@ -15,6 +15,8 @@ namespace quanlycaphe
 {
     public partial class FormThemKH : Form
     {
+        SqlConnection con = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
+
         public FormThemKH()
         {
             InitializeComponent();
@@ -22,6 +24,25 @@ namespace quanlycaphe
 
         private void FormThemKH_Load(object sender, EventArgs e)
         {
+        }
+        public bool checkTrungMaKH(String maKH)
+        {
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            String sql = "select count(*) from KhachHang where MaKhachHang = '" + maKH + "'";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            int kq = (int)cmd.ExecuteScalar();
+            if (kq > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            con.Close();
         }
 
         private void buttonLuu_Click(object sender, EventArgs e)
@@ -58,7 +79,7 @@ namespace quanlycaphe
             cmd.Dispose();
             MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK);
             con.Close();
-            loadKhachHang();
+
         }
     }
 }

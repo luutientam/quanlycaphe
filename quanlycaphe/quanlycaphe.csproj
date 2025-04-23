@@ -100,6 +100,11 @@
     </Compile>
     <Compile Include="FormThemKH.Designer.cs">
       <DependentUpon>FormThemKH.cs</DependentUpon>
+    <Compile Include="CapNhatTTSanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CapNhatTTSanPham.Designer.cs">
+      <DependentUpon>CapNhatTTSanPham.cs</DependentUpon>
     </Compile>
     <Compile Include="TongQuan.cs">
       <SubType>Form</SubType>
@@ -221,6 +226,9 @@
     </Compile>
     <EmbeddedResource Include="BaoCao.resx">
       <DependentUpon>BaoCao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CapNhatTTSanPham.resx">
+      <DependentUpon>CapNhatTTSanPham.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DangNhap.resx">
       <DependentUpon>DangNhap.cs</DependentUpon>

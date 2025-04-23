@@ -406,5 +406,10 @@ namespace quanlycaphe
             con.Close();
             ExportExcel(dtt, "Danh sách bàn");
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

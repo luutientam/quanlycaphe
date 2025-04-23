@@ -95,6 +95,11 @@
     <Compile Include="BaoCao.Designer.cs">
       <DependentUpon>BaoCao.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormThemKH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormThemKH.Designer.cs">
+      <DependentUpon>FormThemKH.cs</DependentUpon>
     <Compile Include="CapNhatTTSanPham.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormChinh.resx">
       <DependentUpon>FormChinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormThemKH.resx">
+      <DependentUpon>FormThemKH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ht.resx">
       <DependentUpon>ht.cs</DependentUpon>

@@ -447,5 +447,10 @@ namespace quanlycaphe
         {
 
         }
+
+        private void txtMaKH_tk_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

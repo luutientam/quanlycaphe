@@ -13,7 +13,7 @@ namespace quanlycaphe
 {
     public partial class DangNhap : Form
     {
-        SqlConnection con = new SqlConnection("Data Source=LAPTOP-G9RUONMC\\SQLEXPRESS04;Initial Catalog=quanlycaphe;Integrated Security=True;Encrypt=True");
+        SqlConnection con = new SqlConnection("Data Source=LOCALHOST\\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True;Encrypt=True");
 
         public DangNhap()
         {
@@ -62,12 +62,12 @@ namespace quanlycaphe
                 }
 
                 string query = "SELECT t.MaTaiKhoan, n.MaNguoiDung, n.MaVaiTro, vt.TenVaiTro, n.TenNguoiDung, n.SoDienThoai, n.NgaySinh, n.GioiTinh, n.DiaChi, " +
-  "nv.MaNhanVien, nv.TenNhanVien, nv.SoDienThoai AS SoDienThoaiNV, nv.DiaChi AS DiaChiNV, t.TrangThai " +
-  "FROM TaiKhoan t " +
-  "LEFT JOIN NguoiDung n ON t.MaTaiKhoan = n.MaTaiKhoan " +
-  "LEFT JOIN NhanVien nv ON t.MaTaiKhoan = nv.MaTaiKhoan " +
-  "LEFT JOIN VaiTro vt ON vt.MaVaiTro = n.MaVaiTro " +
-  "WHERE t.TenDangNhap = @TenDangNhap AND t.MatKhau = @MatKhau";
+                  "nv.MaNhanVien, nv.TenNhanVien, nv.SoDienThoai AS SoDienThoaiNV, nv.DiaChi AS DiaChiNV, t.TrangThai " +
+                  "FROM TaiKhoan t " +
+                  "LEFT JOIN NguoiDung n ON t.MaTaiKhoan = n.MaTaiKhoan " +
+                  "LEFT JOIN NhanVien nv ON t.MaTaiKhoan = nv.MaTaiKhoan " +
+                  "LEFT JOIN VaiTro vt ON vt.MaVaiTro = n.MaVaiTro " +
+                  "WHERE t.TenDangNhap = @TenDangNhap AND t.MatKhau = @MatKhau";
 
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@TenDangNhap", txtTaiKhoan.Text.Trim());

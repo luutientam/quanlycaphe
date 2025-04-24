@@ -740,6 +740,11 @@ namespace quanlycaphe.quanlidonhang
         {
 
         }
+
+        private void themKhachHang_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

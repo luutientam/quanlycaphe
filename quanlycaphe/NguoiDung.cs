@@ -36,13 +36,13 @@ namespace quanlycaphe
             cbbVaiTro.SelectedIndex = 0;
             txtSDT.Text = "";
             dtNgaySinh.Value = DateTime.Now;
-            cbbGioiTinh.SelectedIndex = -1;
+            cbbGioiTinh.SelectedIndex = 0;
             txtDiaChi.Text = "";
             txtTenDangNhap.Text = "";
             txtMatKhau.Text = "";
             txtEmail.Text = "";
             dtNgayTao.Value = DateTime.Now;
-            cbbTrangThai.SelectedIndex = -1;
+            cbbTrangThai.SelectedIndex = 0;
         }
         public void disableTextBox()
         {
@@ -150,6 +150,7 @@ namespace quanlycaphe
 
         private void buttonThemMoi_Click(object sender, EventArgs e)
         {
+            buttonThemMoi.Enabled = false;
             buttonLuu.Enabled = true;
             buttonCapNhat.Enabled = false;
             buttonXoa.Enabled = false;
@@ -166,6 +167,7 @@ namespace quanlycaphe
             buttonCapNhat.Enabled = false;
             buttonXoa.Enabled = false;
             buttonHuyThaoTac.Enabled = false;
+            buttonThemMoi.Enabled = true;
         }
         public bool checkTrungMaNguoiDung(String maNguoiDung)
         {
@@ -215,7 +217,7 @@ namespace quanlycaphe
                 MessageBox.Show("Tên người dùng không được để trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (cbbGioiTinh.SelectedIndex == -1)
+            if (cbbGioiTinh.SelectedIndex == -1 || cbbGioiTinh.Text == "-- Chọn giới tính --")
             {
                 MessageBox.Show("Chưa chọn giới tính!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -260,7 +262,7 @@ namespace quanlycaphe
                 return;
             }
             String trangThai = cbbTrangThai.Text;
-            if (cbbTrangThai.SelectedIndex == -1)
+            if (cbbTrangThai.SelectedIndex == -1 || cbbTrangThai.Text == "-- Chọn trạng thái --")
             {
                 trangThai = "Hoạt động";
             }
@@ -309,7 +311,7 @@ namespace quanlycaphe
                 MessageBox.Show("Tên người dùng không được để trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (cbbGioiTinh.SelectedIndex == -1)
+            if (cbbGioiTinh.SelectedIndex == -1 || cbbGioiTinh.Text == "-- Chọn giới tính --")
             {
                 MessageBox.Show("Chưa chọn giới tính!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -359,7 +361,7 @@ namespace quanlycaphe
             //    return;
             //}
             String trangThai = cbbTrangThai.Text;
-            if (cbbTrangThai.SelectedIndex == -1)
+            if (cbbTrangThai.SelectedIndex == -1 || cbbTrangThai.Text == "-- Chọn trạng thái --")
             {
                 trangThai = "Hoạt động";
             }

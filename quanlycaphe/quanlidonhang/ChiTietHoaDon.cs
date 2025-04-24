@@ -85,7 +85,7 @@ namespace quanlycaphe.quanlidonhang
             ngayLapHoaDon.Enabled = false;
             tongTien.Text = tongTien_1;
             tongTien.Enabled = false;
-            maKhuyenMai.Enabled = false;
+            //maKhuyenMai.Enabled = false;
         }
     }
 }

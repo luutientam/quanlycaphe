@@ -416,6 +416,7 @@
             // 
             this.cbbGioiTinh.FormattingEnabled = true;
             this.cbbGioiTinh.Items.AddRange(new object[] {
+            "-- Chọn giới tính --",
             "Nam",
             "Nữ",
             "Khác"});
@@ -471,6 +472,7 @@
             // 
             this.cbbTrangThai.FormattingEnabled = true;
             this.cbbTrangThai.Items.AddRange(new object[] {
+            "-- Chọn trạng thái --",
             "Hoạt động",
             "Khóa",
             "Chờ xác minh"});

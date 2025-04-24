@@ -51,7 +51,7 @@ private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS
                 }
             }
            
-            string sql = "select dh.MaDonHang , kh.TenKhachHang , nv.TenNhanVien , dh.NgayDat, dh.TongTien , dh.MaKhuyenMai from DonHang dh join KhachHang kh on dh.MaKhachHang = kh.MaKhachHang " +
+            string sql = "select dh.MaDonHang , kh.TenKhachHang , nv.TenNhanVien , dh.NgayDat, dh.TongTien  from DonHang dh join KhachHang kh on dh.MaKhachHang = kh.MaKhachHang " +
                 "join NhanVien nv on nv.MaNhanVien = dh.MaNhanVien";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -159,10 +159,9 @@ private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS
                 string tenNhanVien = row.Cells[2].Value.ToString();
                 string ngayLap = row.Cells[3].Value.ToString();
                 string tongTien = row.Cells[4].Value.ToString();
-                string maKhuyenMai = row.Cells[5].Value.ToString();
 
                 ChiTietHoaDon cthd = new ChiTietHoaDon();
-                cthd.setData(maHoaDon, tenKhachHang, tenNhanVien, ngayLap, tongTien, maKhuyenMai);
+                cthd.setData(maHoaDon, tenKhachHang, tenNhanVien, ngayLap, tongTien);
                 cthd.ShowDialog();
             }
         }

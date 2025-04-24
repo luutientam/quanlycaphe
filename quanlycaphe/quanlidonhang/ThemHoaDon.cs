@@ -27,7 +27,6 @@ namespace quanlycaphe.quanlidonhang
             loadMaKhachHang();
             setNgayLapHoaDon();
             loadSanPham();
-            loadMaKhuyenMai();
             loadcbbBan();
             //maNhanVien.Text = User.MaNhanVien;
             maNhanVien.Text = "NV01"; // Gán giá trị mặc định cho maNhanVien
@@ -116,7 +115,6 @@ namespace quanlycaphe.quanlidonhang
                 reader.Close();
 
                 this.tenSanPhamDuocChon.Enabled = false;
-                this.tongTienHoaDonKhuyenMai.Enabled = false;
                 this.tongTienHoaDon.Enabled = false;
             }
             catch (Exception ex)
@@ -262,6 +260,8 @@ namespace quanlycaphe.quanlidonhang
                     model.Columns.Add("tensanpham", typeof(string));
                     model.Columns.Add("soluong", typeof(int));
                     model.Columns.Add("gia", typeof(double));
+                    model.Columns.Add("makhuyenmai", typeof(string));
+                    model.Columns.Add("giakm", typeof(double));
                     dgvSanPhamDuocThem.DataSource = model;
                 }
 
@@ -467,14 +467,6 @@ namespace quanlycaphe.quanlidonhang
                 MessageBox.Show("Vui lòng chọn sản phẩm để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private void tinhTongTienKhuyenMai(int phanTram)
-        {
-            System.Data.DataTable model = (System.Data.DataTable)dgvSanPhamDuocThem.DataSource;
-            double tongTienKhuyenMai = 0;
-            tongTienKhuyenMai = Convert.ToDouble(this.tongTienHoaDon.Text) * (100 - phanTram) / 100;
-            // Cập nhật giá trị tổng tiền vào TextBox
-            tongTienHoaDonKhuyenMai.Text = tongTienKhuyenMai.ToString();
-        }
 
         private void dgvSanPhamDuocThem_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
@@ -502,20 +494,6 @@ namespace quanlycaphe.quanlidonhang
         {
 
         }
-
-/*        private void khuyenMai_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            if (khuyenMai.SelectedItem != null)
-            {
-                string tenKhuyenMaiDuocChon = khuyenMai.SelectedItem.ToString();
-                string[] str1 = tenKhuyenMaiDuocChon.Split(new string[] { " - " }, StringSplitOptions.None);
-                string maKhuyenMaiDaTach = str1[2];
-                string[] str2 = maKhuyenMaiDaTach.Split('%');
-                string phanTramDaTach = str2[0];
-                tinhTongTienKhuyenMai(int.Parse(phanTramDaTach));
-            }
-        }*/
-
         private void truSoLuongTrongKho(String maSanPham, int soLuong, SqlTransaction transaction)
         {
             try
@@ -578,11 +556,6 @@ namespace quanlycaphe.quanlidonhang
 
                 string ngayLapHoaDon_1 = this.ngayLapHoaDon.Text;
 
-
-
-                string[] str3 = khuyenMaiGiaoDien.Split(new string[] { " - " }, StringSplitOptions.None);
-                string khuyenMai_1 = str3[0];
-
                 string tongTienText = tongTienHoaDon.Text.Trim();
 
                 // Chuyển đổi sang DateTime để lưu vào cơ sở dữ liệu
@@ -603,12 +576,6 @@ namespace quanlycaphe.quanlidonhang
                 if (dgvSanPhamDuocThem.Rows.Count == 0)
                 {
                     MessageBox.Show("Vui lòng chọn ít nhất một sản phẩm");
-                    return;
-                }
-
-                if (string.IsNullOrEmpty(khuyenMai_1))
-                {
-                    MessageBox.Show("Vui lòng chọn mã khuyến mại");
                     return;
                 }
                 
@@ -633,7 +600,7 @@ namespace quanlycaphe.quanlidonhang
                     cmdHoaDon.Parameters.AddWithValue("@MaKH", maKhachHang_1);
                     cmdHoaDon.Parameters.AddWithValue("@MaBan", maBan);
                     cmdHoaDon.Parameters.AddWithValue("@MaNV", maNhanVien_1);
-                    cmdHoaDon.Parameters.AddWithValue("@MaKhuyenMai", khuyenMai_1);
+                    cmdHoaDon.Parameters.AddWithValue("@MaKhuyenMai", "");
                     cmdHoaDon.Parameters.AddWithValue("@TongTien", tongTienHoaDon_1);
                     cmdHoaDon.Parameters.AddWithValue("@NgatDat", ngayLapHoaDonDateTime);
                     cmdHoaDon.Parameters.AddWithValue("@TrangThai", trangThai);

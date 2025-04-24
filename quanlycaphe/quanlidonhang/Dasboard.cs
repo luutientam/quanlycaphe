@@ -36,6 +36,7 @@ private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS
 
             try
             {
+                dgvDanhSachHoaDon.Rows.Clear(); // ✅ Xóa dữ liệu cũ trước khi load lại
                 if (con.State == ConnectionState.Closed)
             {
                 con.Open();
@@ -86,8 +87,8 @@ private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS
         private void buttonThemMoi_Click(object sender, EventArgs e)
             
         {
-           ThemHoaDon themHoaDon = new ThemHoaDon();
-            themHoaDon.ShowDialog();
+           ThemHoaDon themHoaDon = new ThemHoaDon(this);
+           themHoaDon.ShowDialog();
         }
         
 

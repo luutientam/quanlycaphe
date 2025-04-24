@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
+
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
-using DocumentFormat.OpenXml.Office2010.Drawing;
-using Microsoft.Office.Interop.Excel;
+
+using quanlycaphe.quanlidonhang;
 
 namespace quanlycaphe
 {
@@ -17,9 +16,12 @@ namespace quanlycaphe
     {
         SqlConnection con = new SqlConnection(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
 
-        public FormThemKH()
+        ThemHoaDon themHoaDon;
+
+        public FormThemKH(ThemHoaDon parentForm)
         {
             InitializeComponent();
+            this.themHoaDon = parentForm;
         }
 
         private void FormThemKH_Load(object sender, EventArgs e)
@@ -62,7 +64,7 @@ namespace quanlycaphe
                 MessageBox.Show("Số điện thoại phải có đúng 10 chữ số!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            //b2: kết nối sql
+
             if (con.State == ConnectionState.Closed)
             {
                 con.Open();
@@ -73,13 +75,18 @@ namespace quanlycaphe
                 txtMaKH.Focus();
                 return;
             }
+
             String sql = "insert KhachHang values('" + maKH + "', N'" + tenKH + "',  '" + sdt + "', N'" + email + "','" + diaChi + "')";
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.ExecuteNonQuery();
             cmd.Dispose();
             MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK);
+            themHoaDon.loadMaKhachHang(); // Gọi hàm load lại mã khách hàng
+            this.Close(); // Đóng form thêm khách hàng
             con.Close();
 
         }
+
+
     }
 }

@@ -786,9 +786,9 @@
             // 
             // btntk
             // 
-            this.btntk.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btntk.Location = new System.Drawing.Point(518, 25);
-            this.btntk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btntk.BackColor = System.Drawing.Color.Aquamarine;
+            this.btntk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btntk.Location = new System.Drawing.Point(691, 31);
             this.btntk.Name = "btntk";
             this.btntk.Size = new System.Drawing.Size(93, 32);
             this.btntk.TabIndex = 18;

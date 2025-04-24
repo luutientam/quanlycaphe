@@ -84,8 +84,8 @@
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(250, 901);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(333, 1055);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.Click += new System.EventHandler(this.menuStrip1_Click);
@@ -110,7 +110,7 @@
             this.MenuNguoiDung.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.MenuNguoiDung.Name = "MenuNguoiDung";
             this.MenuNguoiDung.Padding = new System.Windows.Forms.Padding(4, 30, 4, 0);
-            this.MenuNguoiDung.Size = new System.Drawing.Size(245, 55);
+            this.MenuNguoiDung.Size = new System.Drawing.Size(327, 62);
             this.MenuNguoiDung.Text = "Người dùng";
             this.MenuNguoiDung.Click += new System.EventHandler(this.MenuNguoiDung_Click);
             // 
@@ -124,7 +124,7 @@
             this.MenuSanPham.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.MenuSanPham.Name = "MenuSanPham";
             this.MenuSanPham.Padding = new System.Windows.Forms.Padding(4, 30, 4, 0);
-            this.MenuSanPham.Size = new System.Drawing.Size(245, 55);
+            this.MenuSanPham.Size = new System.Drawing.Size(327, 62);
             this.MenuSanPham.Text = "Sản phẩm";
             // 
             // sảnPhẩmToolStripMenuItem1
@@ -154,7 +154,7 @@
             this.MenuDonHang.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.MenuDonHang.Name = "MenuDonHang";
             this.MenuDonHang.Padding = new System.Windows.Forms.Padding(4, 30, 4, 0);
-            this.MenuDonHang.Size = new System.Drawing.Size(245, 55);
+            this.MenuDonHang.Size = new System.Drawing.Size(327, 62);
             this.MenuDonHang.Text = "Đơn hàng";
             this.MenuDonHang.Click += new System.EventHandler(this.MenuDonHang_Click);
             // 
@@ -165,7 +165,7 @@
             this.MenuKH.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.MenuKH.Name = "MenuKH";
             this.MenuKH.Padding = new System.Windows.Forms.Padding(4, 30, 4, 0);
-            this.MenuKH.Size = new System.Drawing.Size(245, 55);
+            this.MenuKH.Size = new System.Drawing.Size(327, 62);
             this.MenuKH.Text = "Khách hàng";
             this.MenuKH.Click += new System.EventHandler(this.MenuKH_Click);
             // 
@@ -176,7 +176,7 @@
             this.MenuBan.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.MenuBan.Name = "MenuBan";
             this.MenuBan.Padding = new System.Windows.Forms.Padding(4, 30, 4, 0);
-            this.MenuBan.Size = new System.Drawing.Size(245, 55);
+            this.MenuBan.Size = new System.Drawing.Size(327, 62);
             this.MenuBan.Text = "Bàn";
             this.MenuBan.Click += new System.EventHandler(this.MenuBan_Click);
             // 
@@ -187,7 +187,7 @@
             this.MenuNCC.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.MenuNCC.Name = "MenuNCC";
             this.MenuNCC.Padding = new System.Windows.Forms.Padding(4, 30, 4, 0);
-            this.MenuNCC.Size = new System.Drawing.Size(245, 55);
+            this.MenuNCC.Size = new System.Drawing.Size(327, 62);
             this.MenuNCC.Text = "Nhà cung cấp";
             this.MenuNCC.Click += new System.EventHandler(this.MenuNCC_Click);
             // 
@@ -201,20 +201,20 @@
             this.MenuBC.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.MenuBC.Name = "MenuBC";
             this.MenuBC.Padding = new System.Windows.Forms.Padding(4, 30, 4, 0);
-            this.MenuBC.Size = new System.Drawing.Size(245, 55);
+            this.MenuBC.Size = new System.Drawing.Size(327, 62);
             this.MenuBC.Text = "Báo cáo";
             // 
             // tổngQuanToolStripMenuItem
             // 
             this.tổngQuanToolStripMenuItem.Name = "tổngQuanToolStripMenuItem";
-            this.tổngQuanToolStripMenuItem.Size = new System.Drawing.Size(230, 26);
+            this.tổngQuanToolStripMenuItem.Size = new System.Drawing.Size(285, 32);
             this.tổngQuanToolStripMenuItem.Text = "Tổng Quan";
             this.tổngQuanToolStripMenuItem.Click += new System.EventHandler(this.tổngQuanToolStripMenuItem_Click);
             // 
             // báoCáoDoanhThuToolStripMenuItem
             // 
             this.báoCáoDoanhThuToolStripMenuItem.Name = "báoCáoDoanhThuToolStripMenuItem";
-            this.báoCáoDoanhThuToolStripMenuItem.Size = new System.Drawing.Size(230, 26);
+            this.báoCáoDoanhThuToolStripMenuItem.Size = new System.Drawing.Size(285, 32);
             this.báoCáoDoanhThuToolStripMenuItem.Text = "Báo Cáo Doanh Thu";
             this.báoCáoDoanhThuToolStripMenuItem.Click += new System.EventHandler(this.báoCáoDoanhThuToolStripMenuItem_Click);
             // 
@@ -225,14 +225,14 @@
             this.MenuKM.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.MenuKM.Name = "MenuKM";
             this.MenuKM.Padding = new System.Windows.Forms.Padding(4, 30, 4, 0);
-            this.MenuKM.Size = new System.Drawing.Size(245, 55);
+            this.MenuKM.Size = new System.Drawing.Size(327, 62);
             this.MenuKM.Text = "Khuyến mãi";
             this.MenuKM.Click += new System.EventHandler(this.MenuKM_Click);
             // 
             // mToolStripMenuItem
             // 
             this.mToolStripMenuItem.Name = "mToolStripMenuItem";
-            this.mToolStripMenuItem.Size = new System.Drawing.Size(245, 4);
+            this.mToolStripMenuItem.Size = new System.Drawing.Size(327, 4);
             // 
             // nhânViênToolStripMenuItem
             // 
@@ -241,7 +241,7 @@
             this.nhânViênToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.nhânViênToolStripMenuItem.Name = "nhânViênToolStripMenuItem";
             this.nhânViênToolStripMenuItem.Padding = new System.Windows.Forms.Padding(4, 30, 4, 0);
-            this.nhânViênToolStripMenuItem.Size = new System.Drawing.Size(245, 55);
+            this.nhânViênToolStripMenuItem.Size = new System.Drawing.Size(327, 62);
             this.nhânViênToolStripMenuItem.Text = "Nhân viên";
             this.nhânViênToolStripMenuItem.Click += new System.EventHandler(this.nhânViênToolStripMenuItem_Click);
             // 
@@ -252,24 +252,26 @@
             this.vaiTròToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.vaiTròToolStripMenuItem.Name = "vaiTròToolStripMenuItem";
             this.vaiTròToolStripMenuItem.Padding = new System.Windows.Forms.Padding(4, 30, 4, 0);
-            this.vaiTròToolStripMenuItem.Size = new System.Drawing.Size(245, 55);
+            this.vaiTròToolStripMenuItem.Size = new System.Drawing.Size(327, 62);
             this.vaiTròToolStripMenuItem.Text = "Vai Trò";
             this.vaiTròToolStripMenuItem.Click += new System.EventHandler(this.vaiTròToolStripMenuItem_Click);
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(253, 51);
+            this.panel1.Location = new System.Drawing.Point(337, 63);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1201, 850);
+            this.panel1.Size = new System.Drawing.Size(1601, 1046);
             this.panel1.TabIndex = 1;
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Beige;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(43, 696);
+            this.pictureBox1.Location = new System.Drawing.Point(57, 857);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(155, 147);
+            this.pictureBox1.Size = new System.Drawing.Size(207, 181);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -282,9 +284,10 @@
             this.panel2.Controls.Add(this.lblHoTen);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.button1);
-            this.panel2.Location = new System.Drawing.Point(243, 0);
+            this.panel2.Location = new System.Drawing.Point(324, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1200, 53);
+            this.panel2.Size = new System.Drawing.Size(1600, 65);
             this.panel2.TabIndex = 3;
             // 
             // lblTime
@@ -292,9 +295,10 @@
             this.lblTime.AutoSize = true;
             this.lblTime.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTime.ForeColor = System.Drawing.Color.DarkCyan;
-            this.lblTime.Location = new System.Drawing.Point(794, 16);
+            this.lblTime.Location = new System.Drawing.Point(1059, 20);
+            this.lblTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(43, 19);
+            this.lblTime.Size = new System.Drawing.Size(53, 23);
             this.lblTime.TabIndex = 5;
             this.lblTime.Text = "Time";
             // 
@@ -303,9 +307,10 @@
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(741, 3);
+            this.button3.Location = new System.Drawing.Point(988, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(58, 47);
+            this.button3.Size = new System.Drawing.Size(77, 58);
             this.button3.TabIndex = 4;
             this.button3.UseVisualStyleBackColor = true;
             // 
@@ -313,9 +318,10 @@
             // 
             this.lblHoTen.AutoSize = true;
             this.lblHoTen.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHoTen.Location = new System.Drawing.Point(111, 16);
+            this.lblHoTen.Location = new System.Drawing.Point(148, 20);
+            this.lblHoTen.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHoTen.Name = "lblHoTen";
-            this.lblHoTen.Size = new System.Drawing.Size(103, 19);
+            this.lblHoTen.Size = new System.Drawing.Size(126, 23);
             this.lblHoTen.TabIndex = 3;
             this.lblHoTen.Text = "Tên nhân viên";
             // 
@@ -324,9 +330,10 @@
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(57, 3);
+            this.button2.Location = new System.Drawing.Point(76, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(58, 47);
+            this.button2.Size = new System.Drawing.Size(77, 58);
             this.button2.TabIndex = 2;
             this.button2.UseVisualStyleBackColor = true;
             // 
@@ -335,9 +342,10 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(1127, 3);
+            this.button1.Location = new System.Drawing.Point(1503, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(60, 47);
+            this.button1.Size = new System.Drawing.Size(80, 58);
             this.button1.TabIndex = 0;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -348,15 +356,17 @@
             // 
             // FormChinh
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1443, 901);
+            this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimizeBox = false;
             this.Name = "FormChinh";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "t ";

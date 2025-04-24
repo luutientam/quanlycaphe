@@ -176,8 +176,12 @@
             this.pnthemnhanvien.Controls.Add(this.label6);
             this.pnthemnhanvien.Controls.Add(this.label5);
             this.pnthemnhanvien.Controls.Add(this.panel2);
+<<<<<<< HEAD
+            this.pnthemnhanvien.Location = new System.Drawing.Point(232, 3);
+=======
             this.pnthemnhanvien.Location = new System.Drawing.Point(176, 2);
             this.pnthemnhanvien.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+>>>>>>> 7150629bd71308c3797221eb7e5079515c279bd3
             this.pnthemnhanvien.Name = "pnthemnhanvien";
             this.pnthemnhanvien.Size = new System.Drawing.Size(710, 639);
             this.pnthemnhanvien.TabIndex = 9;
@@ -482,8 +486,12 @@
             this.pnsuathongtin.Controls.Add(this.txtsuamanv);
             this.pnsuathongtin.Controls.Add(this.label26);
             this.pnsuathongtin.Controls.Add(this.label27);
+<<<<<<< HEAD
+            this.pnsuathongtin.Location = new System.Drawing.Point(190, 5);
+=======
             this.pnsuathongtin.Location = new System.Drawing.Point(163, 5);
             this.pnsuathongtin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+>>>>>>> 7150629bd71308c3797221eb7e5079515c279bd3
             this.pnsuathongtin.Name = "pnsuathongtin";
             this.pnsuathongtin.Size = new System.Drawing.Size(706, 634);
             this.pnsuathongtin.TabIndex = 10;
@@ -505,8 +513,12 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.LimeGreen;
             this.panel4.Controls.Add(this.label28);
+<<<<<<< HEAD
+            this.panel4.Location = new System.Drawing.Point(1, 3);
+=======
             this.panel4.Location = new System.Drawing.Point(2, 2);
             this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+>>>>>>> 7150629bd71308c3797221eb7e5079515c279bd3
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(704, 41);
             this.panel4.TabIndex = 34;
@@ -529,9 +541,14 @@
             // 
             // btsuatt
             // 
+<<<<<<< HEAD
+            this.btsuatt.BackColor = System.Drawing.Color.Aquamarine;
+            this.btsuatt.Location = new System.Drawing.Point(251, 545);
+=======
             this.btsuatt.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btsuatt.Location = new System.Drawing.Point(188, 443);
             this.btsuatt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+>>>>>>> 7150629bd71308c3797221eb7e5079515c279bd3
             this.btsuatt.Name = "btsuatt";
             this.btsuatt.Size = new System.Drawing.Size(82, 32);
             this.btsuatt.TabIndex = 59;
@@ -786,9 +803,15 @@
             // 
             // btntk
             // 
+<<<<<<< HEAD
+            this.btntk.BackColor = System.Drawing.Color.Aquamarine;
+            this.btntk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btntk.Location = new System.Drawing.Point(691, 31);
+=======
             this.btntk.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btntk.Location = new System.Drawing.Point(518, 25);
             this.btntk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+>>>>>>> 7150629bd71308c3797221eb7e5079515c279bd3
             this.btntk.Name = "btntk";
             this.btntk.Size = new System.Drawing.Size(93, 32);
             this.btntk.TabIndex = 18;
@@ -870,8 +893,12 @@
             this.panel1.Controls.Add(this.btsua);
             this.panel1.Controls.Add(this.btxuat);
             this.panel1.Controls.Add(this.btxoa);
+<<<<<<< HEAD
+            this.panel1.Location = new System.Drawing.Point(6, 630);
+=======
             this.panel1.Location = new System.Drawing.Point(4, 565);
             this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+>>>>>>> 7150629bd71308c3797221eb7e5079515c279bd3
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(881, 64);
             this.panel1.TabIndex = 6;
@@ -936,7 +963,11 @@
             this.dtnhanvien.Name = "dtnhanvien";
             this.dtnhanvien.RowHeadersWidth = 51;
             this.dtnhanvien.RowTemplate.Height = 24;
+<<<<<<< HEAD
+            this.dtnhanvien.Size = new System.Drawing.Size(1170, 445);
+=======
             this.dtnhanvien.Size = new System.Drawing.Size(878, 429);
+>>>>>>> 7150629bd71308c3797221eb7e5079515c279bd3
             this.dtnhanvien.TabIndex = 5;
             this.dtnhanvien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtnhanvien_CellClick);
             // 

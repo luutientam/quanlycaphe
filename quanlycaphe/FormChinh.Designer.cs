@@ -252,11 +252,7 @@
             this.vaiTròToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.vaiTròToolStripMenuItem.Name = "vaiTròToolStripMenuItem";
             this.vaiTròToolStripMenuItem.Padding = new System.Windows.Forms.Padding(4, 30, 4, 0);
-<<<<<<< HEAD
             this.vaiTròToolStripMenuItem.Size = new System.Drawing.Size(327, 62);
-=======
-            this.vaiTròToolStripMenuItem.Size = new System.Drawing.Size(245, 55);
->>>>>>> 7150629bd71308c3797221eb7e5079515c279bd3
             this.vaiTròToolStripMenuItem.Text = "Vai Trò";
             this.vaiTròToolStripMenuItem.Click += new System.EventHandler(this.vaiTròToolStripMenuItem_Click);
             // 
@@ -369,11 +365,8 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
-<<<<<<< HEAD
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimizeBox = false;
-=======
->>>>>>> 7150629bd71308c3797221eb7e5079515c279bd3
             this.Name = "FormChinh";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "t ";

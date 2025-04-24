@@ -629,41 +629,93 @@ namespace quanlycaphe
 
         private void btntk_Click(object sender, EventArgs e)
         {
-            //lay thong tin tim kiem
-            string manhanvien = tkmanv.Text.Trim();
-            string tennhanvien = tktennv.Text.Trim();
-            string gioitinh;
-            if(tkcbgt.SelectedItem == null)
-            {
-                gioitinh = "";
-            }
-            else
-            {
-                gioitinh= tkcbgt.SelectedItem.ToString();
-            }
-            
+            ////lay thong tin tim kiem
+            //string manhanvien = tkmanv.Text.Trim();
+            //string tennhanvien = tktennv.Text.Trim();
+            //string gioitinh;
+            //if(tkcbgt.SelectedItem == null)
+            //{
+            //    gioitinh = "";
+            //}
+            //else
+            //{
+            //    gioitinh= tkcbgt.SelectedItem.ToString();
+            //}
 
-            //ket noi sql
-            if (ketnoi.GetConnection().State != ConnectionState.Open)
+
+            ////ket noi sql
+            //if (ketnoi.GetConnection().State != ConnectionState.Open)
+            //{
+            //    ketnoi.Open();
+            //}
+            //string sql = "select * from NhanVien where MaNhanVien like '%" + manhanvien + "%' and TenNhanVien like '%" + tennhanvien + "%' and GioiTinh like '%" + gioitinh + "%'";
+            //SqlCommand cmd = new SqlCommand(sql, ketnoi.GetConnection());
+            //cmd.Parameters.AddWithValue("@manv", "%" + manhanvien + "%");
+            //cmd.Parameters.AddWithValue("@tennv", "%" + tennhanvien + "%");
+            //cmd.Parameters.AddWithValue("@gt", "%" + gioitinh + "%");
+            //SqlDataAdapter adapter = new SqlDataAdapter();
+            //adapter.SelectCommand = cmd;
+            //System.Data.DataTable dt = new System.Data.DataTable();
+            //adapter.Fill(dt);
+
+            //if(ketnoi.GetConnection().State == ConnectionState.Open)
+            //{
+            //    ketnoi.Close();
+            //}
+            //dtnhanvien.DataSource =dt;
+            //dtnhanvien.Refresh();
+            try
             {
-                ketnoi.Open();
+                // Lấy thông tin tìm kiếm
+                string manhanvien = tkmanv.Text.Trim();
+                string tennhanvien = tktennv.Text.Trim();
+                string gioitinh = tkcbgt.SelectedItem?.ToString() ?? "";
+                if (gioitinh == "Chọn giới tính") gioitinh = "";
+
+                // Kết nối SQL
+                if (ketnoi.GetConnection().State != ConnectionState.Open)
+                    ketnoi.Open();
+
+                // Xây dựng câu lệnh SQL
+                string sql = "SELECT * FROM NhanVien WHERE 1=1"; // Sử dụng 1=1 để dễ thêm điều kiện
+                if (!string.IsNullOrEmpty(manhanvien))
+                    sql += " AND MaNhanVien LIKE @manv";
+                if (!string.IsNullOrEmpty(tennhanvien))
+                    sql += " AND TenNhanVien LIKE @tennv";
+                if (!string.IsNullOrEmpty(gioitinh))
+                    sql += " AND GioiTinh = @gt";
+
+                SqlCommand cmd = new SqlCommand(sql, ketnoi.GetConnection());
+                if (!string.IsNullOrEmpty(manhanvien))
+                    cmd.Parameters.AddWithValue("@manv", "%" + manhanvien + "%");
+                if (!string.IsNullOrEmpty(tennhanvien))
+                    cmd.Parameters.AddWithValue("@tennv", "%" + tennhanvien + "%");
+                if (!string.IsNullOrEmpty(gioitinh))
+                    cmd.Parameters.AddWithValue("@gt", gioitinh);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                System.Data.DataTable dt = new System.Data.DataTable();
+                adapter.Fill(dt);
+
+                // Gán dữ liệu vào DataGridView
+                dtnhanvien.DataSource = dt;
+                dtnhanvien.Refresh();
+
+                // Thông báo nếu không tìm thấy
+                if (dt.Rows.Count == 0)
+                {
+                    MessageBox.Show("Không tìm thấy nhân viên nào!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            string sql = "select * from NhanVien where MaNhanVien like '%" + manhanvien + "%' and TenNhanVien like '%" + tennhanvien + "%' and GioiTinh like '%" + gioitinh + "%'";
-            SqlCommand cmd = new SqlCommand(sql, ketnoi.GetConnection());
-            cmd.Parameters.AddWithValue("@manv", "%" + manhanvien + "%");
-            cmd.Parameters.AddWithValue("@tennv", "%" + tennhanvien + "%");
-            cmd.Parameters.AddWithValue("@gt", "%" + gioitinh + "%");
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.SelectCommand = cmd;
-            System.Data.DataTable dt = new System.Data.DataTable();
-            adapter.Fill(dt);
-            
-            if(ketnoi.GetConnection().State == ConnectionState.Open)
+            catch (Exception ex)
             {
-                ketnoi.Close();
+                MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            dtnhanvien.DataSource =dt;
-            dtnhanvien.Refresh();
+            finally
+            {
+                if (ketnoi.GetConnection().State == ConnectionState.Open)
+                    ketnoi.Close();
+            }
         }
 
         private void txtsuasdt_TextChanged(object sender, EventArgs e)

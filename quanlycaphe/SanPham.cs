@@ -884,5 +884,10 @@ namespace quanlycaphe
                 loadSanPham();
             }
         }
+
+        private void SanPham_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

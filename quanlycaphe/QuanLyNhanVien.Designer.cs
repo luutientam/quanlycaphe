@@ -174,7 +174,7 @@
             this.pnthemnhanvien.Controls.Add(this.label6);
             this.pnthemnhanvien.Controls.Add(this.label5);
             this.pnthemnhanvien.Controls.Add(this.panel2);
-            this.pnthemnhanvien.Location = new System.Drawing.Point(235, 3);
+            this.pnthemnhanvien.Location = new System.Drawing.Point(232, 3);
             this.pnthemnhanvien.Name = "pnthemnhanvien";
             this.pnthemnhanvien.Size = new System.Drawing.Size(946, 787);
             this.pnthemnhanvien.TabIndex = 9;
@@ -451,7 +451,7 @@
             this.pnsuathongtin.Controls.Add(this.txtsuamanv);
             this.pnsuathongtin.Controls.Add(this.label26);
             this.pnsuathongtin.Controls.Add(this.label27);
-            this.pnsuathongtin.Location = new System.Drawing.Point(217, 6);
+            this.pnsuathongtin.Location = new System.Drawing.Point(190, 5);
             this.pnsuathongtin.Name = "pnsuathongtin";
             this.pnsuathongtin.Size = new System.Drawing.Size(942, 780);
             this.pnsuathongtin.TabIndex = 10;
@@ -472,7 +472,7 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.LimeGreen;
             this.panel4.Controls.Add(this.label28);
-            this.panel4.Location = new System.Drawing.Point(3, 3);
+            this.panel4.Location = new System.Drawing.Point(1, 3);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(938, 50);
             this.panel4.TabIndex = 34;
@@ -494,7 +494,7 @@
             // 
             // btsuatt
             // 
-            this.btsuatt.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btsuatt.BackColor = System.Drawing.Color.Aquamarine;
             this.btsuatt.Location = new System.Drawing.Point(251, 545);
             this.btsuatt.Name = "btsuatt";
             this.btsuatt.Size = new System.Drawing.Size(110, 40);
@@ -724,7 +724,8 @@
             // 
             // btntk
             // 
-            this.btntk.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btntk.BackColor = System.Drawing.Color.Aquamarine;
+            this.btntk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btntk.Location = new System.Drawing.Point(691, 31);
             this.btntk.Name = "btntk";
             this.btntk.Size = new System.Drawing.Size(124, 39);
@@ -800,7 +801,7 @@
             this.panel1.Controls.Add(this.btsua);
             this.panel1.Controls.Add(this.btxuat);
             this.panel1.Controls.Add(this.btxoa);
-            this.panel1.Location = new System.Drawing.Point(5, 695);
+            this.panel1.Location = new System.Drawing.Point(6, 630);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1175, 79);
             this.panel1.TabIndex = 6;
@@ -860,7 +861,7 @@
             this.dtnhanvien.Name = "dtnhanvien";
             this.dtnhanvien.RowHeadersWidth = 51;
             this.dtnhanvien.RowTemplate.Height = 24;
-            this.dtnhanvien.Size = new System.Drawing.Size(1170, 528);
+            this.dtnhanvien.Size = new System.Drawing.Size(1170, 445);
             this.dtnhanvien.TabIndex = 5;
             this.dtnhanvien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtnhanvien_CellClick);
             // 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Drawing.ChartDrawing;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -197,5 +198,6 @@ namespace quanlycaphe
         {
             loadform(new BaoCao());
         }
+
     }
 }

@@ -21,7 +21,7 @@ namespace quanlycaphe
         {
             InitializeComponent();
             Load_trangthai();
-            Load_Nguonhang();
+            Load_DanhMuc();
             Load_Nhanvien();
         }
 
@@ -39,13 +39,24 @@ namespace quanlycaphe
         {
 
         }
+
+        private void BaoCao_Load(object sender, EventArgs e)
+        {
+            DateTime today = DateTime.Today;
+            dtngaydau.Value = today;
+            dtngaycuoi.Value = today;
+            LoadBaoCao(today, today);
+        }
         private void Load_trangthai()
         {
             //ket noi dtb
-            ketnoi.Open();
+            if(ketnoi.GetConnection().State == ConnectionState.Closed)
+            {
+                ketnoi.Open();
+            }
 
             //tao doi tuong command de thuc hien truy van
-            string sql = "select TrangThai from DonHang";
+            string sql = "select distinct TrangThai from DonHang";
             SqlCommand cmd = new SqlCommand(sql, ketnoi.GetConnection());
 
             //tao doi tuong dataadapter de lay du lieu tu cmd
@@ -56,7 +67,11 @@ namespace quanlycaphe
             DataTable dt = new DataTable();
             da.Fill(dt);
             cmd.Dispose();
-            ketnoi.Close();
+            
+            if(ketnoi.GetConnection().State == ConnectionState.Open)
+            {
+                ketnoi.Close();
+            }
 
             //bo sung them 1 dong vao vi tri dau tien cua bang tb
             DataRow dr = dt.NewRow();
@@ -68,17 +83,20 @@ namespace quanlycaphe
             cbtrangthai.DataSource = dt;
             cbtrangthai.DisplayMember = "TrangThai";
             cbtrangthai.ValueMember = "TrangThai";
-            //  cbtrangthai.SelectedIndex = 0; // Chọn giá trị đầu tiên trong ComboBox
+            cbtrangthai.SelectedIndex = 0; // Chọn giá trị đầu tiên trong ComboBox
             //  cbtrangthai.Visible = false;
 
         }
-        private void Load_Nguonhang()
+        private void Load_DanhMuc()
         {
             //ket noi dtb
-            ketnoi.Open();
+            if(ketnoi.GetConnection().State == ConnectionState.Closed)
+            {
+                ketnoi.Open();
+            }
 
             //tao doi tuong command de thuc hien truy van
-            string sql = "select TenDanhMuc from DanhMuc";
+            string sql = "select MaDanhMuc,TenDanhMuc from DanhMuc";
             SqlCommand sqlcmd = new SqlCommand(sql, ketnoi.GetConnection());
 
             //tao doi tuong dataadapter de lay du lieu tu cmd
@@ -89,25 +107,33 @@ namespace quanlycaphe
             DataTable dt = new DataTable();
             da.Fill(dt);
             sqlcmd.Dispose();
-            ketnoi.Close();
+            
+            if(ketnoi.GetConnection().State == ConnectionState.Open)
+            {
+                ketnoi.Close();
+            }
 
             //bo sung them 1 dong vao vi tri dau tien cua bang tb
             DataRow dr = dt.NewRow();
             dr["TenDanhMuc"] = "Tất cả";
+            dr["MaDanhMuc"] = "Tất cả";
             dt.Rows.InsertAt(dr, 0);
 
             //do du lieu tu tb vao combobox
-            cbnguonhang.DataSource = null;
-            cbnguonhang.DataSource = dt;
-            cbnguonhang.DisplayMember = "TenDanhMuc";
-            cbnguonhang.ValueMember = "TenDanhMuc";
-            //cbnguonhang.SelectedIndex = 0; // Chọn giá trị đầu tiên trong ComboBox
+            cbdanhmuc.DataSource = null;
+            cbdanhmuc.DataSource = dt;
+            cbdanhmuc.DisplayMember = "TenDanhMuc";
+            cbdanhmuc.ValueMember = "MaDanhMuc";
+            cbdanhmuc.SelectedIndex = 0; // Chọn giá trị đầu tiên trong ComboBox
 
         }
         private void Load_Nhanvien()
         {
             //ket noi dtb
-            ketnoi.Open();
+            if(ketnoi.GetConnection().State == ConnectionState.Closed)
+            {
+                ketnoi.Open();
+            }
 
             //tao doi tuong command de thuc hien truy van
             string sql = "select MaNhanVien from NhanVien";
@@ -117,11 +143,15 @@ namespace quanlycaphe
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = sqlCommand;
 
-            //khoi tao doi tuonf datatable de lay du lieu tu da
+            //khoi tao doi tuong datatable de lay du lieu tu da
             DataTable dt = new DataTable();
             da.Fill(dt);
             sqlCommand.Dispose();
-            ketnoi.Close();
+            
+            if(ketnoi.GetConnection().State == ConnectionState.Open)
+            {
+                ketnoi.Close();
+            }
 
             DataRow dr = dt.NewRow();
             dr["MaNhanVien"] = "Tất cả";
@@ -132,60 +162,152 @@ namespace quanlycaphe
             cbnhanvien.DataSource = dt;
             cbnhanvien.DisplayMember = "MaNhanVien";
             cbnhanvien.ValueMember = "MaNhanVien";
-            //cbnhanvien.SelectedIndex = 0; // Chọn giá trị đầu tiên trong ComboBox
+            cbnhanvien.SelectedIndex = 0; // Chọn giá trị đầu tiên trong ComboBox
         }
 
         private void btbaocao_Click(object sender, EventArgs e)
         {
             string trangthai = cbtrangthai.SelectedValue.ToString();
-            string nguonhang = cbnguonhang.SelectedValue.ToString();
+            string danhmuc = cbdanhmuc.SelectedValue.ToString();
             string nhanvien = cbnhanvien.SelectedValue.ToString();
 
-            ketnoi.Open();
+            DateTime fromDate = dtngaydau.Value.Date;
+            DateTime toDate = dtngaycuoi.Value.Date.AddDays(1).AddSeconds(-1);  // cuối ngày
 
-            string sql = @"SELECT dh.MaDonHang, dh.TongTien, dh.NgayDat, dh.MaNhanVien, dh.TrangThai
-FROM DonHang dh
-JOIN ChiTietDonHang ct ON dh.MaDonHang = ct.MaDonHang
-JOIN SanPham sp ON ct.MaSanPham = sp.MaSanPham";
-
-            List<string> conditions = new List<string>();
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = ketnoi.GetConnection();
-
-            if (trangthai != "Tất cả")
+            if (fromDate > toDate)
             {
-                conditions.Add("dh.TrangThai = @trangthai");
-                cmd.Parameters.AddWithValue("@trangthai", trangthai);
-            }
-            if (nguonhang != "Tất cả")
-            {
-                conditions.Add("dm.TenDanhMuc = @nguonhang");
-                cmd.Parameters.AddWithValue("@nguonhang", nguonhang);
-            }
-            if (nhanvien != "Tất cả")
-            {
-                conditions.Add("dh.MaNhanVien = @nhanvien");
-                cmd.Parameters.AddWithValue("@nhanvien", nhanvien);
+                MessageBox.Show("Ngày bắt đầu không được lớn hơn ngày kết thúc.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-            if (conditions.Count > 0)
-            {
-                sql += " WHERE " + string.Join(" AND ", conditions);
-            }
-
-            cmd.CommandText = sql;
-
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-
-            cmd.Dispose();
-            ketnoi.Close();
-
-            dgvbaocao.DataSource = dt;
+            LoadBaoCao(fromDate, toDate, trangthai, danhmuc, nhanvien);
 
         }
+        private void LoadBaoCao(DateTime fromDate, DateTime toDate, string trangthai = "Tất cả", string danhmuc = "Tất cả", string nhanvien = "Tất cả")
+        {
+            try
+            {
+                if (ketnoi.GetConnection().State == ConnectionState.Closed)
+                {
+                    ketnoi.Open();
+                }
+                string sql = @"SELECT DISTINCT dh.MaDonHang, dh.TongTien, dh.NgayDat, dh.MaNhanVien, dh.TrangThai
+                 FROM DonHang dh
+                 JOIN ChiTietDonHang ct ON dh.MaDonHang = ct.MaDonHang
+                 JOIN SanPham sp ON ct.MaSanPham = sp.MaSanPham
+                 INNER JOIN DanhMuc dm ON sp.MaDanhMuc = dm.MaDanhMuc";
+
+                List<string> conditions = new List<string>();
+                conditions.Add("dh.NgayDat BETWEEN @fromDate AND @toDate");
+                // Thêm điều kiện cho các tham số khác nếu không phải là "Tất cả"
+                if (trangthai != "Tất cả") conditions.Add("dh.TrangThai = @trangthai");
+                if (danhmuc != "Tất cả") conditions.Add("dm.MaDanhMuc = @danhmuc");
+                if (nhanvien != "Tất cả") conditions.Add("dh.MaNhanVien = @nhanvien");
+
+                string finalSql = sql;
+
+                if (conditions.Count > 0)
+                {
+                    finalSql += " WHERE " + string.Join(" AND ", conditions);
+                }
+                
+                SqlCommand cmd = new SqlCommand(finalSql, ketnoi.GetConnection() );
+                cmd.Parameters.AddWithValue("@fromDate", fromDate);
+                cmd.Parameters.AddWithValue("@toDate", toDate);
+
+                if (trangthai != "Tất cả")
+                {
+                    cmd.Parameters.AddWithValue("@trangthai", trangthai);
+                }
+                if (danhmuc != "Tất cả")
+                {
+                    cmd.Parameters.AddWithValue("@danhmuc", danhmuc);
+                }
+                if (nhanvien != "Tất cả")
+                {
+                    cmd.Parameters.AddWithValue("@nhanvien", nhanvien);
+                }
+
+
+                cmd.CommandText = finalSql;
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cmd.Dispose();
+                dgvbaocao.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tải báo cáo: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (ketnoi.GetConnection().State == ConnectionState.Open)
+                {
+                    ketnoi.Close();
+                }
+            }
+        }
+
+        //private void btngay_Click(object sender, EventArgs e)
+        //{
+        //    DateTime fromDate = DateTime.Today;
+        //    DateTime toDate = DateTime.Today;
+        //    dtngaydau.Value = fromDate;
+        //    dtngaycuoi.Value = toDate;
+        //    if (fromDate > toDate)
+        //    {
+        //        MessageBox.Show("Ngày bắt đầu không được lớn hơn ngày kết thúc.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //        return;
+        //    }
+        //    LoadBaoCao(fromDate, toDate, cbtrangthai.SelectedValue?.ToString(), cbdanhmuc.SelectedValue?.ToString(), cbnhanvien.SelectedValue?.ToString());
+        //}
+
+        //private void btweek_Click(object sender, EventArgs e)
+        //{
+        //    DateTime toDate = DateTime.Today;
+        //    DateTime fromDate = toDate.AddDays(-7);
+        //    if (fromDate > toDate)
+        //    {
+        //        MessageBox.Show("Ngày bắt đầu không được lớn hơn ngày kết thúc.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //    }
+        //    dtngaydau.Value = fromDate;
+        //    dtngaycuoi.Value = toDate;
+        //    dtngaycuoi.Refresh();
+        //    dtngaydau.Refresh();
+        //    LoadBaoCao(fromDate, toDate, cbtrangthai.SelectedValue?.ToString(), cbdanhmuc.SelectedValue?.ToString(), cbnhanvien.SelectedValue?.ToString());
+        //}
+
+        //private void btmonth_Click(object sender, EventArgs e)
+        //{
+        //    DateTime toDate = DateTime.Today;
+        //    DateTime fromDate = toDate.AddDays(-30);
+        //    if (fromDate > toDate)
+        //    {
+        //        MessageBox.Show("Ngày bắt đầu không được lớn hơn ngày kết thúc.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //    }
+        //    dtngaydau.Value = fromDate;
+        //    dtngaycuoi.Value = toDate;
+        //    dtngaycuoi.Refresh();
+        //    dtngaydau.Refresh();
+        //    LoadBaoCao(fromDate, toDate, cbtrangthai.SelectedValue?.ToString(), cbdanhmuc.SelectedValue?.ToString(), cbnhanvien.SelectedValue?.ToString());
+        //}
+
+        //private void bt90day_Click(object sender, EventArgs e)
+        //{
+        //    DateTime toDate = DateTime.Today;
+        //    DateTime fromDate = toDate.AddDays(-90);
+        //    if(fromDate > toDate)
+        //    {
+        //        MessageBox.Show("Ngày bắt đầu không được lớn hơn ngày kết thúc.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //    }
+        //    dtngaydau.Value = fromDate;
+        //    dtngaycuoi.Value = toDate;
+        //    dtngaycuoi.Refresh();
+        //    dtngaydau.Refresh();
+        //    LoadBaoCao(fromDate, toDate, cbtrangthai.SelectedValue?.ToString(), cbdanhmuc.SelectedValue?.ToString(), cbnhanvien.SelectedValue?.ToString());
+        //}
 
         private void dgvbaocao_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -197,8 +319,8 @@ JOIN SanPham sp ON ct.MaSanPham = sp.MaSanPham";
             DataGridViewRow row = dgvbaocao.Rows[e.RowIndex];
 
             // Lấy giá trị của ô đầu tiên trong hàng đã chọn
-            string maDonHang = row.Cells["madonhang"].Value.ToString();
-            string tongtien = row.Cells["tongtien"].Value.ToString();
+            string maDonHang = row.Cells["MaDonHang"].Value.ToString();
+            string tongtien = row.Cells["TongTien"].Value.ToString();
             DateTime ngayht;
             if (DateTime.TryParse(row.Cells["NgayDat"].Value.ToString(), out ngayht))
             {
@@ -210,8 +332,8 @@ JOIN SanPham sp ON ct.MaSanPham = sp.MaSanPham";
             {
                 MessageBox.Show("Không thể chuyển đổi ngày.");
             }
-            string maNhanVien = row.Cells["manhanvien"].Value.ToString();
-            string trangthai = row.Cells["trangthai"].Value.ToString();
+            string maNhanVien = row.Cells["MaNhanVien"].Value.ToString();
+            string trangthai = row.Cells["TrangThai"].Value.ToString();
            
         }
 

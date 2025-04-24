@@ -95,7 +95,6 @@
     <Compile Include="BaoCao.Designer.cs">
       <DependentUpon>BaoCao.cs</DependentUpon>
     </Compile>
-    
     <Compile Include="TongQuan.cs">
       <SubType>Form</SubType>
     </Compile>

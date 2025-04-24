@@ -34,7 +34,8 @@ namespace quanlycaphe.quanlidonhang
             maHoaDon.Enabled = false;
             maHoaDon.Text = maDonHang;
             this.das = parentForm;
-            
+            maKhuyenMaiDuocChon.Enabled = false;
+
         }
         public void loadcbbBan()
         {
@@ -172,7 +173,7 @@ namespace quanlycaphe.quanlidonhang
                     con.Open();
                 }
 
-                string sql = "SELECT masanpham, gia FROM sanpham WHERE tensanpham = @TenSanPham";
+                string sql = "SELECT masanpham, gia , makhuyenmai FROM sanpham WHERE tensanpham = @TenSanPham";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@TenSanPham", tenSanPham);
 
@@ -182,7 +183,8 @@ namespace quanlycaphe.quanlidonhang
                 {
                     string maSanPham = reader["masanpham"].ToString(); // Ghi đúng tên cột như trong DB
                     double giaSanPham = Convert.ToDouble(reader["gia"]);
-                    sanPham = new SanPham(maSanPham, tenSanPham, giaSanPham);
+                    string maKhuyenMai = reader["makhuyenmai"].ToString();
+                    sanPham = new SanPham(maSanPham, tenSanPham, giaSanPham, maKhuyenMai);
                 }
                 reader.Close();
             }
@@ -198,7 +200,6 @@ namespace quanlycaphe.quanlidonhang
         {
 
         }
-
 
         // set ma nhan vien va ten nhan vien  
         public void setNgayLapHoaDon()
@@ -216,11 +217,35 @@ namespace quanlycaphe.quanlidonhang
                 MessageBox.Show("Lỗi khi thêm hóa đơn: " + e.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        private int layPhanTramKhuyenMai(string maKhuyenMai)
+        {
+            int phanTram = 0;
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+                string sql = "SELECT * FROM khuyenmai WHERE makhuyenmai = @MaKhuyenMai";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@MaKhuyenMai", maKhuyenMai);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    phanTram = Convert.ToInt32(reader["phantramgiam"]);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi truy vấn dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return phanTram;
+        }
         private void chonSanPham_SelectedIndexChanged(object sender, EventArgs e)
         {
             soLuong.Text = "";
-
+           
             if (chonSanPham.SelectedItem != null)
             {
                 string tenSanPhamDuocChonChuaTach = chonSanPham.SelectedItem.ToString();
@@ -229,6 +254,8 @@ namespace quanlycaphe.quanlidonhang
                 this.tenSanPhamDuocChon.Text = tenSanPhamDuocChon;
                 string soLuongSanPham = soLuong.Text; // Lấy số lượng từ giao diện
                 sanPham = LayThongTinSanPhamDaChon(tenSanPhamDuocChon); // Lấy thông tin sản phẩm
+                string maKhuyenMaiPhanTram = sanPham.MaKhuyenMai + " ( " +layPhanTramKhuyenMai(sanPham.MaKhuyenMai) +"% )";
+                this.maKhuyenMaiDuocChon.Text = maKhuyenMaiPhanTram;
             }
         }
 
@@ -281,7 +308,6 @@ namespace quanlycaphe.quanlidonhang
                         // Cập nhật giá theo số lượng mới
                         double giaSanPham = sanPham.Gia;
                         row["gia"] = giaSanPham * soLuongHienTai; // Cập nhật giá
-
                         sanPhamDaTonTai = true;
                         break;
                     }
@@ -303,7 +329,19 @@ namespace quanlycaphe.quanlidonhang
                         MessageBox.Show("Số lượng quá 10 \n" + soLuongTrongKho());
                         return;
                     }
-                    model.Rows.Add(sanPham.MaSanPham, sanPham.TenSanPham, soLuongInt, sanPham.Gia * soLuongInt);
+                    double phanTramGiam = layPhanTramKhuyenMai(sanPham.MaKhuyenMai);
+                    double thanhTien = sanPham.Gia * soLuongInt;
+                    double thanhTienSauGiam = thanhTien * (1 - phanTramGiam / 100);
+
+                    model.Rows.Add(
+                        sanPham.MaSanPham,
+                        sanPham.TenSanPham,
+                        soLuongInt,
+                        thanhTien,
+                        sanPham.MaKhuyenMai,
+                        thanhTienSauGiam // ✅ giá sau khi đã trừ khuyến mãi
+                    );
+
                 }
             }
             else
@@ -321,7 +359,7 @@ namespace quanlycaphe.quanlidonhang
 
             foreach (DataRow row in model.Rows)
             {
-                double gia = Convert.ToDouble(row["gia"]); // Lấy giá từ cột "gia"
+                double gia = Convert.ToDouble(row["giakm"]); // Lấy giá từ cột "gia"
                 tongTien += gia; // Tính tổng tiền
             }
             // Cập nhật giá trị tổng tiền vào TextBox
@@ -434,6 +472,12 @@ namespace quanlycaphe.quanlidonhang
                     double giaSanPham = sp.Gia; // Giá của sản phẩm
                     double tongGiaMoi = giaSanPham * soLuongMoi; // Cập nhật tổng giá dựa trên số lượng mới
                     model.Rows[selectedRow]["gia"] = tongGiaMoi; // Cập nhật giá vào cột tổng giá (cột 3)
+                    // Cập nhật giá khuyến mãi
+                    double phanTramGiam = layPhanTramKhuyenMai(sp.MaKhuyenMai);
+                    double thanhTien = giaSanPham * soLuongMoi;
+                    double thanhTienSauGiam = thanhTien * (1 - phanTramGiam / 100);
+                    model.Rows[selectedRow]["giakm"] = thanhTienSauGiam; // ✅ giá sau khi đã trừ khuyến mãi
+                    
                 }
                 else
                 {
@@ -594,16 +638,16 @@ namespace quanlycaphe.quanlidonhang
                 try
                 {
                     // Thêm hóa đơn vào bảng `hoadon`
-                    string sqlInsertHoaDon = "INSERT INTO donhang (MaDonHang, MaKhachHang,MaBan, MaNhanVien,MaKhuyenMai, TongTien, NgayDat, TrangThai) VALUES (@MaDH, @MaKH,@MaBan, @MaNV, @MaKhuyenMai, @TongTien,@NgatDat,@TrangThai)";
+                    string sqlInsertHoaDon = "INSERT INTO donhang (MaDonHang, MaKhachHang,MaBan, MaNhanVien, TongTien, NgayDat, TrangThai) VALUES (@MaDH, @MaKH,@MaBan, @MaNV, @TongTien,@NgatDat,@TrangThai)";
                     SqlCommand cmdHoaDon = new SqlCommand(sqlInsertHoaDon, con, transaction);
                     cmdHoaDon.Parameters.AddWithValue("@MaDH", maDonHang);
                     cmdHoaDon.Parameters.AddWithValue("@MaKH", maKhachHang_1);
                     cmdHoaDon.Parameters.AddWithValue("@MaBan", maBan);
                     cmdHoaDon.Parameters.AddWithValue("@MaNV", maNhanVien_1);
-                    cmdHoaDon.Parameters.AddWithValue("@MaKhuyenMai", "");
                     cmdHoaDon.Parameters.AddWithValue("@TongTien", tongTienHoaDon_1);
                     cmdHoaDon.Parameters.AddWithValue("@NgatDat", ngayLapHoaDonDateTime);
                     cmdHoaDon.Parameters.AddWithValue("@TrangThai", trangThai);
+
 
                     cmdHoaDon.ExecuteNonQuery();
 
@@ -612,22 +656,32 @@ namespace quanlycaphe.quanlidonhang
                     //int maHoaDon_1 = Convert.ToInt32(cmdHoaDon.ExecuteScalar());
 
                     // Thêm từng chi tiết hóa đơn vào bảng `chitiethoadon`
-                    string sqlInsertChiTietHD = "INSERT INTO chitietdonhang (machitietdonhang,madonhang, masanpham, soluong, gia) VALUES (@MaCTDH,@MaDH, @MaSP, @SoLuong, @Gia)";
+                    string sqlInsertChiTietHD = "INSERT INTO chitietdonhang (machitietdonhang,madonhang, masanpham, soluong, gia,makhuyenmai) VALUES (@MaCTDH,@MaDH, @MaSP, @SoLuong, @Gia, @MaKhuyenMai)";
                     SqlCommand cmdChiTietHD = new SqlCommand(sqlInsertChiTietHD, con, transaction);
                     foreach (DataGridViewRow row in dgvSanPhamDuocThem.Rows)
                     {
+                        // Kiểm tra xem hàng có phải là hàng mới không
                         if (row.IsNewRow) continue;
-                        string maChiTietDonHang = "CT" + Guid.NewGuid().ToString("N").Substring(0, 8).ToUpper();
 
+                        string maChiTietDonHang = "CT" + Guid.NewGuid().ToString("N").Substring(0, 8).ToUpper();
                         string maSP = row.Cells["MaSP"].Value?.ToString();
                         int soLuong = Convert.ToInt32(row.Cells["SoLg"].Value);
-                        double gia = Convert.ToDouble(row.Cells["Giaa"].Value);
+                        double gia = Convert.ToDouble(row.Cells["GiaKM"].Value);
+
+                        string maKhuyenMai = row.Cells["maKM"].Value?.ToString();
+
                         cmdChiTietHD.Parameters.Clear();
                         cmdChiTietHD.Parameters.AddWithValue("@MaCTDH", maChiTietDonHang);
                         cmdChiTietHD.Parameters.AddWithValue("@MaDH", maDonHang);
                         cmdChiTietHD.Parameters.AddWithValue("@MaSP", maSP);
                         cmdChiTietHD.Parameters.AddWithValue("@SoLuong", soLuong);
                         cmdChiTietHD.Parameters.AddWithValue("@Gia", gia);
+
+                        if (string.IsNullOrEmpty(maKhuyenMai))
+                            cmdChiTietHD.Parameters.AddWithValue("@MaKhuyenMai", DBNull.Value);
+                        else
+                            cmdChiTietHD.Parameters.AddWithValue("@MaKhuyenMai", maKhuyenMai);
+
                         cmdChiTietHD.ExecuteNonQuery();
 
                         // Trừ số lượng trong kho khi thêm hóa đơn
@@ -665,6 +719,16 @@ namespace quanlycaphe.quanlidonhang
         {
             FormThemKH form = new FormThemKH(this);
             form.ShowDialog();
+        }
+
+        private void label8_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tongTienHoaDon_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

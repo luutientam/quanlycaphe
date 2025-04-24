@@ -121,7 +121,7 @@
   <data name="timKiem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAG
-        6gAABuoBnnZ8rgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAWVSURBVFhHtVdt
+        6QAABukBM89dwwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAWVSURBVFhHtVdt
         UFRlFHb6kxZpNpn1q5z6oeUXigoourKbNjgpI+wCurtgOvkxNTk11mSy7KLs3lVEMmvUATTUscZUpHLE
         D9R00DHFLwRlMURCIBTzWxT36Zx73929yy6gDTwzz9x73/ve8zzn3Pc9e7fHs8JqtT43boajLx/FUPdC
         k5T5qtbknK1Nlgq1ZqmO+JgIcazj8WizYw7PE490DSaZVrxIgb8ikVtCsDPe05mdku5jqY8I8f/xfsry
@@ -177,9 +177,6 @@
     <value>True</value>
   </metadata>
   <metadata name="Column8.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Column4.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="nhapExcel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

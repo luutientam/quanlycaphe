@@ -36,6 +36,7 @@ private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS
 
             try
             {
+                dgvDanhSachHoaDon.Rows.Clear(); // ✅ Xóa dữ liệu cũ trước khi load lại
                 if (con.State == ConnectionState.Closed)
             {
                 con.Open();
@@ -50,7 +51,7 @@ private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS
                 }
             }
            
-            string sql = "select dh.MaDonHang , kh.TenKhachHang , nv.TenNhanVien , dh.NgayDat, dh.TongTien , dh.MaKhuyenMai from DonHang dh join KhachHang kh on dh.MaKhachHang = kh.MaKhachHang " +
+            string sql = "select dh.MaDonHang , kh.TenKhachHang , nv.TenNhanVien , dh.NgayDat, dh.TongTien  from DonHang dh join KhachHang kh on dh.MaKhachHang = kh.MaKhachHang " +
                 "join NhanVien nv on nv.MaNhanVien = dh.MaNhanVien";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -82,12 +83,14 @@ private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS
         {
 
         }
-
+        private Dasboard das;
         private void buttonThemMoi_Click(object sender, EventArgs e)
+            
         {
-            ThemHoaDon themHoaDon = new ThemHoaDon();
-            themHoaDon.ShowDialog();
+           ThemHoaDon themHoaDon = new ThemHoaDon(this);
+           themHoaDon.ShowDialog();
         }
+        
 
         private void buttonTimKiem_Click(object sender, EventArgs e)
         {
@@ -156,10 +159,9 @@ private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS
                 string tenNhanVien = row.Cells[2].Value.ToString();
                 string ngayLap = row.Cells[3].Value.ToString();
                 string tongTien = row.Cells[4].Value.ToString();
-                string maKhuyenMai = row.Cells[5].Value.ToString();
 
                 ChiTietHoaDon cthd = new ChiTietHoaDon();
-                cthd.setData(maHoaDon, tenKhachHang, tenNhanVien, ngayLap, tongTien, maKhuyenMai);
+                cthd.setData(maHoaDon, tenKhachHang, tenNhanVien, ngayLap, tongTien);
                 cthd.ShowDialog();
             }
         }

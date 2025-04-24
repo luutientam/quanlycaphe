@@ -21,7 +21,7 @@ namespace quanlycaphe.quanlidonhang
             this.Dispose();
         }
 
-        internal void setData(string maHoaDon_1, string tenKhachHang_1, string tenNhanVien_1, string ngayLap_1, string tongTien_1, string maKhuyenMai_1)
+        internal void setData(string maHoaDon_1, string tenKhachHang_1, string tenNhanVien_1, string ngayLap_1, string tongTien_1)
         {
             try
             {
@@ -31,12 +31,12 @@ namespace quanlycaphe.quanlidonhang
 
                     string sql = @"
                         SELECT sp.tensanpham AS [Tên sản phẩm], 
-                               cthd.soluong AS [Số lượng], 
-                               cthd.gia AS [Giá]
+                               ctdh.soluong AS [Số lượng], 
+                               ctdh.gia AS [Giá]
                         FROM donhang dh
                         JOIN chitietdonhang ctdh ON dh.madonhang = ctdh.madonhang
                         JOIN sanpham sp ON ctdh.masanpham = sp.masanpham
-                        WHERE dh.madonhang = @maHoaDon_1";
+                        WHERE dh.madonhang = @mahd";
 
                     using (SqlCommand cmd = new SqlCommand(sql, connection))
                     {
@@ -45,10 +45,10 @@ namespace quanlycaphe.quanlidonhang
                         SqlDataReader reader = cmd.ExecuteReader();
 
                         DataTable dt = new DataTable();
-                        dt.Columns.Add("STT");
-                        dt.Columns.Add("Tên sản phẩm");
-                        dt.Columns.Add("Số Lượng");
-                        dt.Columns.Add("Giá");
+                        dt.Columns.Add("stt");
+                        dt.Columns.Add("TenSanPham");
+                        dt.Columns.Add("SoLuong");
+                        dt.Columns.Add("Gia");
 
                         int i = 0;
                         while (reader.Read())
@@ -85,7 +85,6 @@ namespace quanlycaphe.quanlidonhang
             ngayLapHoaDon.Enabled = false;
             tongTien.Text = tongTien_1;
             tongTien.Enabled = false;
-            maKhuyenMai.Text = maKhuyenMai_1;
             maKhuyenMai.Enabled = false;
         }
     }

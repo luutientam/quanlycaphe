@@ -32,13 +32,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.quayLai = new System.Windows.Forms.Button();
             this.nhanVienLapHoaDon = new System.Windows.Forms.TextBox();
-            this.maKhuyenMai = new System.Windows.Forms.TextBox();
             this.khachHang = new System.Windows.Forms.TextBox();
             this.ngayLapHoaDon = new System.Windows.Forms.TextBox();
             this.tongTien = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -72,19 +70,10 @@
             this.nhanVienLapHoaDon.Size = new System.Drawing.Size(222, 20);
             this.nhanVienLapHoaDon.TabIndex = 25;
             // 
-            // maKhuyenMai
-            // 
-            this.maKhuyenMai.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.maKhuyenMai.Location = new System.Drawing.Point(220, 492);
-            this.maKhuyenMai.Margin = new System.Windows.Forms.Padding(5);
-            this.maKhuyenMai.Name = "maKhuyenMai";
-            this.maKhuyenMai.Size = new System.Drawing.Size(222, 20);
-            this.maKhuyenMai.TabIndex = 24;
-            // 
             // khachHang
             // 
             this.khachHang.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.khachHang.Location = new System.Drawing.Point(220, 442);
+            this.khachHang.Location = new System.Drawing.Point(220, 485);
             this.khachHang.Margin = new System.Windows.Forms.Padding(5);
             this.khachHang.Name = "khachHang";
             this.khachHang.Size = new System.Drawing.Size(222, 20);
@@ -93,7 +82,7 @@
             // ngayLapHoaDon
             // 
             this.ngayLapHoaDon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ngayLapHoaDon.Location = new System.Drawing.Point(220, 394);
+            this.ngayLapHoaDon.Location = new System.Drawing.Point(220, 437);
             this.ngayLapHoaDon.Margin = new System.Windows.Forms.Padding(5);
             this.ngayLapHoaDon.Name = "ngayLapHoaDon";
             this.ngayLapHoaDon.Size = new System.Drawing.Size(222, 20);
@@ -102,7 +91,7 @@
             // tongTien
             // 
             this.tongTien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tongTien.Location = new System.Drawing.Point(220, 341);
+            this.tongTien.Location = new System.Drawing.Point(220, 384);
             this.tongTien.Margin = new System.Windows.Forms.Padding(5);
             this.tongTien.Name = "tongTien";
             this.tongTien.Size = new System.Drawing.Size(222, 20);
@@ -112,7 +101,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(65, 392);
+            this.label7.Location = new System.Drawing.Point(65, 435);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(117, 19);
@@ -123,23 +112,12 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(65, 440);
+            this.label6.Location = new System.Drawing.Point(65, 483);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(81, 19);
             this.label6.TabIndex = 19;
             this.label6.Text = "Khách hàng";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(65, 490);
-            this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(102, 19);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "Mã khuyến mại";
             // 
             // label4
             // 
@@ -156,7 +134,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(65, 342);
+            this.label2.Location = new System.Drawing.Point(65, 385);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 19);
@@ -276,13 +254,11 @@
             this.Controls.Add(this.quayLai);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.nhanVienLapHoaDon);
-            this.Controls.Add(this.maKhuyenMai);
             this.Controls.Add(this.khachHang);
             this.Controls.Add(this.ngayLapHoaDon);
             this.Controls.Add(this.tongTien);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -300,13 +276,11 @@
 
         private System.Windows.Forms.Button quayLai;
         private System.Windows.Forms.TextBox nhanVienLapHoaDon;
-        private System.Windows.Forms.TextBox maKhuyenMai;
         private System.Windows.Forms.TextBox khachHang;
         private System.Windows.Forms.TextBox ngayLapHoaDon;
         private System.Windows.Forms.TextBox tongTien;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;

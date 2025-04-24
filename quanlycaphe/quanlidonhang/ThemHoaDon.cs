@@ -18,18 +18,23 @@ namespace quanlycaphe.quanlidonhang
     {
         private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS;Initial Catalog=quanlycafe;Integrated Security=True");
         private SanPham sanPham; // Khai báo biến SanPham
-
-        public ThemHoaDon()
+        private Dasboard das; // hoặc whatever class contains loadDonHang()
+        private string maDonHang = "DH" + DateTime.Now.ToString("yyyyMMddHHmmss") +
+                  Guid.NewGuid().ToString("N").Substring(0, 3).ToUpper();
+        public ThemHoaDon(Dasboard parentForm)
         {
-            
             InitializeComponent();
             loadMaKhachHang();
             setNgayLapHoaDon();
             loadSanPham();
-            loadMaKhuyenMai();
-            maNhanVien.Text = User.MaNhanVien;
-            maNhanVien.Enabled = false;
             loadcbbBan();
+            //maNhanVien.Text = User.MaNhanVien;
+            maNhanVien.Text = "NV01"; // Gán giá trị mặc định cho maNhanVien
+            maNhanVien.Enabled = false;
+            maHoaDon.Enabled = false;
+            maHoaDon.Text = maDonHang;
+            this.das = parentForm;
+            
         }
         public void loadcbbBan()
         {
@@ -44,15 +49,27 @@ namespace quanlycaphe.quanlidonhang
             da.Fill(tb);
             cmd.Dispose();
             con.Close();
+
+            // Tạo thêm cột hiển thị mới
+            tb.Columns.Add("HienThi", typeof(string));
+            foreach (DataRow row in tb.Rows)
+            {
+                row["HienThi"] = row["TenBan"].ToString() + " - " + row["TrangThai"].ToString();
+            }
+
+            // Thêm dòng mặc định đầu tiên
             DataRow r = tb.NewRow();
             r["MaBan"] = "";
             r["TenBan"] = "--- Chọn bàn ---";
+            r["TrangThai"] = "";
+            r["HienThi"] = "--- Chọn bàn ---";
             tb.Rows.InsertAt(r, 0);
 
             cbbBan.DataSource = tb;
-            cbbBan.DisplayMember = "TenBan";
+            cbbBan.DisplayMember = "HienThi"; // Hiển thị dạng "TenBan - TrangThai"
             cbbBan.ValueMember = "MaBan";
         }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -74,14 +91,17 @@ namespace quanlycaphe.quanlidonhang
         }
 
 
-        private void loadMaKhachHang()
+        public void loadMaKhachHang()
         {
             try
             {
+                cbxMaKhachHang.Items.Clear(); // ✅ Xóa dữ liệu cũ trước khi load lại
+
                 if (con.State == ConnectionState.Closed)
                 {
                     con.Open();
                 }
+
                 string sql = "SELECT * FROM khachhang";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 SqlDataReader reader = cmd.ExecuteReader();
@@ -95,7 +115,6 @@ namespace quanlycaphe.quanlidonhang
                 reader.Close();
 
                 this.tenSanPhamDuocChon.Enabled = false;
-                this.tongTienHoaDonKhuyenMai.Enabled = false;
                 this.tongTienHoaDon.Enabled = false;
             }
             catch (Exception ex)
@@ -103,6 +122,7 @@ namespace quanlycaphe.quanlidonhang
                 MessageBox.Show("Lỗi truy vấn dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void loadSanPham()
         {
@@ -240,6 +260,8 @@ namespace quanlycaphe.quanlidonhang
                     model.Columns.Add("tensanpham", typeof(string));
                     model.Columns.Add("soluong", typeof(int));
                     model.Columns.Add("gia", typeof(double));
+                    model.Columns.Add("makhuyenmai", typeof(string));
+                    model.Columns.Add("giakm", typeof(double));
                     dgvSanPhamDuocThem.DataSource = model;
                 }
 
@@ -291,7 +313,6 @@ namespace quanlycaphe.quanlidonhang
             // Gọi phương thức tính tổng tiền sau khi thêm sản phẩm
             tinhTongTien();
         }
-
 
         private void tinhTongTien()
         {
@@ -426,8 +447,6 @@ namespace quanlycaphe.quanlidonhang
             tinhTongTien();
         }
 
-     
-
         private void xoaSanPham_Click(object sender, EventArgs e)
         {
             int selectedRow = dgvSanPhamDuocThem.CurrentCell.RowIndex; // Lấy chỉ số hàng được chọn
@@ -447,49 +466,6 @@ namespace quanlycaphe.quanlidonhang
             {
                 MessageBox.Show("Vui lòng chọn sản phẩm để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        private void loadMaKhuyenMai()
-        {
-            try
-            {
-                if (con.State == ConnectionState.Closed)
-                {
-                    con.Open();
-                }
-                string sql = "SELECT * FROM khuyenmai";
-                SqlCommand cmd = new SqlCommand(sql, con);
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    string maKhuyenMai = reader["makhuyenmai"].ToString();
-                    string tenKhuyenMai = reader["tenkhuyenmai"].ToString();
-                    string phanTramGiam = reader["phantramgiam"].ToString();
-
-                    khuyenMai.Items.Add(maKhuyenMai + " - " + tenKhuyenMai + " - " + phanTramGiam + "%");
-                }
-                reader.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi truy vấn dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (con.State == ConnectionState.Open)
-                {
-                    con.Close();
-                }
-            }
-        }
-        private void tinhTongTienKhuyenMai(int phanTram)
-        {
-            System.Data.DataTable model = (System.Data.DataTable)dgvSanPhamDuocThem.DataSource;
-            double tongTienKhuyenMai = 0;
-            tongTienKhuyenMai = Convert.ToDouble(this.tongTienHoaDon.Text) * (100 - phanTram) / 100;
-            // Cập nhật giá trị tổng tiền vào TextBox
-            tongTienHoaDonKhuyenMai.Text = tongTienKhuyenMai.ToString();
         }
 
         private void dgvSanPhamDuocThem_CellClick_1(object sender, DataGridViewCellEventArgs e)
@@ -518,20 +494,6 @@ namespace quanlycaphe.quanlidonhang
         {
 
         }
-
-        private void khuyenMai_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            if (khuyenMai.SelectedItem != null)
-            {
-                string tenKhuyenMaiDuocChon = khuyenMai.SelectedItem.ToString();
-                string[] str1 = tenKhuyenMaiDuocChon.Split(new string[] { " - " }, StringSplitOptions.None);
-                string maKhuyenMaiDaTach = str1[2];
-                string[] str2 = maKhuyenMaiDaTach.Split('%');
-                string phanTramDaTach = str2[0];
-                tinhTongTienKhuyenMai(int.Parse(phanTramDaTach));
-            }
-        }
-
         private void truSoLuongTrongKho(String maSanPham, int soLuong, SqlTransaction transaction)
         {
             try
@@ -578,8 +540,6 @@ namespace quanlycaphe.quanlidonhang
         {
             try
             {
-                // Lấy dữ liệu từ giao diện
-                /*string maKhachHangGiaoDien = cbxMaKhachHang.SelectedItem.ToString();*/
                 string maKhachHangGiaoDien = cbxMaKhachHang.SelectedItem?.ToString();
                 if (maKhachHangGiaoDien == null)
                 {
@@ -596,18 +556,7 @@ namespace quanlycaphe.quanlidonhang
 
                 string ngayLapHoaDon_1 = this.ngayLapHoaDon.Text;
 
-                string khuyenMaiGiaoDien = this.khuyenMai.SelectedItem?.ToString();
-                if (khuyenMaiGiaoDien == null)
-                {
-                    MessageBox.Show("Vui lòng chọn mã khuyến mại");
-                    return;
-                }
-
-
-                string[] str3 = khuyenMaiGiaoDien.Split(new string[] { " - " }, StringSplitOptions.None);
-                string khuyenMai_1 = str3[0];
-
-                string tongTienText = tongTienHoaDonKhuyenMai.Text.Trim();
+                string tongTienText = tongTienHoaDon.Text.Trim();
 
                 // Chuyển đổi sang DateTime để lưu vào cơ sở dữ liệu
                 DateTime ngayLapHoaDonDateTime = DateTime.ParseExact(ngayLapHoaDon_1, "yyyy-MM-dd HH:mm:ss", null);
@@ -629,12 +578,6 @@ namespace quanlycaphe.quanlidonhang
                     MessageBox.Show("Vui lòng chọn ít nhất một sản phẩm");
                     return;
                 }
-
-                if (string.IsNullOrEmpty(khuyenMai_1))
-                {
-                    MessageBox.Show("Vui lòng chọn mã khuyến mại");
-                    return;
-                }
                 
                 // Chuyển đổi tổng tiền từ chuỗi sang số khi có >= 1 sản phẩm được chọn 
                 double tongTienHoaDon_1 = double.Parse(tongTienText);
@@ -645,8 +588,6 @@ namespace quanlycaphe.quanlidonhang
                     con.Open();
                 }
                 SqlTransaction transaction = con.BeginTransaction();
-                string maDonHang = "DH" + DateTime.Now.ToString("yyyyMMddHHmmss") +
-                   Guid.NewGuid().ToString("N").Substring(0, 3).ToUpper();
                
 
                 string trangThai = "Thành công";
@@ -659,7 +600,7 @@ namespace quanlycaphe.quanlidonhang
                     cmdHoaDon.Parameters.AddWithValue("@MaKH", maKhachHang_1);
                     cmdHoaDon.Parameters.AddWithValue("@MaBan", maBan);
                     cmdHoaDon.Parameters.AddWithValue("@MaNV", maNhanVien_1);
-                    cmdHoaDon.Parameters.AddWithValue("@MaKhuyenMai", khuyenMai_1);
+                    cmdHoaDon.Parameters.AddWithValue("@MaKhuyenMai", "");
                     cmdHoaDon.Parameters.AddWithValue("@TongTien", tongTienHoaDon_1);
                     cmdHoaDon.Parameters.AddWithValue("@NgatDat", ngayLapHoaDonDateTime);
                     cmdHoaDon.Parameters.AddWithValue("@TrangThai", trangThai);
@@ -677,11 +618,8 @@ namespace quanlycaphe.quanlidonhang
                     {
                         if (row.IsNewRow) continue;
                         string maChiTietDonHang = "CT" + Guid.NewGuid().ToString("N").Substring(0, 8).ToUpper();
-                        //string maSP = row.Cells["Mã sản phẩm"].Value.ToString();
-                        //int soLuong = Convert.ToInt32(row.Cells["Số lượng"].Value);
-                        //double gia = Convert.ToDouble(row.Cells["Giá"].Value);
+
                         string maSP = row.Cells["MaSP"].Value?.ToString();
-                        //string tenSP = row.Cells["Tên sản phẩm"].Value?.ToString();
                         int soLuong = Convert.ToInt32(row.Cells["SoLg"].Value);
                         double gia = Convert.ToDouble(row.Cells["Giaa"].Value);
                         cmdChiTietHD.Parameters.Clear();
@@ -694,17 +632,17 @@ namespace quanlycaphe.quanlidonhang
 
                         // Trừ số lượng trong kho khi thêm hóa đơn
                         truSoLuongTrongKho(maSP, soLuong, transaction);
-
-                        
                     }
 
                     // Commit transaction
                     transaction.Commit();
 
                     MessageBox.Show("Thêm hóa đơn thành công, vui lòng thanh toán!");
-
                     // Đóng kết nối
+                    das.loadDonHang();
                     con.Close();
+                    this.Dispose(); 
+                    
                 }
                 catch (Exception ex)
                 {
@@ -721,6 +659,12 @@ namespace quanlycaphe.quanlidonhang
         private void ThemHoaDon_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void themKhachHang_Click(object sender, EventArgs e)
+        {
+            FormThemKH form = new FormThemKH(this);
+            form.ShowDialog();
         }
     }
 }

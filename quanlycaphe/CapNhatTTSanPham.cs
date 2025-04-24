@@ -202,7 +202,7 @@ namespace quanlycaphe
                 return;
             }
             // Kiểm tra giá chỉ chứa số
-            Regex regexGia = new Regex(@"^\d+$");
+            Regex regexGia = new Regex(@"^\d+([.]\d+)?$");
             if (!regexGia.IsMatch(gia))
             {
                 MessageBox.Show("Giá sản phẩm chỉ được nhập số!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -293,10 +293,35 @@ namespace quanlycaphe
 
 
         }
+        private bool KiemTraSanPhamTonTaiTrongChiTietDonHang(string maSP)
+        {
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+
+            string sql = "SELECT COUNT(*) FROM ChiTietDonHang WHERE MaSanPham = @MaSP";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@MaSP", maSP);
+
+            int count = (int)cmd.ExecuteScalar();
+
+            cmd.Dispose();
+            con.Close();
+
+            return count > 0;
+        }
+
 
         private void buttonXoa_Click(object sender, EventArgs e)
         {
             String maSP = txtMaSP.Text;
+            if (KiemTraSanPhamTonTaiTrongChiTietDonHang(maSP))
+            {
+                MessageBox.Show("Không thể xóa sản phẩm này vì nó đã tồn tại trong chi tiết đơn hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Close();
+                return;
+            }
             if (MessageBox.Show("Bạn có chắc chắn muốn xóa sản phẩm này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 return;

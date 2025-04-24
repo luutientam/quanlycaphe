@@ -137,7 +137,24 @@ namespace quanlycaphe
             buttonHuyThaoTac.Enabled = false;
             buttonThemMoi.Enabled = true;
         }
+        private bool KiemTraKhuyenMaiTonTaiTrongSanPham(string maKM)
+        {
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
 
+            string sql = "SELECT COUNT(*) FROM SanPham WHERE MaKhuyenMai = @MaKM";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@MaKM", maKM);
+
+            int count = (int)cmd.ExecuteScalar();
+
+            cmd.Dispose();
+            con.Close();
+
+            return count > 0;
+        }
         private void buttonLuu_Click(object sender, EventArgs e)
         {
             String maKM = txtMaKM.Text;
@@ -251,12 +268,24 @@ namespace quanlycaphe
 
         private void buttonXoa_Click(object sender, EventArgs e)
         {
-            if (con.State == ConnectionState.Closed)
+            if(KiemTraKhuyenMaiTonTaiTrongSanPham(txtMaKM.Text))
             {
-                con.Open();
+                MessageBox.Show("Không thể xóa khuyến mãi này vì nó đang được sử dụng trong sản phẩm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                disableTextBox();
+                clear();
+                buttonLuu.Enabled = false;
+                buttonCapNhat.Enabled = false;
+                buttonXoa.Enabled = false;
+                buttonHuyThaoTac.Enabled = false;
+                buttonThemMoi.Enabled = true;
+                return;
             }
             if (MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
+            {   
+                if (con.State == ConnectionState.Closed)
+                {
+                con.Open();
+                }
                 string sql = "delete from KhuyenMai where MaKhuyenMai = '" + txtMaKM.Text + "'";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.ExecuteNonQuery();

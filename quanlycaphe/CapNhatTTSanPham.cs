@@ -202,7 +202,7 @@ namespace quanlycaphe
                 return;
             }
             // Kiểm tra giá chỉ chứa số
-            Regex regexGia = new Regex(@"^\d+$");
+            Regex regexGia = new Regex(@"^\d+([.]\d+)?$");
             if (!regexGia.IsMatch(gia))
             {
                 MessageBox.Show("Giá sản phẩm chỉ được nhập số!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);

@@ -26,6 +26,7 @@ namespace quanlycaphe
             loadcbbDanhMuc();
             loadcbbNhaCungCap();
             loadSanPham();
+            demSoLuong();
         }
         public void loadSanPham()
         {
@@ -149,31 +150,35 @@ namespace quanlycaphe
             con.Close();
         }
 
-
-        private void buttonTimKiem_Click(object sender, EventArgs e)
+        public void timKiemSP()
         {
             String maSP = txtMaSP_TK.Text;
             String tenSP = txtTenSP_TK.Text;
             String maDanhMuc = cbbDanhMuc_TK.SelectedValue.ToString();
             String txtgia1 = txtGia1_TK.Text;
             String txtgia2 = txtGia2_TK.Text;
-            decimal gia1=0;
+            decimal gia1 = 0;
             if (txtgia1 != "")
             {
                 gia1 = Convert.ToDecimal(txtgia1);
             }
-            decimal gia2=0;
+            decimal gia2 = 0;
             if (txtgia2 != "")
             {
                 gia2 = Convert.ToDecimal(txtgia2);
             }
             //String soLuong = txtSoLuong_TK.Text;
+            if (cbbNhaCungCap_TK.SelectedValue == null)
+            {
+                return;
+            }
             String Ncc = cbbNhaCungCap_TK.SelectedValue.ToString();
+            String hanSuDung = txtHanSD.Text;
             if (con.State == ConnectionState.Closed)
             {
                 con.Open();
             }
-            string sql = "SELECT sp.MaSanPham, sp.TenSanPham, m.TenDanhMuc, sp.Gia, sp.MoTa, sp.HinhAnh, sp.NgayTao, ncc.TenNhaCungCap, sp.SoLuong FROM SanPham sp join DanhMuc m on sp.MaDanhMuc = m.MaDanhMuc join NhaCungCap ncc on ncc.MaNhaCungCap = sp.MaNhaCungCap WHERE sp.MaSanPham like '%" + maSP + "%' and sp.TenSanPham like N'%" + tenSP + "%' and m.MaDanhMuc like '%" + maDanhMuc + "%' and ncc.MaNhaCungCap like '%" + Ncc + "%'";
+            string sql = "SELECT sp.MaSanPham, sp.TenSanPham, m.TenDanhMuc, sp.Gia, sp.MoTa, sp.HinhAnh, sp.NgayTao, ncc.TenNhaCungCap, sp.SoLuong, sp.HanSuDung, sp.GiaNhap, sp.MaKhuyenMai FROM SanPham sp join DanhMuc m on sp.MaDanhMuc = m.MaDanhMuc join NhaCungCap ncc on ncc.MaNhaCungCap = sp.MaNhaCungCap WHERE sp.MaSanPham like '%" + maSP + "%' and sp.TenSanPham like N'%" + tenSP + "%' and m.MaDanhMuc like '%" + maDanhMuc + "%' and ncc.MaNhaCungCap like '%" + Ncc + "%'";
             if (gia1 == 0 && gia2 == 0)
             {
                 sql += "";
@@ -184,11 +189,15 @@ namespace quanlycaphe
             }
             else if (gia1 == 0 && gia2 != 0)
             {
-                sql += " and sp.Gia <= "+ gia2;
+                sql += " and sp.Gia <= " + gia2;
             }
             else
             {
                 sql += " and sp.Gia BETWEEN '" + gia1 + "' and '" + gia2 + "'";
+            }
+            if (hanSuDung != "")
+            {
+                sql += " and DATEDIFF(day, GETDATE(), HanSuDung) <= '" + hanSuDung + "' and DATEDIFF(day, GETDATE(), HanSuDung) >= 0";
             }
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -227,6 +236,11 @@ namespace quanlycaphe
                 imgColumn.ImageLayout = DataGridViewImageCellLayout.Zoom;
                 dgvSanPham.Columns.Add(imgColumn);
             }
+            demSoLuong();
+        }
+        private void buttonTimKiem_Click(object sender, EventArgs e)
+        {
+            
 
 
         }
@@ -298,7 +312,27 @@ namespace quanlycaphe
 
         private void txtGialon_TextChanged(object sender, EventArgs e)
         {
-           
+            Regex regexGia = new Regex(@"^\d+([.]\d+)?$");
+            String gia2 = txtGia1_TK.Text;
+            // Kiểm tra giá chỉ chứa số
+            if (txtGia2_TK.Text == "")
+            {
+                lbTB.Text = "";
+                return;
+            }
+            else if (!regexGia.IsMatch(gia2))
+            {
+                lbTB.Text = "Giá sản phẩm chỉ được nhập số!";
+                lbTB.ForeColor = Color.Red;
+                return;
+            }
+            else
+            {
+                lbTB.Text = "✅";
+                lbTB.ForeColor = Color.Green;
+            }
+
+            timKiemSP();
         }
         public void ExportExcel(DataTable tb, string sheetname)
         {
@@ -461,6 +495,10 @@ namespace quanlycaphe
                 gia2 = Convert.ToDecimal(txtgia2);
             }
             //String soLuong = txtSoLuong_TK.Text;
+            if(cbbNhaCungCap_TK.SelectedValue == null)
+            {
+                return;
+            }
             String Ncc = cbbNhaCungCap_TK.SelectedValue.ToString();
             if (con.State == ConnectionState.Closed)
             {
@@ -593,6 +631,91 @@ namespace quanlycaphe
                 ReadExcel(openFileDialog.FileName);
                 loadSanPham();
             }
+        }
+
+        private void txtMaSP_TK_TextChanged(object sender, EventArgs e)
+        {
+            timKiemSP();
+        }
+
+        private void txtTenSP_TK_TextChanged(object sender, EventArgs e)
+        {
+            timKiemSP();
+        }
+
+        private void cbbNhaCungCap_TK_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            timKiemSP();
+        }
+
+        private void cbbDanhMuc_TK_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            timKiemSP();
+        }
+        public void demSoLuong()
+        {
+            int dem = 0;
+            for (int i = 0; i < dgvSanPham.Rows.Count; i++)
+            {
+                if (dgvSanPham.Rows[i].Cells[0].Value != null)
+                {
+                    dem++;
+                }
+            }
+            txtSoLuong.Text = dem.ToString() + " sản phẩm.";
+        }
+        private void txtGia1_TK_TextChanged(object sender, EventArgs e)
+        {
+            Regex regexGia = new Regex(@"^\d+([.]\d+)?$");
+            String gia1 = txtGia1_TK.Text;
+            // Kiểm tra giá chỉ chứa số
+            if (txtGia1_TK.Text == "")
+            {
+                lbTB.Text = "";
+                return;
+            }
+            else if (!regexGia.IsMatch(gia1))
+            {
+                lbTB.Text = "Giá sản phẩm chỉ được nhập số!";
+                lbTB.ForeColor = Color.Red;
+                return;
+            }
+            else
+            {
+                lbTB.Text = "✅";
+                lbTB.ForeColor = Color.Green;
+            }
+
+            timKiemSP();
+        }
+
+        private void txtHanSD_TextChanged(object sender, EventArgs e)
+        {
+            Regex so = new Regex(@"^\d+$");
+            String soLuong = txtHanSD.Text;
+            if(txtHanSD.Text == "")
+            {
+                lbTbHsd.Text = "";
+                timKiemSP();
+                return;
+            }
+            else if (!so.IsMatch(soLuong))
+            {
+                lbTbHsd.Text = "Hạn sử dụng chỉ được nhập số!";
+                lbTbHsd.ForeColor = Color.Red;
+                return;
+            }
+            else
+            {
+                lbTbHsd.Text = "✅";
+                lbTbHsd.ForeColor = Color.Green;
+            }
+            timKiemSP();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

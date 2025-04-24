@@ -21,7 +21,7 @@ namespace quanlycaphe.quanlidonhang
             this.Dispose();
         }
 
-        internal void setData(string maHoaDon_1, string tenKhachHang_1, string tenNhanVien_1, string ngayLap_1, string tongTien_1, string maKhuyenMai_1)
+        internal void setData(string maHoaDon_1, string tenKhachHang_1, string tenNhanVien_1, string ngayLap_1, string tongTien_1)
         {
             try
             {
@@ -85,7 +85,6 @@ namespace quanlycaphe.quanlidonhang
             ngayLapHoaDon.Enabled = false;
             tongTien.Text = tongTien_1;
             tongTien.Enabled = false;
-            maKhuyenMai.Text = maKhuyenMai_1;
             maKhuyenMai.Enabled = false;
         }
     }

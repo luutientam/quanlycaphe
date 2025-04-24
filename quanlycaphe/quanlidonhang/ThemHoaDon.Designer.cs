@@ -420,11 +420,13 @@
             // 
             // Column1
             // 
+            this.Column1.DataPropertyName = "MaKhuyenMai";
             this.Column1.HeaderText = "Khuyến mãi";
             this.Column1.Name = "Column1";
             // 
             // Column3
             // 
+            this.Column3.DataPropertyName = "GiaKM";
             this.Column3.HeaderText = "Giá(KM)";
             this.Column3.Name = "Column3";
             // 

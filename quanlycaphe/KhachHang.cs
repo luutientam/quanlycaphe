@@ -144,9 +144,32 @@ namespace quanlycaphe
             loadKhachHang();
             txtMaKH.Enabled = true;
         }
+        public bool kiemTraKhachHangTonTaiTrongDonHang(String MaKH)
+        {
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
 
+            string sql = "SELECT COUNT(*) FROM DonHang WHERE MaKhachHang = @MaKH";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@MaKH", MaKH);
+
+            int count = (int)cmd.ExecuteScalar();
+
+            cmd.Dispose();
+            con.Close();
+
+            return count > 0;
+        }
         private void buttonXoa_Click(object sender, EventArgs e)
         {
+            String maKH = txtMaKH.Text.Trim();
+            if (kiemTraKhachHangTonTaiTrongDonHang(maKH))
+            {
+                MessageBox.Show("Không thể xóa khách hàng này vì đã có trong đơn hàng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 
             {
@@ -154,7 +177,7 @@ namespace quanlycaphe
                 {
                     con.Open();
                 }
-                String maKH = txtMaKH.Text.Trim();
+                
                 String sql = "delete from KhachHang where MaKhachHang = '" + maKH + "'";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.ExecuteNonQuery();

@@ -203,6 +203,7 @@
             this.MenuBC.Padding = new System.Windows.Forms.Padding(4, 30, 4, 0);
             this.MenuBC.Size = new System.Drawing.Size(245, 55);
             this.MenuBC.Text = "Báo cáo";
+            this.MenuBC.Click += new System.EventHandler(this.MenuBC_Click_1);
             // 
             // tổngQuanToolStripMenuItem
             // 
@@ -284,7 +285,7 @@
             this.panel2.Controls.Add(this.button1);
             this.panel2.Location = new System.Drawing.Point(243, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1200, 53);
+            this.panel2.Size = new System.Drawing.Size(1211, 53);
             this.panel2.TabIndex = 3;
             // 
             // lblTime
@@ -350,7 +351,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1443, 906);
+            this.ClientSize = new System.Drawing.Size(1457, 906);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel2);

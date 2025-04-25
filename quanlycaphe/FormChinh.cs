@@ -54,6 +54,8 @@ namespace quanlycaphe
             MenuKM.BackColor = Color.Beige;
             nhânViênToolStripMenuItem.BackColor = Color.Beige;
             vaiTròToolStripMenuItem.BackColor = Color.Beige;
+            tổngQuanToolStripMenuItem.BackColor = Color.Beige;
+            báoCáoDoanhThuToolStripMenuItem.BackColor = Color.Beige;
         }
         public void loadform(Form form)
         {
@@ -146,7 +148,7 @@ namespace quanlycaphe
         {
             loadform(new KhuyenMai());
             defaultColorItem();
-            MenuKH.BackColor = Color.PeachPuff;
+            MenuKM.BackColor = Color.PeachPuff;
         }
 
         private void nhânViênToolStripMenuItem_Click(object sender, EventArgs e)
@@ -192,12 +194,22 @@ namespace quanlycaphe
         private void tổngQuanToolStripMenuItem_Click(object sender, EventArgs e)
         {
             loadform(new TongQuan());
+            defaultColorItem();
+            MenuBC.BackColor = Color.PeachPuff;
+            tổngQuanToolStripMenuItem.BackColor = Color.PeachPuff;
         }
 
         private void báoCáoDoanhThuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             loadform(new BaoCao());
+            defaultColorItem();
+            MenuBC.BackColor = Color.PeachPuff;
+            báoCáoDoanhThuToolStripMenuItem.BackColor = Color.PeachPuff;
         }
 
+        private void MenuBC_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

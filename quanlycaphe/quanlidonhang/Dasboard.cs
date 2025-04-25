@@ -109,7 +109,7 @@ private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS
                 }
 
                 // Xây dựng câu truy vấn SQL với điều kiện tìm kiếm (nếu cần)
-                string sql = "SELECT dh.MaDonHang, kh.tenkhachhang, nv.tennhanvien, dh.NgayDat, dh.tongtien, dh.MaKhuyenMai " +
+                string sql = "SELECT dh.MaDonHang, kh.tenkhachhang, nv.tennhanvien, dh.NgayDat, dh.tongtien " +
                              "FROM donhang dh " +
                              "JOIN nhanvien nv ON dh.MaNhanVien = nv.MaNhanVien " +
                              "JOIN khachhang kh ON dh.MaKhachHang = kh.MaKhachHang " +
@@ -117,8 +117,8 @@ private SqlConnection con = new SqlConnection(@"Data Source=LOCALHOST\SQLEXPRESS
                              "OR kh.tenkhachhang LIKE N'%" + txtTimKiemTmp + "%' " +
                              "OR nv.tennhanvien LIKE N'%" + txtTimKiemTmp + "%' " +
                              "OR dh.NgayDat LIKE '%" + txtTimKiemTmp + "%' " +
-                             "OR dh.tongtien LIKE '%" + txtTimKiemTmp + "%' " +
-                             "OR dh.MaKhuyenMai LIKE '%" + txtTimKiemTmp + "%'";
+                             "OR dh.tongtien LIKE '%" + txtTimKiemTmp + "%' "
+                          ;
 
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {

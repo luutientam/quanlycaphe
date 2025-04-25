@@ -150,9 +150,32 @@ namespace quanlycaphe
             loadNhaCungCap();
             txtMaNCC.Enabled = true;
         }
+        public bool kiemTraNhaCungCapTonTaiTrongSanPham(String maNCC)
+        {
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
 
+            string sql = "SELECT COUNT(*) FROM SanPham WHERE MaNhaCungCap = @maNCC";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@maNCC", maNCC);
+
+            int count = (int)cmd.ExecuteScalar();
+
+            cmd.Dispose();
+            con.Close();
+
+            return count > 0;
+        }
         private void buttonXoa_Click(object sender, EventArgs e)
         {
+            String maNCC = txtMaNCC.Text.Trim();
+            if(kiemTraNhaCungCapTonTaiTrongSanPham(maNCC)){
+                MessageBox.Show("Không thể xóa nhà cung cấp này vì nó đang được sử dụng trong sản phẩm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                 
+                return;
+            }
             if (MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 
             {
@@ -160,7 +183,7 @@ namespace quanlycaphe
                 {
                     con.Open();
                 }
-                String maNCC = txtMaNCC.Text.Trim();
+                
                 String sql = "delete from NhaCungCap where MaNhaCungCap = '" + maNCC + "'";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.ExecuteNonQuery();

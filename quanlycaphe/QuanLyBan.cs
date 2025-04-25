@@ -83,7 +83,7 @@ namespace quanlycaphe
             }
             if (cbxTrangThai.SelectedIndex == -1)
             {
-                MessageBox.Show("Chưa chọn giới tính!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Chưa chọn trạng thái!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             String trangThai = cbxTrangThai.SelectedItem.ToString();
@@ -98,7 +98,7 @@ namespace quanlycaphe
                 txtMaBan.Focus();
                 return;
             }
-            String sql = "insert Ban values('" + maBan + "', N'" + tenBan + "',  '" + trangThai + "' )";
+            String sql = "insert Ban values('" + maBan + "', N'" + tenBan + "',  N'" + trangThai + "' )";
             SqlCommand cmd = new SqlCommand(sql, con);
             cmd.ExecuteNonQuery();
             cmd.Dispose();
@@ -137,9 +137,32 @@ namespace quanlycaphe
             loadBan();
             txtMaBan.Enabled = true;
         }
+        public bool kiemTraBanTonTaiTrongDonHang(String maBan)
+        {
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
 
+            string sql = "SELECT COUNT(*) FROM DonHang WHERE MaBan = @maBan";
+            SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@maBan", maBan);
+
+            int count = (int)cmd.ExecuteScalar();
+
+            cmd.Dispose();
+            con.Close();
+
+            return count > 0;
+        }
         private void buttonXoa_Click(object sender, EventArgs e)
         {
+            String maBan = txtMaBan.Text.Trim();
+            if(kiemTraBanTonTaiTrongDonHang(maBan))
+            {
+                MessageBox.Show("Bàn này đang có trong đơn hàng, không thể xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (MessageBox.Show("Bạn có chắc chắn muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 
             {
@@ -147,7 +170,7 @@ namespace quanlycaphe
                 {
                     con.Open();
                 }
-                String maBan = txtMaBan.Text.Trim();
+                
                 String sql = "delete from Ban where MaBan = '" + maBan + "'";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.ExecuteNonQuery();

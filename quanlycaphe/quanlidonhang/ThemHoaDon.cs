@@ -28,8 +28,8 @@ namespace quanlycaphe.quanlidonhang
             setNgayLapHoaDon();
             loadSanPham();
             loadcbbBan();
-            //maNhanVien.Text = User.MaNhanVien;
-            maNhanVien.Text = "NV01"; // Gán giá trị mặc định cho maNhanVien
+            maNhanVien.Text = User.MaNhanVien;
+            //maNhanVien.Text = "NV01"; // Gán giá trị mặc định cho maNhanVien
             maNhanVien.Enabled = false;
             maHoaDon.Enabled = false;
             maHoaDon.Text = maDonHang;

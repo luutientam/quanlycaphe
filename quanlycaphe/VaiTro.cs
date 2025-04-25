@@ -144,6 +144,10 @@ namespace quanlycaphe
             buttonXoa.Enabled = true;
             buttonHuyThaoTac.Enabled = true;
             buttonThemMoi.Enabled = false;
+            int i = (int)e.RowIndex;
+            txtMaVaiTro.Text = dgvVaiTro.Rows[i].Cells[0].Value.ToString();
+            txtTenVaiTro.Text = dgvVaiTro.Rows[i].Cells[1].Value.ToString();
+
         }
 
         private void buttonCapNhat_Click(object sender, EventArgs e)

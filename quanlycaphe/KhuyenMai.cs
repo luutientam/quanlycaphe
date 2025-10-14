@@ -57,9 +57,37 @@ namespace quanlycaphe
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable tb = new DataTable();
             da.Fill(tb);
+            //// Thêm cột hiển thị phần trăm giảm (nếu chưa có)
+            //if (!tb.Columns.Contains("PhanTramHienThi"))
+            //{
+            //    tb.Columns.Add("PhanTramHienThi", typeof(string));
+            //}
+            //// Thêm % vào cột PhanTramGiam
+            //foreach (DataRow row in tb.Rows)
+            //{
+            //    int phantram = Convert.ToInt32(row["PhanTramGiam"]);
+            //    if (phantram == 10)
+            //    {
+            //        row["PhanTramGiam"] = 9100000000;
+            //    }
+
+
+            //}
+            //for (int i = tb.Rows.Count - 1; i >= 0; i--)
+            //{
+            //    DataRow row = tb.Rows[i];
+            //    int phantram = Convert.ToInt32(row["PhanTramGiam"]);
+            //    if (phantram == 10)
+            //    {
+            //        tb.Rows.RemoveAt(i); // Xóa dòng khỏi DataTable
+            //    }
+            //}
+
             cmd.Dispose();
             con.Close();
             dgvKhuyenMai.DataSource = tb;
+            //dgvKhuyenMai.Columns["PhanTramGiam"].Visible = false; // Ẩn cột gốc nếu muốn
+            //dgvKhuyenMai.Columns["PhanTramHienThi"].HeaderText = "Phần Trăm Giảm";
             dgvKhuyenMai.Refresh();
 
         }

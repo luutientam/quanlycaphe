@@ -210,15 +210,21 @@ namespace quanlycaphe
             }
             String giaNhap = txtGiaNhap.Text;
             // Kiểm tra giá chỉ chứa số
-            if (!regexGia.IsMatch(giaNhap))
-            {
-                MessageBox.Show("Giá sản phẩm chỉ được nhập số!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            //if (!regexGia.IsMatch(giaNhap))
+            //{
+            //    MessageBox.Show("Giá sản phẩm chỉ được nhập số!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
             Regex regexSoLuong = new Regex(@"^\d+$");
             if (!regexSoLuong.IsMatch(soLuong))
             {
                 MessageBox.Show("Số lượng sản phẩm chỉ được nhập số!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            int soluongint = Convert.ToInt32(soLuong);
+            if (soluongint < 3 || soluongint > 5)
+            {
+                MessageBox.Show("Số lượng sản phẩm phải lớn hơn 3 nhỏ hơn 5", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (moTa == "")

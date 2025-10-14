@@ -35,7 +35,7 @@ namespace quanlycaphe
                 con.Open();
             }
 
-            string sql = "SELECT sp.MaSanPham, sp.TenSanPham, m.TenDanhMuc, sp.Gia, sp.MoTa, sp.HinhAnh, sp.NgayTao, ncc.TenNhaCungCap, sp.SoLuong, sp.HanSuDung, sp.GiaNhap, km.MaKhuyenMai FROM SanPham sp join DanhMuc m on sp.MaDanhMuc = m.MaDanhMuc join NhaCungCap ncc on ncc.MaNhaCungCap = sp.MaNhaCungCap left join KhuyenMai km on km.MaKhuyenMai = sp.MaKhuyenMai";
+            string sql = "SELECT sp.MaSanPham, sp.TenSanPham, m.TenDanhMuc, sp.Gia, sp.MoTa, sp.HinhAnh, sp.NgayTao, ncc.TenNhaCungCap, sp.SoLuong, sp.HanSuDung, sp.GiaNhap, km.MaKhuyenMai FROM SanPham sp join DanhMuc m on sp.MaDanhMuc = m.MaDanhMuc join NhaCungCap ncc on ncc.MaNhaCungCap = sp.MaNhaCungCap left join KhuyenMai km on km.MaKhuyenMai = sp.MaKhuyenMai where sp.SoLuong < 100";
             SqlCommand cmd = new SqlCommand(sql, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable tb = new DataTable();
